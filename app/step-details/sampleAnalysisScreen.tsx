@@ -1,23 +1,20 @@
-import { useRouter } from "expo-router";
+import MetadataComponent from "@/components/MetadataComponent";
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-export default function SampleAnalysis() {
-  const router = useRouter();
-
+export default function SampleScreen() {
   return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
-        {/* QualificationStep modtager navigationen */}
-        <QualificationStep
-          onStepPress={(stepNumber: any, title: any) => {
-            router.push({
-              pathname: `./step-details/[id]`,
-              params: { id: stepNumber, title },
-            });
-          }}
-        />
-      </ScrollView>
+    <View style={styles.screen}>
+      <MetadataComponent value={true} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
+});
