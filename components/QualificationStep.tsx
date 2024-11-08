@@ -37,15 +37,8 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
         {donorStep.length > 0 ? (
           <FlatList
             data={donorStep}
-            keyExtractor={(index) => index.toString()} // har slettet 'item,' foran index
+            keyExtractor={(item, index) => index.toString()} // har slettet 'item,' foran index
             renderItem={({ item }) => (
-              /*             <View>
-              <Text>{`Donor: ${item.firstName}`}</Text>
-              <Text>{`Step Number: ${item.currentStep}`}</Text>
-              <Text>{`Step Title: ${item.stepTitle}`}</Text>
-              <Text>{`Is Completed: ${item.completed}`}</Text>
-            </View> */
-
               <StepComponent
                 stepNumber={item.currentStep} // Trinnummer fra databasen
                 title={item.stepTitle} // Titel fra databasen
