@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 interface MetadataProps {
   value: boolean; // Boolean værdi
+  label: string;
 }
 
 const MetadataComponent: React.FC<MetadataProps> = ({ value }) => {
