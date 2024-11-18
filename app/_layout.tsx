@@ -1,5 +1,5 @@
 import Background from "@/components/Background";
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -11,9 +11,15 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="step-details/[id]"
-          options={({ route }) => ({
+          /* options={({ route }) => ({
             title: `Detaljer for step ${route.params?.id || ""}`, // Dynamisk titel baseret på ruteparametre
-          })}
+          })} */
+        />
+        <Stack.Screen
+          name="home/[title]"
+          // options={({ route }) => ({
+          //   title: route.params?.title || "Step Screen",
+          // })}
         />
       </Stack>
     </Background>

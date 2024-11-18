@@ -1,5 +1,7 @@
 import React from "react";
-import { ImageBackground, StyleSheet, Image, View } from "react-native";
+import { ImageBackground, StyleSheet, Image, View, Text } from "react-native";
+
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 
 interface BackgroundProps {
   children: React.ReactNode;
@@ -33,5 +35,9 @@ const styles = StyleSheet.create({
     width: 120, // Juster logoets bredde
     height: 50, // Juster logoets højde
     resizeMode: "contain", // Bevarer logoets aspect ratio
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "transparent", // Sørger for at baggrunden er gennemsigtig
   },
 });

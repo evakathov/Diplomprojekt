@@ -44,7 +44,7 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
                 title={item.stepTitle} // Titel fra databasen
                 isCompleted={item.completed} // Aktiv status fra databasen
                 iconName={getIconName(item.currentStep)} // Dynamisk ikonnavn
-                onPress={() => onStepPress(item.currentStep, item.stepTitle)}
+                onPress={() => onStepPress(item.currentStep, item.stepTitle)} //bruges ved dynamisk routing
               />
             )}
           />
