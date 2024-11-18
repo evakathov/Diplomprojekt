@@ -1,3 +1,4 @@
+
 // import MetadataComponent from "@/components/MetadataComponent";
 // import { router, useLocalSearchParams } from "expo-router";
 // import React from "react";
@@ -122,3 +123,4 @@
 // //     textAlign: "center",
 // //   },
 // // });
+
