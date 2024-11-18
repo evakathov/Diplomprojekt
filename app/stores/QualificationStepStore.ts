@@ -6,7 +6,7 @@ const baseUrl = process.env.NODE_ENV === 'development' ?
 
 interface DonorQualificationStepDTO {
     firstName: string;
-    currentStep: number;
+    stepNumber: number;
     stepTitle: string;
     completed: boolean;
     iconName: string;

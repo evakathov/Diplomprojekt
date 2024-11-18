@@ -40,11 +40,11 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
             keyExtractor={(item, index) => index.toString()} // har slettet 'item,' foran index
             renderItem={({ item }) => (
               <StepComponent
-                stepNumber={item.currentStep} // Trinnummer fra databasen
+                stepNumber={item.stepNumber} // Trinnummer fra databasen
                 title={item.stepTitle} // Titel fra databasen
                 isCompleted={item.completed} // Aktiv status fra databasen
-                iconName={getIconName(item.currentStep)} // Dynamisk ikonnavn
-                onPress={() => onStepPress(item.currentStep, item.stepTitle)} //bruges ved dynamisk routing
+                iconName={getIconName(item.stepNumber)} // Dynamisk ikonnavn
+                onPress={() => onStepPress(item.stepNumber, item.stepTitle)} //bruges ved dynamisk routing
               />
             )}
           />
