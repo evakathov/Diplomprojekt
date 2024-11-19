@@ -3,9 +3,10 @@ import { observer } from "mobx-react-lite";
 import { View, Text, FlatList } from "react-native";
 import QualificationStepStore from "../app/stores/QualificationStepStore";
 import StepComponent from "./StepComponent";
+import DonorStore from "@/app/stores/DonorStore";
 
 interface QualificationStepProps {
-  onStepPress: (stepNumber: number, title: string) => void;
+  onStepPress: (stepNumber: number, sstepTitle: string) => void;
 }
 
 const QualificationStep: React.FC<QualificationStepProps> = observer(
@@ -41,15 +42,19 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
             renderItem={({ item }) => (
               <StepComponent
                 stepNumber={item.stepNumber} // Trinnummer fra databasen
-                title={item.stepTitle} // Titel fra databasen
-                isCompleted={item.completed} // Aktiv status fra databasen
+                stepTitle={item.stepTitle} // Titel fra databasen
+                isCompleted={item.isCompleted} // Aktiv status fra databasen
                 iconName={getIconName(item.stepNumber)} // Dynamisk ikonnavn
                 onPress={() => onStepPress(item.stepNumber, item.stepTitle)} //bruges ved dynamisk routing
               />
+              //<button onClick={()=><DonorStore.updateStep(item.stepNumber)}></button>
             )}
           />
         ) : (
           <Text>Loading donor step...</Text>
+        )}
+        {JSON.stringify(
+          DonorStore.donorObject?.qualificationSteps[3].metaDataList
         )}
       </View>
     );

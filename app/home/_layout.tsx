@@ -1,9 +1,14 @@
+import { Header } from "@react-navigation/stack";
 import { Stack } from "expo-router";
 
 export default function HomeLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        headerBackTitleVisible: false, // Skjul "Back"-tekst, hvis det er ønsket
+      }}
+    >
       <Stack.Screen
         name="SampleAnalysis"
         options={{ title: "Sample Analysis" }}
