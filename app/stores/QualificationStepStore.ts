@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+/* import { makeAutoObservable, runInAction } from "mobx";
 
 const baseUrl = process.env.NODE_ENV === 'development' ? 
     "https://test-app.donor.4a4b.dk/" : 
@@ -35,3 +35,4 @@ class QualificationStepStore {
 }
 
 export default new QualificationStepStore();
+ */

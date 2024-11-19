@@ -1,65 +1,58 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { View, Text, FlatList } from "react-native";
-import QualificationStepStore from "../app/stores/QualificationStepStore";
 import StepComponent from "./StepComponent";
 import DonorStore from "@/app/stores/DonorStore";
 
 interface QualificationStepProps {
-  onStepPress: (stepNumber: number, sstepTitle: string) => void;
+  onStepPress: (stepNumber: number, stepTitle: string) => void;
 }
 
 const QualificationStep: React.FC<QualificationStepProps> = observer(
   ({ onStepPress }) => {
-    const { donorStep } = QualificationStepStore;
+    const donorObject = DonorStore.donorObject;
 
-    // const QualificationStep = observer(() => {
-    //   const { donorStep } = QualificationStepStore;
-
-    //   console.log(donorStep);
+    // Ensure donorObject and its qualificationSteps exist before rendering
+    if (!donorObject || !donorObject.qualificationSteps) {
+      return <Text>Loading donor steps...</Text>;
+    }
 
     const getIconName = (stepNumber: number) => {
       switch (stepNumber) {
         case 1:
-          return "science"; // Ikon for trin 1
+          return "science";
         case 2:
-          return "people"; // Ikon for trin 2
+          return "people";
         case 3:
-          return "hospital"; // Ikon for trin 3
+          return "hospital";
         case 4:
-          return "bloodtype"; // Ikon for trin 3
+          return "bloodtype";
+        case 5:
+          return "flag";
         default:
-          return "flag"; // Standardikon
+          return "flag";
       }
     };
 
     return (
       <View>
-        {donorStep.length > 0 ? (
-          <FlatList
-            data={donorStep}
-            keyExtractor={(item, index) => index.toString()} // har slettet 'item,' foran index
-            renderItem={({ item }) => (
-              <StepComponent
-                stepNumber={item.stepNumber} // Trinnummer fra databasen
-                stepTitle={item.stepTitle} // Titel fra databasen
-                isCompleted={item.isCompleted} // Aktiv status fra databasen
-                iconName={getIconName(item.stepNumber)} // Dynamisk ikonnavn
-                onPress={() => onStepPress(item.stepNumber, item.stepTitle)} //bruges ved dynamisk routing
-              />
-              //<button onClick={()=><DonorStore.updateStep(item.stepNumber)}></button>
-            )}
-          />
-        ) : (
-          <Text>Loading donor step...</Text>
-        )}
-        {JSON.stringify(
-          DonorStore.donorObject?.qualificationSteps[3].metaDataList
-        )}
+        <FlatList
+          data={donorObject.qualificationSteps}
+          keyExtractor={(item) => item.qualificationStepID.toString()}
+          renderItem={({ item }) => (
+            <StepComponent
+              stepNumber={item.stepNumber}
+              stepTitle={item.title}
+              isCompleted={item.isCompleted}
+              iconName={getIconName(item.stepNumber)}
+              onPress={() => onStepPress(item.stepNumber, item.title)}
+            />
+          )}
+        />
       </View>
     );
   }
 );
-export default QualificationStep;
 
+export default QualificationStep;
 //State - farven på det givne komponent skal være afhængig af state
