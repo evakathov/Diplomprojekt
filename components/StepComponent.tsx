@@ -5,7 +5,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 interface StepComponentProps {
   stepNumber: number;
-  title: string;
+  stepTitle: string;
   iconName: string;
   isCompleted: boolean; // bruger isCompleted direkte for at bestemme, om trinnet er aktivt
   onPress: () => void; // onPress-Prop skal bruges ved routing
@@ -13,7 +13,7 @@ interface StepComponentProps {
 
 const StepComponent: React.FC<StepComponentProps> = ({
   stepNumber,
-  title,
+  stepTitle,
   iconName,
   isCompleted,
 }) => {
@@ -32,12 +32,13 @@ const StepComponent: React.FC<StepComponentProps> = ({
       case 5:
         return "DonorProfile"; // Rutenavn for trin 5
       default:
-        return "SampleAnalysis"; // Standardrute
+        return "Index"; // Standardrute
     }
   };
 
   const handlePress = () => {
     const routeName = getRouteName(stepNumber);
+    console.log(`Navigating to: /home/${routeName}`); // Debug
     router.push(`./home/${routeName}`); // Naviger til den rigtige skærm
   };
 
@@ -50,7 +51,7 @@ const StepComponent: React.FC<StepComponentProps> = ({
           <Text style={styles.stepText}>Step {stepNumber}</Text>
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{stepTitle}</Text>
         </View>
       </View>
     </TouchableOpacity>

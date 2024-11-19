@@ -9,18 +9,12 @@ export default function RootLayout() {
       <Stack>
         {/* <Stack.Screen name="index" /> */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="step-details/[id]"
-          /* options={({ route }) => ({
-            title: `Detaljer for step ${route.params?.id || ""}`, // Dynamisk titel baseret på ruteparametre
-          })} */
-        />
-        <Stack.Screen
-          name="home/[title]"
+
+        {/* <Stack.Screen name="home/[stepTitle]"
           // options={({ route }) => ({
           //   title: route.params?.title || "Step Screen",
           // })}
-        />
+        /> */}
       </Stack>
     </Background>
   );
