@@ -5,8 +5,7 @@ const baseUrl = process.env.NODE_ENV === 'development' ?
 //"https://test-app.donor.4a4b.dk/" : 
     ""; //Check if dev environment
 interface Donor{
-    qualificationSteps: QualificationStep[    ]
-
+    qualificationSteps: QualificationStep[]
 }
 interface QualificationStep{
     metaDataList: MetaData[]
@@ -14,8 +13,7 @@ interface QualificationStep{
 interface MetaData{
     metaDataTemplate: MetaDataTemplate
 }
-interface MetaDataTemplate{
-    
+interface MetaDataTemplate{    
 }
 
 class DonorStore {
@@ -25,7 +23,8 @@ class DonorStore {
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
         this.fetchDonors();
-        this.fetchDonor(502); this.updateStep(100)
+        this.fetchDonor(502); 
+        this.updateStep(100)
     }
     async updateStep(StepId: number)
     {try{
@@ -37,6 +36,7 @@ class DonorStore {
         console.error("Failed to fetch number:", error);}
 
     }
+    
     async fetchDonor(arg0: number) {
         try{
             const response = await fetch(baseUrl + "api/donors/" + arg0)

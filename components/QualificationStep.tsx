@@ -6,7 +6,7 @@ import StepComponent from "./StepComponent";
 import DonorStore from "@/app/stores/DonorStore";
 
 interface QualificationStepProps {
-  onStepPress: (stepNumber: number, sstepTitle: string) => void;
+  onStepPress: (stepNumber: number, stepTitle: string) => void;
 }
 
 const QualificationStep: React.FC<QualificationStepProps> = observer(
@@ -53,6 +53,7 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
         ) : (
           <Text>Loading donor step...</Text>
         )}
+
         {JSON.stringify(
           DonorStore.donorObject?.qualificationSteps[3].metaDataList
         )}

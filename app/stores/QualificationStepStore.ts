@@ -9,7 +9,7 @@ interface DonorQualificationStepDTO {
     stepNumber: number;
     stepTitle: string;
     isCompleted: boolean;
-    iconName: string;
+    //iconName: string;
 }
 
 class QualificationStepStore {
