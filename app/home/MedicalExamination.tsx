@@ -1,11 +1,14 @@
+
 import React from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { useRouter } from "expo-router"; // Bruger expo-router i stedet for react-navigation
 import ContactComponent1 from "@/components/ContactComponent1";
 import Button2 from "@/components/Button2";
+import ToDo from "@/components/ToDo";
 
 const MedicalExamination = () => {
   const router = useRouter(); // Bruger router til navigation
+
 
   return (
     <View style={styles.container}>
@@ -29,6 +32,9 @@ const MedicalExamination = () => {
         {/* Kontakt informationer */}
         <ContactComponent1 />
       </ScrollView>
+    <View>
+      <Text> Medical examination Screen</Text>
+      <ToDo qualificationStepNumber={3}></ToDo>
     </View>
   );
 };

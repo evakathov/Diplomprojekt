@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
 const baseUrl = process.env.NODE_ENV === 'development' ? 
+    //"http://localhost:8080/" :
     "https://test-app.donor.4a4b.dk/" : 
     ""; //Check if dev environment
 

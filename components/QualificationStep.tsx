@@ -20,11 +20,11 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
     const getIconName = (stepNumber: number) => {
       switch (stepNumber) {
         case 1:
-          return "science";
+          return "biotech";
         case 2:
           return "people";
         case 3:
-          return "hospital";
+          return "accessibility";
         case 4:
           return "bloodtype";
         case 5:

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -36,11 +37,11 @@ const ContactComponent1 = () => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
     margin: 20,
     padding: 20,
     borderRadius: 12,
-    shadowColor: "#000000",
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     color: "#333",
+    fontWeight: 'bold',
     marginBottom: 5,
   },
   subTitle: {
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   },
   address: {
     fontSize: 16,
-    color: "#888",
+    color: '#888',
     marginBottom: 5,
   },
   openingHours: {
@@ -80,11 +82,27 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     justifyContent: "center",
+    color: '#888',
+    marginBottom: 20,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginTop: 10,
+  },
+  iconButton: {
+    alignItems: 'center',
+    padding: 12,
+    borderRadius: 50,
+    backgroundColor: '#f5f5f5',
+    width: 70,
+    height: 70,
+    justifyContent: 'center',
   },
   iconLabel: {
     fontSize: 12,
     marginTop: 5,
-    color: "#333",
+    color: '#333',
   },
 });
 

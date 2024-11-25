@@ -6,6 +6,7 @@ import { router } from "expo-router";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import Header from "@/components/Header";
 import { useRouter } from "expo-router";
+import ToDo from "@/components/ToDo";
 
 export default function Index() {
   const router = useRouter();
@@ -32,6 +33,7 @@ export default function Index() {
             router.push(`./home/${stepTitle}`); // Naviger til den tilsvarende home skærm
           }}
         /> */}
+      
       </ScrollView>
     </View>
   );
