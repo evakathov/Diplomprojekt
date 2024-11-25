@@ -38,18 +38,27 @@ class DonorStore {
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
         this.fetchDonor(1152); 
-        this.updateStep(100)
     }
-    async updateStep(StepId: number)
-    {try{
-        const response = await fetch(baseUrl + "api/qualificationstep/" + StepId + "/completed/" + true, {
-            method:"POST"
-        })
-    }
-    catch (error) {
-        console.error("Failed to fetch number:", error);}
 
-    }
+    async updateStep(StepId: number) {
+        const apiUrl = `${baseUrl}api/donors/${StepId}/completed/${true}`;
+        console.log("Updating step:", apiUrl);
+      
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+          });
+      
+          if (!response.ok) {
+            throw new Error(`Failed to update step ${StepId}: ${response.statusText}`);
+          }
+      
+          console.log(`Step ${StepId} marked as completed.`);
+        } catch (error) {
+          console.error("Failed to update step:", error);
+          throw error; // Propagate the error to handle it in the UI
+        }
+      }            
 
     async fetchDonor(arg0: number) {
         try{
