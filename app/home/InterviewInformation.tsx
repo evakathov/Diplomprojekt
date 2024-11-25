@@ -1,20 +1,17 @@
 //Julianes_RN_Branch
 import Interview1Button from "@/components/Interview1Button";
+import ToDo from "@/components/ToDo";
 // import MetadataComponent from "@/components/MetadataComponent";
 import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native"; // Tilføjet StyleSheet import
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 //
-import ToDo from "@/components/ToDo";
-import React from "react";
-import { View, Text } from "react-native";
-//master
 
 export default function InterviewInformation() {
   const router = useRouter();
 
   return (
-// Julianes_RN_Branch
+    // Julianes_RN_Branch
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {/* Overskrift */}
@@ -45,11 +42,8 @@ export default function InterviewInformation() {
           onPress={() => router.push("./AppointmentScreen")} // Korrekt absolut sti
           icon="calendar"
         />
+        <ToDo qualificationStepNumber={2}></ToDo>
       </ScrollView>
-//
-    <View>
-      <Text>InterviewInformation Screen</Text>
-      <ToDo qualificationStepNumber={2}></ToDo>
     </View>
   );
 }
