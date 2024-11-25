@@ -1,65 +1,73 @@
 import Interview1Button from "@/components/Interview1Button";
+// import MetadataComponent from "@/components/MetadataComponent";
+import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native"; // Tilføjet StyleSheet import
 
 export default function InterviewInformation() {
+  const router = useRouter();
+
   return (
-    <View>
-      <Text>InterviewInformation Screen</Text>
+    <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-          {/* Overskrift */}
-          <Text style={styles.title}>Step 2 - Interview</Text>
-          
-          {/* Beskrivelse */}
-          <Text style={styles.description}>
-            Before your interview, you must complete a survey and thoroughly prepare by reviewing the provided preparation materials. It is important to be well-prepared, as this will help ensure a successful interview process.
-          </Text>
-          
-          {/* Knapper */}
-          <Interview1Button
-            title="Survey"
-            onPress={() => navigation.navigate('SurveyScreen')} // Navigere til SurveyScreen
-            icon="document" // Sørg for at bruge korrekt ikon navn
-          />
-          <Interview1Button
-            title="Preparation for Interview"
-            onPress={() => navigation.navigate('PreparationScreen')} // Navigere til PreparationScreen
-            icon="book" // Sørg for at bruge korrekt ikon navn
-          />
-          <Interview1Button
-            title="Appointment"
-            onPress={() => navigation.navigate('AppointmentScreen')} // Navigere til AppointmentScreen
-            icon="calendar" // Sørg for at bruge korrekt ikon navn
-          />
+        {/* Overskrift */}
+        <Text style={styles.title}>Step 2 - Interview</Text>
+
+        {/* Beskrivelse */}
+        <Text style={styles.description}>
+          Before your interview, you must complete a survey and thoroughly
+          prepare by reviewing the provided preparation materials. It is
+          important to be well-prepared, as this will help ensure a successful
+          interview process.
+        </Text>
+        {/* <MetadataComponent stepNumber={2} /> */}
+
+        {/* Knapper */}
+        <Interview1Button
+          title="Survey"
+          onPress={() => router.push("./SurveyScreen")} // Korrekt absolut sti
+          icon="document"
+        />
+        <Interview1Button
+          title="Preparation for Interview"
+          onPress={() => router.push("./PreperationScreen")} // Korrekt absolut sti
+          icon="book"
+        />
+        <Interview1Button
+          title="Appointment"
+          onPress={() => router.push("./AppointmentScreen")} // Korrekt absolut sti
+          icon="calendar"
+        />
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#F9F9F9',
-    },
-    backgroundImage: {
-      flex: 1, // Sørger for at baggrundsbilledet fylder hele skærmen
-      justifyContent: 'center', // Justering af indhold i baggrundsbilledet
-    },
-    scrollContainer: {
-      flexGrow: 1,
-      justifyContent: 'flex-start',
-      paddingTop: 30, // Justering for overskriften
-      paddingHorizontal: 20,
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: '#333',
-      marginBottom: 10,
-      textAlign: 'left', // Sørg for at overskriften starter til venstre
-    },
-    description: {
-      fontSize: 16,
-      color: '#555',
-      marginBottom: 30,
-    },
-  });
+  container: {
+    flex: 1,
+    backgroundColor: "#F9F9F9",
+  },
+  backgroundImage: {
+    flex: 1, // Sørger for at baggrundsbilledet fylder hele skærmen
+    justifyContent: "center", // Justering af indhold i baggrundsbilledet
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "flex-start",
+    paddingTop: 30, // Justering for overskriften
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 10,
+    textAlign: "left", // Sørg for at overskriften starter til venstre
+  },
+  description: {
+    fontSize: 16,
+    color: "#555",
+    marginBottom: 30,
+  },
+});
