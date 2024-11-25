@@ -6,8 +6,8 @@ const baseUrl = process.env.NODE_ENV === 'development' ?
     
 ""; //Check if dev environment
 
-
 interface Donor{
+    InterviewInformation: any;
     donorId: number;
     firstName: string;
     qualificationSteps: QualificationStep[]

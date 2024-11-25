@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const ContactComponent1 = () => {
   return (
@@ -48,13 +49,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
+    fontWeight: "bold",
+    color: "#333",
     fontWeight: 'bold',
-    color: '#333',
     marginBottom: 5,
   },
   subTitle: {
     fontSize: 18,
-    color: '#666',
+    color: "#666",
     marginVertical: 5,
   },
   address: {
@@ -64,6 +66,22 @@ const styles = StyleSheet.create({
   },
   openingHours: {
     fontSize: 16,
+    color: "#888",
+    marginBottom: 20,
+  },
+  iconContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: 10,
+  },
+  iconButton: {
+    alignItems: "center",
+    padding: 12,
+    borderRadius: 50,
+    backgroundColor: "#f5f5f5",
+    width: 70,
+    height: 70,
+    justifyContent: "center",
     color: '#888',
     marginBottom: 20,
   },
@@ -89,4 +107,3 @@ const styles = StyleSheet.create({
 });
 
 export default ContactComponent1;
-
