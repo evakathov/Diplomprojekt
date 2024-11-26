@@ -24,7 +24,7 @@ const RootLayout = () => {
 };
 
 export default RootLayout;
-
+//test ændring
 // export default function RootLayout() {
 //   return (
 //     <Background>
