@@ -1,11 +1,10 @@
-//Julianes_RN_Branch
 import Interview1Button from "@/components/Interview1Button";
+import templateIdMapping from "@/components/TemplateMapping";
 import ToDo from "@/components/ToDo";
 // import MetadataComponent from "@/components/MetadataComponent";
 import { useRouter } from "expo-router";
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-//
 
 export default function InterviewInformation() {
   const router = useRouter();
@@ -29,20 +28,21 @@ export default function InterviewInformation() {
         {/* Knapper */}
         <Interview1Button
           title="Survey"
-          onPress={() => router.push("./SurveyScreen")} // Korrekt absolut sti
+          onPress={() => router.push("./SurveyScreen")}
           icon="document"
         />
         <Interview1Button
           title="Preparation for Interview"
-          onPress={() => router.push("./PreperationScreen")} // Korrekt absolut sti
+          onPress={() => router.push("./PreperationScreen")}
           icon="book"
         />
         <Interview1Button
           title="Appointment"
-          onPress={() => router.push("./AppointmentScreen")} // Korrekt absolut sti
+          onPress={() => router.push("./AppointmentScreen")}
           icon="calendar"
         />
-        <ToDo qualificationStepNumber={2}></ToDo>
+
+        <ToDo qualificationStepNumber={2} />
       </ScrollView>
     </View>
   );

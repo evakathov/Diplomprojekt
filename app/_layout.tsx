@@ -2,23 +2,45 @@ import Background from "@/components/Background";
 import { Link, Stack } from "expo-router";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
 
-export default function RootLayout() {
+const RootLayout = () => {
+  const router = useRouter();
+  const isLoggedIn = false; // Udskift dette med din login-logik.
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace("./login"); // Naviger til loginsiden.
+    }
+  }, [isLoggedIn]);
+
   return (
-    <Background>
-      <Stack>
-        {/* <Stack.Screen name="index" /> */}
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-
-        {/* <Stack.Screen name="home/[stepTitle]"
-          // options={({ route }) => ({
-          //   title: route.params?.title || "Step Screen",
-          // })}
-        /> */}
-      </Stack>
-    </Background>
+    <Stack>
+      <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
   );
-}
+};
+
+export default RootLayout;
+
+// export default function RootLayout() {
+//   return (
+//     <Background>
+//       <Stack>
+//         {/* <Stack.Screen name="index" /> */}
+//         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+//         {/* <Stack.Screen name="home/[stepTitle]"
+//           // options={({ route }) => ({
+//           //   title: route.params?.title || "Step Screen",
+//           // })}
+//         /> */}
+//       </Stack>
+//     </Background>
+//   );
+// }
 
 // import {
 //   DarkTheme,
