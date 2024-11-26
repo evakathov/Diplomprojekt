@@ -37,7 +37,7 @@ class DonorStore {
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
-        this.fetchDonor(1152); 
+        this.fetchDonor(1202); 
     }
 
     async updateStep(StepId: number) {
