@@ -57,7 +57,7 @@ const SampleScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, // Sørger for at container fylder hele skærmen
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "#f9f6e0",
   },
   backgroundImage: {
     position: "absolute",
