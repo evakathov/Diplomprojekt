@@ -51,7 +51,7 @@ export default function InterviewInformation() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "#f9f6e0",
   },
   backgroundImage: {
     flex: 1, // Sørger for at baggrundsbilledet fylder hele skærmen

@@ -69,10 +69,10 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <Text style={styles.title}>Step {qualificationStepNumber}</Text>
+      {/* <Text style={styles.title}>Step {qualificationStepNumber}</Text>
       <Text style={styles.description}>
         Below are the tasks for this step. Please complete them.
-      </Text>
+      </Text> */}
       {metaDataList.map((meta) => (
         <TouchableOpacity
           key={meta.subStepID}
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   taskButtonCompleted: {
-    backgroundColor: "#7C68EE",
+    backgroundColor: "#a7c68e",
   },
   taskButtonText: {
     fontSize: 16,

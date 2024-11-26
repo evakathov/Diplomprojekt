@@ -12,7 +12,9 @@ const MedicalExamination = () => {
     <View style={styles.container}>
       {/* ScrollView for at kunne rulle indholdet */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {/* Tekst over knappen */}
+        <Text style={styles.title}>Step 3</Text>
+
+        {/* Hardcoded Tekst over knappen */}
         <Text style={styles.infoText}>
           You will need to undergo a thorough medical examination with a doctor
           we collaborate with. You must schedule the appointment yourself; you
@@ -20,16 +22,10 @@ const MedicalExamination = () => {
           to read the information's about the medical examination, so you know
           what to expect.
         </Text>
-
-        {/* Knappen navigerer nu ved hjælp af router.push */}
-        <Button2
-          title="Information about medical examination"
-          onPress={() => router.push("./home/VideoScreen")} // Naviger til VideoScreen
-        />
+        <ToDo qualificationStepNumber={3}></ToDo>
 
         {/* Kontakt informationer */}
         <ContactComponent1 />
-        <ToDo qualificationStepNumber={3}></ToDo>
       </ScrollView>
     </View>
   );
@@ -43,13 +39,24 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingTop: 20, // Øget afstand øverst for bedre visning
     paddingBottom: 100, // Sørger for at der er plads nederst, så tabbaren ikke overlapper
+    backgroundColor: "#f9f6e0",
   },
   infoText: {
     fontSize: 16,
-    color: "#333",
+    color: "#888",
+    marginBottom: 5,
     paddingHorizontal: 20,
     paddingBottom: 20,
     textAlign: "left", // Justering af teksten til venstre
+  },
+  title: {
+    paddingHorizontal: 20,
+    padding: 10,
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 10,
+    textAlign: "left",
   },
 });
 
