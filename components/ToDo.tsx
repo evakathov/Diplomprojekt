@@ -9,6 +9,9 @@ import {
   ScrollView,
 } from "react-native";
 import DonorStore from "@/app/stores/DonorStore";
+import { useRouter } from "expo-router";
+import templateIdMapping from "./TemplateMapping";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 interface ToDoProps {
   qualificationStepNumber: number;
@@ -16,6 +19,7 @@ interface ToDoProps {
 
 const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
   const donorObject = DonorStore.donorObject;
+  const router = useRouter();
 
   if (!donorObject) {
     return (
@@ -43,7 +47,8 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
 
   const handleButtonClick = async (
     metaDataId: number,
-    currentStatus: boolean
+    currentStatus: boolean,
+    route: string
   ) => {
     console.log(
       `Toggling step ID: ${metaDataId}, Current status: ${currentStatus}`
@@ -62,6 +67,10 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
       });
 
       console.log(`Step ID ${metaDataId} status updated successfully.`);
+      // Navigate to the next screen if provided
+      if (route) {
+        router.push(route as `./home/${string}`);
+      }
     } catch (error) {
       console.error("Error toggling step:", error);
     }
@@ -72,21 +81,35 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
       {/* <Text style={styles.title}>Step {qualificationStepNumber}</Text>
       <Text style={styles.description}>
         Below are the tasks for this step. Please complete them.
-      </Text> */}
-      {metaDataList.map((meta) => (
-        <TouchableOpacity
-          key={meta.subStepID}
-          style={[
-            styles.taskButton,
-            meta.isCompleted && styles.taskButtonCompleted,
-          ]}
-          onPress={() => handleButtonClick(meta.subStepID, meta.isCompleted)}
-        >
-          <Text style={styles.taskButtonText}>
-            {meta.metaDataTemplate.infoText}
-          </Text>
-        </TouchableOpacity>
-      ))}
+
+      </Text>
+
+      {metaDataList.map((meta) => {
+        const mapping = templateIdMapping[meta.metaDataTemplate.templateID] || {
+          icon: "default-icon",
+          route: "/default-route",
+        };
+        return (
+          <TouchableOpacity
+            key={meta.subStepID}
+            style={[
+              styles.taskButton,
+              meta.isCompleted && styles.taskButtonCompleted,
+            ]}
+            onPress={() =>
+              handleButtonClick(meta.subStepID, meta.isCompleted, mapping.route)
+            }
+          >
+            <View style={styles.buttonContent}>
+              <Icon name={mapping.icon} size={20} color="#000" /> {/* Ikonet */}
+              <Text style={styles.taskButtonText}>
+                {meta.metaDataTemplate.infoText}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        );
+      })}
+
     </ScrollView>
   );
 });
@@ -106,7 +129,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#333",
+    color: "#000",
     marginBottom: 10,
     textAlign: "left",
   },
@@ -132,14 +155,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 15,
     alignItems: "center",
+    flexDirection: "row",
   },
   taskButtonCompleted: {
     backgroundColor: "#a7c68e",
   },
+  buttonContent: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   taskButtonText: {
     fontSize: 16,
-    color: "#333",
+    color: "#000",
     fontWeight: "bold",
+    marginLeft: 10,
   },
 });
 
