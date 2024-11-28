@@ -82,7 +82,7 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
       <Text style={styles.description}>
         Below are the tasks for this step. Please complete them.
 
-      </Text>
+      </Text> */}
 
       {metaDataList.map((meta) => {
         const mapping = templateIdMapping[meta.metaDataTemplate.templateID] || {
@@ -109,7 +109,6 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
           </TouchableOpacity>
         );
       })}
-
     </ScrollView>
   );
 });

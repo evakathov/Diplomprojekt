@@ -20,27 +20,10 @@ export default function InterviewInformation() {
         <Text style={styles.description}>
           Before your interview, you must complete a survey and thoroughly
           prepare by reviewing the provided preparation materials. It is
-          important to be well-prepared, as this will help ensure a successful
+          important to be well-prepared, you can see how and what to prepare for clikcking the button below. 
+          This will help ensure a successful
           interview process.
         </Text>
-        {/* <MetadataComponent stepNumber={2} /> */}
-
-        {/* Knapper */}
-        <Interview1Button
-          title="Survey"
-          onPress={() => router.push("./SurveyScreen")}
-          icon="document"
-        />
-        <Interview1Button
-          title="Preparation for Interview"
-          onPress={() => router.push("./PreperationScreen")}
-          icon="book"
-        />
-        <Interview1Button
-          title="Appointment"
-          onPress={() => router.push("./AppointmentScreen")}
-          icon="calendar"
-        />
 
         <ToDo qualificationStepNumber={2} />
       </ScrollView>
