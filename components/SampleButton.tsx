@@ -34,7 +34,7 @@ const SampleButton: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#A3B78C",
+    backgroundColor: "#a7c68e",
     paddingVertical: 15,
     paddingHorizontal: 20,
     marginVertical: 10,

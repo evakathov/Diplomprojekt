@@ -88,6 +88,8 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
           icon: "default-icon",
           route: "/default-route",
         };
+        
+        
         return (
           <TouchableOpacity
             key={meta.subStepID}

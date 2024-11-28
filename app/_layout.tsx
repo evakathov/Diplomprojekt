@@ -16,31 +16,17 @@ const RootLayout = () => {
   // }, [isLoggedIn]);
 
   return (
+        <Background>
     <Stack>
       {/* <Stack.Screen name="login" options={{ headerShown: false }} /> */}
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
+          </Background>
+
   );
 };
+  export default RootLayout;
 
-export default RootLayout;
-//test ændring
-// export default function RootLayout() {
-//   return (
-//     <Background>
-//       <Stack>
-//         {/* <Stack.Screen name="index" /> */}
-//         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-
-//         {/* <Stack.Screen name="home/[stepTitle]"
-//           // options={({ route }) => ({
-//           //   title: route.params?.title || "Step Screen",
-//           // })}
-//         /> */}
-//       </Stack>
-//     </Background>
-//   );
-// }
 
 // import {
 //   DarkTheme,
