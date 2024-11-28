@@ -81,7 +81,6 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
       {/* <Text style={styles.title}>Step {qualificationStepNumber}</Text>
       <Text style={styles.description}>
         Below are the tasks for this step. Please complete them.
-
       </Text> */}
 
       {metaDataList.map((meta) => {
@@ -89,6 +88,8 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
           icon: "default-icon",
           route: "/default-route",
         };
+        
+        
         return (
           <TouchableOpacity
             key={meta.subStepID}
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   taskButtonCompleted: {
-    backgroundColor: "#a7c68e",
+    backgroundColor: "#7C68EE",
   },
   buttonContent: {
     flexDirection: "row",

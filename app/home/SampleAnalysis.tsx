@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+//import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import SampleButton from "@/components/SampleButton";
 
 //const backgroundImage = require("..assets/images/baggrundsample.png");
