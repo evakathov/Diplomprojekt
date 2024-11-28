@@ -6,7 +6,6 @@ export default function HomeLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        headerBackTitleVisible: false, // Skjul "Back"-tekst, hvis det er ønsket
       }}
     >
       <Stack.Screen

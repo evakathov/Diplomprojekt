@@ -11,10 +11,21 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        //tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        tabBarActiveTintColor: "#6c8b74", // Farve for aktive ikoner/tekst
+        tabBarInactiveTintColor: "#8F8F8F", // Farve for inaktive ikoner/tekst
+        tabBarStyle: {
+          backgroundColor: "#e2dec0", // Baggrundsfarve for tab bar
+          borderTopColor: "#333", // Farve for linjen øverst
+        },
+        tabBarLabelStyle: {
+          fontSize: 12, // Juster tekststørrelse
+        },
       }}
     >
+      {" "}
+      ,
       <Tabs.Screen
         name="index"
         options={{

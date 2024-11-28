@@ -1,4 +1,3 @@
-// components/Header.tsx
 import React from "react";
 import { Text, View, Image } from "react-native";
 import { StyleSheet } from "react-native";
@@ -22,7 +21,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
   },
-  headerContainer: {},
+  headerContainer: {
+    paddingTop: 40, // Tilføjer luft over billedet
+  },
   logo: {
     width: 200, // Juster bredde på billedet
     height: 100, // Juster højde på billedet

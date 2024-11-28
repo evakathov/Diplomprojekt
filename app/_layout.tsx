@@ -6,18 +6,18 @@ import { useRouter } from "expo-router";
 import { useEffect } from "react";
 
 const RootLayout = () => {
-  const router = useRouter();
-  const isLoggedIn = false; // Udskift dette med din login-logik.
+  // const router = useRouter();
+  // const isLoggedIn = false; // Udskift dette med din login-logik.
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("./login"); // Naviger til loginsiden.
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     router.replace("./login"); // Naviger til loginsiden.
+  //   }
+  // }, [isLoggedIn]);
 
   return (
     <Stack>
-      <Stack.Screen name="login" options={{ headerShown: false }} />
+      {/* <Stack.Screen name="login" options={{ headerShown: false }} /> */}
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
