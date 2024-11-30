@@ -1,8 +1,10 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "./node_modules/expo/tsconfig.base", // Opdateret for at referere til den faktiske placering af expo config
   "compilerOptions": {
     "strict": true,
-    "jsx": "react-native", // Tilføj denne linje for at tillade JSX
+    "jsx": "react-native",
+    "esModuleInterop": true, // Tilføjet for at tillade default-import fra CommonJS moduler
+    "skipLibCheck": true, // Tilføjet for at forhindre kontrol af eksterne biblioteker
     "paths": {
       "@/*": [
         "./*"

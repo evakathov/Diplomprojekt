@@ -81,14 +81,15 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
       {/* <Text style={styles.title}>Step {qualificationStepNumber}</Text>
       <Text style={styles.description}>
         Below are the tasks for this step. Please complete them.
-
-      </Text>
+      </Text> */}
 
       {metaDataList.map((meta) => {
         const mapping = templateIdMapping[meta.metaDataTemplate.templateID] || {
           icon: "default-icon",
           route: "/default-route",
         };
+        
+        
         return (
           <TouchableOpacity
             key={meta.subStepID}
@@ -109,7 +110,6 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
           </TouchableOpacity>
         );
       })}
-
     </ScrollView>
   );
 });
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   taskButtonCompleted: {
-    backgroundColor: "#a7c68e",
+    backgroundColor: "#7C68EE",
   },
   buttonContent: {
     flexDirection: "row",
