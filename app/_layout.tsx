@@ -10,7 +10,7 @@ const RootLayout = () => {
   // Brug useEffect til at navigere til login, hvis brugeren ikke er logget ind.
   useEffect(() => {
     if (!isLoggedIn) {
-      router.replace("/LogInd"); // Naviger til login-siden, hvis brugeren ikke er logget ind
+      router.replace("./LogInd"); // Naviger til login-siden, hvis brugeren ikke er logget ind
     }
   }, [isLoggedIn]);
 

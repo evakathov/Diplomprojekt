@@ -6,7 +6,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView, 
+  ScrollView,
 } from "react-native";
 import DonorStore from "@/app/stores/DonorStore";
 import { useRouter } from "expo-router";
@@ -39,7 +39,7 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
         <Text style={styles.errorText}>
           No metadata found for step {qualificationStepNumber}
         </Text>
-      </View> 
+      </View>
     );
   }
 
@@ -55,19 +55,22 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
     );
 
     try {
-      // Call DonorStore.updateStep to update the backend
-      await DonorStore.updateStep(metaDataId);
+      // Update the backend only if `isCompleted` is false
+      if (!currentStatus) {
+        await DonorStore.updateStep(metaDataId);
 
-      // Update the local state if the backend call is successful
-      runInAction(() => {
-        const metaData = metaDataList.find((m) => m.subStepID === metaDataId);
-        if (metaData) {
-          metaData.isCompleted = !currentStatus;
-        }
-      });
+        // Update local state to reflect the change
+        runInAction(() => {
+          const metaData = metaDataList.find((m) => m.subStepID === metaDataId);
+          if (metaData) {
+            metaData.isCompleted = true;
+          }
+        });
 
-      console.log(`Step ID ${metaDataId} status updated successfully.`);
-      // Navigate to the next screen if provided
+        console.log(`Step ID ${metaDataId} status updated to completed.`);
+      }
+
+      // Always route to the next screen
       if (route) {
         router.push(route as `./home/${string}`);
       }
@@ -78,11 +81,6 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
-      {/* <Text style={styles.title}>Step {qualificationStepNumber}</Text>
-      <Text style={styles.description}>
-        Below are the tasks for this step. Please complete them.
-      </Text> */}
-
       {metaDataList.map((meta) => {
         const mapping = templateIdMapping[meta.metaDataTemplate.templateID] || {
           icon: "default-icon",
@@ -101,10 +99,18 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
             }
           >
             <View style={styles.buttonContent}>
-              <Icon name={mapping.icon} size={20} color="#000" /> {/* Ikonet */}
+              <Icon name={mapping.icon} size={20} color="#000" />
               <Text style={styles.taskButtonText}>
                 {meta.metaDataTemplate.infoText}
               </Text>
+              {meta.isCompleted && (
+                <Icon
+                  name="check"
+                  size={20}
+                  color="green"
+                  style={styles.checkMark}
+                />
+              )}
             </View>
           </TouchableOpacity>
         );
@@ -125,29 +131,6 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#000",
-    marginBottom: 10,
-    textAlign: "left",
-  },
-  description: {
-    fontSize: 16,
-    color: "#555",
-    marginBottom: 20,
-    textAlign: "left",
-  },
-  loadingText: {
-    fontSize: 18,
-    color: "#555",
-    textAlign: "center",
-  },
-  errorText: {
-    fontSize: 16,
-    color: "#D9534F",
-    textAlign: "center",
-  },
   taskButton: {
     backgroundColor: "#E3EDDC",
     padding: 15,
@@ -162,12 +145,28 @@ const styles = StyleSheet.create({
   buttonContent: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    flex: 1,
   },
   taskButtonText: {
     fontSize: 16,
     color: "#000",
     fontWeight: "bold",
     marginLeft: 10,
+    flex: 1,
+  },
+  checkMark: {
+    marginLeft: 10,
+  },
+  loadingText: {
+    fontSize: 18,
+    color: "#555",
+    textAlign: "center",
+  },
+  errorText: {
+    fontSize: 16,
+    color: "#D9534F",
+    textAlign: "center",
   },
 });
 

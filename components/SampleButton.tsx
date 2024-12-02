@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"; // Importer MaterialCommunityIcons
+import Icon from "react-native-vector-icons/FontAwesome";
 
 // Opdater ButtonProps til at inkludere 'date' som en prop
 type ButtonProps = {
@@ -25,8 +26,11 @@ const SampleButton: React.FC<ButtonProps> = ({
           color="black"
         />
         <Text style={styles.buttonText}>{title}</Text>
+        {/* Tilføj checkmark-ikonet hvis isCompleted er true */}
+        <Icon name="check" size={20} color="green" style={styles.checkMark} />
       </View>
       {/* Tilføj datoen under knappen */}
+
       <Text style={styles.dateText}>{date}</Text>
     </TouchableOpacity>
   );
@@ -60,6 +64,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#888",
     marginTop: 5, // Sørger for lidt afstand mellem knappen og datoen
+  },
+  checkMark: {
+    marginLeft: "auto",
   },
 });
 
