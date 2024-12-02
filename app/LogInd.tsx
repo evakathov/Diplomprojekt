@@ -5,72 +5,85 @@ import { PasswordInput } from "../components/PasswordInput";
 import { LogIndButton } from "../components/LogIndButton";
 import { ForgotPasswordButton } from "../components/ForgotPasswordButton";
 import { useRouter } from "expo-router";
+import DonorStore from "./stores/DonorStore";
 
 const LogInd: React.FC = () => {
-  const [email, setEmail] = useState<string>(""); // DonorID
-  const [password, setPassword] = useState<string>(""); // DonorID som kodeord
+  const [donorId, setDonorId] = useState<string>(""); // Donor ID input
+  const [password, setPassword] = useState<string>(""); // Unused password
   const router = useRouter();
 
-  // Håndtering af login
+  // Handle login using DonorStore
   const handleLogin = async () => {
-    if (!email || !password) {
-      Alert.alert("Login Error", "Please enter both email and password.");
+    if (!donorId) {
+      Alert.alert("Login Error", "Please enter your Donor ID.");
       return;
     }
 
     try {
-      const response = await fetch("https://test-app.donor.4a4b.dk/api/donors/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          donorId: parseInt(email), // Forvent at donorId er en int
-          password: password,
-        }),
-      });
+      const parsedDonorId = parseInt(donorId);
+      if (isNaN(parsedDonorId)) {
+        Alert.alert("Login Error", "Donor ID must be a number.");
+        return;
+      }
 
-      if (response.ok) {
-        const donorData = await response.json();
-        Alert.alert("Login Successful", `Welcome, ${donorData.firstName}!`);
-        router.replace("./(tabs)");
-      } else if (response.status === 401) {
+      await DonorStore.fetchDonor(parsedDonorId);
+
+      if (DonorStore.donorObject) {
         Alert.alert(
-          "Login Error", "Incorrect ID or password. Please try again.");
+          "Login Successful",
+          `Welcome, ${DonorStore.donorObject.firstName}!`
+        );
+        router.replace("./(tabs)"); // Redirect to the homepage
       } else {
-        const errorData = await response.text();
-        console.error("Login fejl:", errorData);
-        Alert.alert("Login Error", "An unexpected error occurred. Please try again.");
+        Alert.alert(
+          "Login Error",
+          "No donor found with the provided ID. Please try again."
+        );
       }
     } catch (error) {
-      console.error("Login fejlede:", error);
-      Alert.alert("Login Error", "An unexpected error occurred. Please try again.");
+      console.error("Login failed:", error);
+      Alert.alert(
+        "Login Error",
+        "An unexpected error occurred. Please try again."
+      );
     }
   };
 
   return (
     <ImageBackground
-      source={require("../assets/images/baggrundlogind.png")} // Baggrundsbillede ændret til baggrundlogind.png
+      source={require("../assets/images/baggrundlogind.png")}
       style={styles.background}
     >
-      {/* Logo placeret uden for den centrale boks */}
       <View style={styles.logoContainer}>
         <Image
-          source={require("../assets/images/fertioLogo.png")} // Logo
+          source={require("../assets/images/fertioLogo.png")}
           style={styles.logo}
         />
       </View>
 
       <View style={styles.inputContainer}>
-        {/* Email Input */}
-        <EmailInput value={email} onChangeText={setEmail} />
+        {/* Donor ID Input */}
+        <EmailInput
+          placeholder="Enter Donor ID"
+          value={donorId}
+          onChangeText={setDonorId}
+        />
 
-        {/* Password Input */}
-        <PasswordInput value={password} onChangeText={setPassword} />
+        {/* Password Input (hardcoded, no functionality) */}
+        <PasswordInput
+          placeholder="Enter Password"
+          value={password}
+          onChangeText={setPassword}
+        />
 
-        {/* Forgot Password Link */}
+        {/* Forgot Password Button */}
         <ForgotPasswordButton
-          onPress={() => Alert.alert("Glemt kodeord", "Funktionaliteten er ikke implementeret endnu.")}
+          onPress={() =>
+            Alert.alert(
+              "Forgot Password",
+              "This feature is not implemented yet."
+            )
+          }
         />
 
         {/* Login Button */}

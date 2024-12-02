@@ -4,13 +4,14 @@ import { TextInput, StyleSheet } from 'react-native';
 interface PasswordInputProps {
   value: string;
   onChangeText: (text: string) => void;
+  placeholder?: string; // Optional placeholder prop
 }
 
-export const PasswordInput: React.FC<PasswordInputProps> = ({ value, onChangeText }) => {
+export const PasswordInput: React.FC<PasswordInputProps> = ({ value, onChangeText, placeholder = "Password" }) => {
   return (
     <TextInput
       style={styles.input}
-      placeholder="Password"
+      placeholder={placeholder} // Use the provided placeholder or default to "Password"
       placeholderTextColor="#444"
       secureTextEntry
       value={value}
@@ -34,3 +35,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
