@@ -40,6 +40,16 @@ class DonorStore {
         this.fetchDonor(1202); 
     }
 
+    async fetchDonor(arg0: number) {
+        try{
+            const response = await fetch(baseUrl + "api/donors/" + arg0)
+            const json = await response.json();
+            this.donorObject = json;
+        }
+        catch (error) {
+            console.error("Failed to fetch donor:", error);}
+    }
+    
     async updateStep(StepId: number) {
         const apiUrl = `${baseUrl}api/donors/${StepId}/completed/${true}`;
         console.log("Updating step:", apiUrl);
@@ -58,17 +68,7 @@ class DonorStore {
           console.error("Failed to update step:", error);
           throw error; // Propagate the error to handle it in the UI
         }
-      }            
-
-    async fetchDonor(arg0: number) {
-        try{
-            const response = await fetch(baseUrl + "api/donors/" + arg0)
-            const json = await response.json();
-            this.donorObject = json;
-        }
-        catch (error) {
-            console.error("Failed to fetch donor:", error);}
-    }
+      }         
 }
 export default new DonorStore();
 
