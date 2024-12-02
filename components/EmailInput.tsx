@@ -4,13 +4,14 @@ import { TextInput, StyleSheet } from 'react-native';
 interface EmailInputProps {
   value: string;
   onChangeText: (text: string) => void;
+  placeholder?: string; // Optional placeholder prop
 }
 
-export const EmailInput: React.FC<EmailInputProps> = ({ value, onChangeText }) => {
+export const EmailInput: React.FC<EmailInputProps> = ({ value, onChangeText, placeholder = "Email" }) => {
   return (
     <TextInput
       style={styles.input}
-      placeholder="Email"
+      placeholder={placeholder} // Use the provided placeholder or default to "Email"
       placeholderTextColor="#444"
       keyboardType="email-address"
       value={value}
@@ -34,3 +35,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
