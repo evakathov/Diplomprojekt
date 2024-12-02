@@ -6,7 +6,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  ScrollView, 
 } from "react-native";
 import DonorStore from "@/app/stores/DonorStore";
 import { useRouter } from "expo-router";
@@ -39,7 +39,7 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
         <Text style={styles.errorText}>
           No metadata found for step {qualificationStepNumber}
         </Text>
-      </View>
+      </View> 
     );
   }
 
@@ -88,8 +88,7 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
           icon: "default-icon",
           route: "/default-route",
         };
-        
-        
+
         return (
           <TouchableOpacity
             key={meta.subStepID}
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   taskButtonCompleted: {
-    backgroundColor: "#7C68EE",
+    backgroundColor: "#a7c68e",
   },
   buttonContent: {
     flexDirection: "row",
