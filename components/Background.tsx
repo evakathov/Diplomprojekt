@@ -10,7 +10,7 @@ interface BackgroundProps {
 const Background: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ImageBackground
-      source={require("@/assets/images/fert.png")} // Refererer til baggrundsbilledet
+      source={require("@/assets/images/baggrundhome.png")} // Refererer til baggrundsbilledet
       style={styles.background} // Stil for baggrunden
     >
       {children}
