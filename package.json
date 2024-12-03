@@ -49,7 +49,9 @@
     "react-native-screens": "~4.1.0",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "^0.19.13",
-    "react-native-webview": "^13.12.2",
+    "react-native-web-webview": "^1.0.2",
+    "react-native-webview": "^13.12.4",
+    "react-native-youtube-iframe": "^2.3.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

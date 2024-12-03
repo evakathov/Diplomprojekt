@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, ImageBackground, Alert } from "react-native";
+import { View, StyleSheet, Image, ImageBackground, Text, Alert } from "react-native";
 import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
 import { LogIndButton } from "../components/LogIndButton";
@@ -9,20 +9,28 @@ import DonorStore from "./stores/DonorStore";
 
 const LogInd: React.FC = () => {
   const [donorId, setDonorId] = useState<string>(""); // Donor ID input
-  const [password, setPassword] = useState<string>(""); // Unused password
+  const [password, setPassword] = useState<string>(""); // Password input
+  const [error, setError] = useState<string | null>(null); // Error message
   const router = useRouter();
 
   // Handle login using DonorStore
   const handleLogin = async () => {
-    if (!donorId) {
-      Alert.alert("Login Error", "Please enter your Donor ID.");
+    setError(null); // Clear previous errors
+
+    if (!donorId || !password) {
+      setError("Please enter both Username and Password.");
+      return;
+    }
+
+    if (donorId !== password) {
+      setError("Wrong Username or Password. Please try again.");
       return;
     }
 
     try {
       const parsedDonorId = parseInt(donorId);
       if (isNaN(parsedDonorId)) {
-        Alert.alert("Login Error", "Donor ID must be a number.");
+        setError("Donor ID must be a number.");
         return;
       }
 
@@ -35,17 +43,11 @@ const LogInd: React.FC = () => {
         );
         router.replace("./(tabs)"); // Redirect to the homepage
       } else {
-        Alert.alert(
-          "Login Error",
-          "No donor found with the provided ID. Please try again."
-        );
+        setError("No donor found with the provided ID.");
       }
     } catch (error) {
       console.error("Login failed:", error);
-      Alert.alert(
-        "Login Error",
-        "An unexpected error occurred. Please try again."
-      );
+      setError("An unexpected error occurred. Please try again.");
     }
   };
 
@@ -64,17 +66,20 @@ const LogInd: React.FC = () => {
       <View style={styles.inputContainer}>
         {/* Donor ID Input */}
         <EmailInput
-          placeholder="Enter Donor ID"
+          placeholder="Username"
           value={donorId}
           onChangeText={setDonorId}
         />
 
-        {/* Password Input (hardcoded, no functionality) */}
+        {/* Password Input */}
         <PasswordInput
-          placeholder="Enter Password"
+          placeholder="Password"
           value={password}
           onChangeText={setPassword}
         />
+
+        {/* Error Message */}
+        {error && <Text style={styles.errorText}>{error}</Text>}
 
         {/* Forgot Password Button */}
         <ForgotPasswordButton
@@ -117,9 +122,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 16,
   },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 5,
+    marginBottom: 15,
+    textAlign: "center",
+  },
 });
 
 export default LogInd;
-
 
 
