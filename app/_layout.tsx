@@ -6,19 +6,26 @@ import { useEffect, useState } from "react";
 const RootLayout = () => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login-status
+  const [isSuperUser, setIsSuperUser] = useState(false); // State for superuser access
 
-  // Brug useEffect til at navigere til login, hvis brugeren ikke er logget ind.
+  // Check login status and navigate accordingly
   useEffect(() => {
     if (!isLoggedIn) {
-      router.replace("./LogInd"); // Naviger til login-siden, hvis brugeren ikke er logget ind
+      router.replace("./LogInd");
+    } else if (isSuperUser) {
+      router.replace("./SuperUserSite");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, isSuperUser]);
 
   return (
     <Background>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="LogInd" options={{ title: "Log Ind" }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="SuperUserSite"
+          options={{ title: "SuperUser Site" }}
+        />
       </Stack>
     </Background>
   );

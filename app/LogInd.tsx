@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, ImageBackground, Text, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  Text,
+  Alert,
+} from "react-native";
 import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
 import { LogIndButton } from "../components/LogIndButton";
@@ -19,6 +26,13 @@ const LogInd: React.FC = () => {
 
     if (!donorId || !password) {
       setError("Please enter both Username and Password.");
+      return;
+    }
+
+    // Check for superuser credentials
+    if (donorId === "superuser" && password === "secret") {
+      Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
+      router.replace("./SuperUserSite"); // Redirect to the SuperUser site
       return;
     }
 
@@ -132,5 +146,3 @@ const styles = StyleSheet.create({
 });
 
 export default LogInd;
-
-

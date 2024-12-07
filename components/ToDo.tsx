@@ -57,7 +57,7 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
     try {
       // Update the backend only if `isCompleted` is false
       if (!currentStatus) {
-        await DonorStore.updateStep(metaDataId);
+        await DonorStore.updateSubStep(metaDataId);
 
         // Update local state to reflect the change
         runInAction(() => {

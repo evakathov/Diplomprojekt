@@ -15,9 +15,9 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Background>
-        <Header />
-
         <ScrollView contentContainerStyle={styles.content}>
+          <Header />
+      
           {/* QualificationStep modtager navigationen */}
           <QualificationStep
             onStepPress={function (
