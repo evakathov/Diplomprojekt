@@ -2,8 +2,9 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 const baseUrl =
   process.env.NODE_ENV === "development"
-    ? "https://test-app.donor.4a4b.dk/" // Replace with dev URL if needed
-    : "";
+    //?"http://localhost:8080/":
+    ? "https://test-app.donor.4a4b.dk/" : 
+    "";
 
 interface Donor {
   InterviewInformation: any;
@@ -60,8 +61,8 @@ class DonorStore {
   }
 
     //The update function for the subStep isCompleted value 
-    async updateStep(StepId: number) {
-        const apiUrl = `${baseUrl}api/donors/${StepId}/completed/${true}`;
+    async updateSubStep(StepId: number) {
+        const apiUrl = `${baseUrl}api/donors/${StepId}/substep-completed/${true}`;
         console.log("Updating step:", apiUrl);
       
         try {
@@ -78,7 +79,28 @@ class DonorStore {
           console.error("Failed to update step:", error);
           throw error; // Propagate the error to handle it in the UI
         }
-      }         
+      }
+      
+          //The update function for the subStep isCompleted value 
+    async updateStep(donorId: number, stepNumber: number) {
+      const apiUrl = `${baseUrl}api/donors/${donorId}/step-completed/${stepNumber}${true}`;
+      console.log("Updating step:", apiUrl);
+    
+      try {
+        const response = await fetch(apiUrl, {
+          method: "POST",
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Failed to update step for donor: ${donorId}: ${response.statusText}`);
+        }
+    
+        console.log(`Step ${stepNumber} marked as completed, for donor: ${donorId}`);
+      } catch (error) {
+        console.error("Failed to update step:", error);
+        throw error; // Propagate the error to handle it in the UI
+      }
+    }
 }
 
 export default new DonorStore();

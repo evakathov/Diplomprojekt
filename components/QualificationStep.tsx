@@ -17,6 +17,11 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
       return <Text>Loading donor steps...</Text>;
     }
 
+    // Sort the steps by stepNumber
+    const sortedSteps = [...donorObject.qualificationSteps].sort(
+      (a, b) => a.stepNumber - b.stepNumber
+    );
+
     const getIconName = (stepNumber: number) => {
       switch (stepNumber) {
         case 1:
@@ -30,14 +35,14 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
         case 5:
           return "flag";
         default:
-          return "flag";
+          return "star";
       }
     };
 
     return (
       <View>
         <FlatList
-          data={donorObject.qualificationSteps}
+          data={sortedSteps} // Use the sorted steps here
           keyExtractor={(item) => item.qualificationStepID.toString()}
           renderItem={({ item }) => (
             <StepComponent

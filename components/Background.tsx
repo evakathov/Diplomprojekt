@@ -2,6 +2,7 @@ import React from "react";
 import { ImageBackground, StyleSheet, Image, View, Text } from "react-native";
 
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import Header from "./Header";
 
 interface BackgroundProps {
   children: React.ReactNode;

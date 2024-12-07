@@ -44,7 +44,7 @@ const StepComponent: React.FC<StepComponentProps> = ({
 
   return (
     <TouchableOpacity onPress={handlePress} style={styles.stepContainer}>
-      {stepNumber > 1 && <View style={styles.line} />}
+      {stepNumber > 0 && <View style={styles.line} />}
       <View style={styles.contentContainer}>
         <View style={[styles.circle, isCompleted && styles.activeCircle]}>
           <MaterialIcons name={iconName} size={24} color="#4f4f4f" />
