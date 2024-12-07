@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 // Opdater ButtonProps til at inkludere 'date' som en prop
 type ButtonProps = {
   title: string;
-  onPress: () => void;
+  onPress: () => void; //implementer ny side der viser testresultatet
   icon: string; // Ikon for knappen
   date: string; // Datoen for testresultatet
 };
@@ -20,13 +20,8 @@ const SampleButton: React.FC<ButtonProps> = ({
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <View style={styles.iconTextContainer}>
-        <MaterialCommunityIcons
-          name="test-tube-empty"
-          size={24}
-          color="black"
-        />
+        <MaterialCommunityIcons name="test-tube-empty" size={24} color="#888" />
         <Text style={styles.buttonText}>{title}</Text>
-        {/* Tilføj checkmark-ikonet hvis isCompleted er true */}
         <Icon name="check" size={20} color="green" style={styles.checkMark} />
       </View>
       {/* Tilføj datoen under knappen */}
@@ -58,7 +53,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "black",
+    color: "white",
   },
   dateText: {
     fontSize: 14,
