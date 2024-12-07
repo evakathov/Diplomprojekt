@@ -5,7 +5,7 @@ export default function TabTwoScreen() {
   //const AppointmentPage: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>This is the appointment site</Text>
+      <Text> Hej</Text>
     </View>
   );
 }

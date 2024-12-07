@@ -83,7 +83,7 @@ class DonorStore {
       
           //The update function for the subStep isCompleted value 
     async updateStep(donorId: number, stepNumber: number) {
-      const apiUrl = `${baseUrl}api/donors/${donorId}/step-completed/${stepNumber}${true}`;
+      const apiUrl = `${baseUrl}api/donors/${donorId}/step-completed/${stepNumber}/${true}`;
       console.log("Updating step:", apiUrl);
     
       try {
