@@ -1,30 +1,30 @@
-import { Header } from "@react-navigation/stack";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Stack } from "expo-router";
+import { StyleSheet } from "react-native";
 
 export default function HomeLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: true,
-      }}
-    >
-      <Stack.Screen
-        name="SampleAnalysis"
-        options={{ title: "Sample Analysis" }}
-      />
-      <Stack.Screen
-        name="InterviewInformation"
-        options={{ title: "Interview & Information" }}
-      />
-      <Stack.Screen
-        name="MedicalExamination"
-        options={{ title: "Medical Examination" }}
-      />
-      <Stack.Screen
-        name="BloodUrin"
-        options={{ title: "Blood & Urine Test" }}
-      />
-      <Stack.Screen name="DonorProfile" options={{ title: "Donor Profile" }} />
-    </Stack>
+    <GestureHandlerRootView style={styles.container}>
+      <Stack>
+        <Stack.Screen
+          name="SampleAnalysis"
+          options={{ title: "Sample Analysis" }}
+        />
+        <Stack.Screen
+          name="InterviewInformation"
+          options={{ title: "Interview & Information" }}
+        />
+        <Stack.Screen
+          name="MedicalExamination"
+          options={{ title: "Medical Examination" }}
+        />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, // Ensures GestureHandlerRootView fills the screen
+  },
+});
