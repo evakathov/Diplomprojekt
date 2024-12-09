@@ -1,81 +1,40 @@
-import QualificationStep from "@/components/QualificationStep";
 import React from "react";
-import { router } from "expo-router";
-//import { getRouteName } from "../routeMapping"; // Sørg for korrekt sti
-
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
-import Header from "@/components/Header";
-import { useRouter } from "expo-router";
-import ToDo from "@/components/ToDo";
+import { View, FlatList, StyleSheet } from "react-native";
 import Background from "@/components/Background";
+import Header from "@/components/Header";
+import QualificationStep from "@/components/QualificationStep";
 
 export default function Index() {
-  const router = useRouter();
-
   return (
-    <View style={styles.container}>
-      <Background>
-        <ScrollView contentContainerStyle={styles.content}>
-          <Header />
-      
-          {/* QualificationStep modtager navigationen */}
-          <QualificationStep
-            onStepPress={function (
-              stepNumber: number,
-              stepTitle: string
-            ): void {}}
-
-            //onStepPress={(stepNumber: number, title: string) => {
-            //const routeName = getRouteName(title); // Hent korrekt filnavn
-            //router.push(`./home/${routeName}`); // Naviger til den tilsvarende side
-            // }}
-          />
-          {/* <QualificationStep
-          onStepPress={(stepNumber, stepTitle) => {
-            router.push(`./home/${stepTitle}`); // Naviger til den tilsvarende home skærm
-          }}
-        /> */}
-        </ScrollView>
-      </Background>
-    </View>
+    <Background>
+      <View style={styles.container}>
+        {/* FlatList wraps all scrollable content */}
+        <FlatList
+          data={[{}]} //placeholder emtpty data, flatlist needs data for initalization, incase data is not yet fetched
+          renderItem={() => (
+            <>
+              <Header />
+              <QualificationStep
+                onStepPress={(stepNumber: number, stepTitle: string) => {
+                  console.log("Step clicked:", stepNumber, stepTitle);
+                }}
+              />
+            </>
+          )}
+          keyExtractor={() => "unique"}
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled"
+        />
+      </View>
+    </Background>
   );
 }
-
-// export default function Index() {
-//   return (
-//     <View style={styles.container}>
-//       <Header />
-//       <ScrollView contentContainerStyle={styles.content}>
-//         <QualificationStep />
-//       </ScrollView>
-//     </View>
-//   );
-// }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
   },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#000", // sort farve
-  },
-  content: {
-    padding: 16,
-  },
-  button: {
-    backgroundColor: "#007BFF",
-    padding: 12,
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-  },
-  backgroundImage: {
-    flex: 1, // Sørger for at baggrundsbilledet fylder hele skærmen
-    justifyContent: "center", // Justering af indhold i baggrundsbilledet
+  scrollContainer: {
+    paddingTop: 50, // Adjust padding to align the content properly on the screen
   },
 });

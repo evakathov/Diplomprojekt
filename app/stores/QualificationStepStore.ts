@@ -1,5 +1,6 @@
-/* import { makeAutoObservable, runInAction } from "mobx";
+ import { makeAutoObservable, runInAction } from "mobx";
 
+//Previouse implementation of fetching the donor qualificationstep, using the donorQualificationStepDTO object manually defined. 
 const baseUrl = process.env.NODE_ENV === 'development' ? 
     "https://test-app.donor.4a4b.dk/" : 
     ""; //Check if dev environment
@@ -12,7 +13,7 @@ interface DonorQualificationStepDTO {
     //iconName: string;
 }
 
-class QualificationStepStore {
+class QualificationStepStore {/*
     donorStep: DonorQualificationStepDTO[] = [];
 
     constructor() {
@@ -32,7 +33,8 @@ class QualificationStepStore {
             console.error("Failed to fetch donor and his step:", error);
         }
     }
+        */
 }
 
 export default new QualificationStepStore();
- */
+ 

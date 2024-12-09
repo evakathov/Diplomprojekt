@@ -120,9 +120,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoContainer: {
-    position: "absolute",
+    position: "static",
     top: 100,
     alignItems: "center",
+    backgroundColor: "transparent",
   },
   logo: {
     width: 150,
