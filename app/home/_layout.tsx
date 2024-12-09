@@ -8,15 +8,23 @@ export default function HomeLayout() {
       <Stack>
         <Stack.Screen
           name="SampleAnalysis"
-          options={{ title: "Sample Analysis" }}
+          options={{ title: "Step 1 - Sample Analysis" }}
         />
         <Stack.Screen
           name="InterviewInformation"
-          options={{ title: "Interview & Information" }}
+          options={{ title: "Step 2 - Interview & Information" }}
         />
         <Stack.Screen
           name="MedicalExamination"
-          options={{ title: "Medical Examination" }}
+          options={{ title: "Step 3 - Medical Examination" }}
+        />
+         <Stack.Screen
+          name="BloodUrin"
+          options={{ title: "Step 4 - Blood & Urin test" }}
+        />
+          <Stack.Screen
+          name="DonorProfile"
+          options={{ title: "Step 5 - Donor Profile" }}
         />
       </Stack>
     </GestureHandlerRootView>
