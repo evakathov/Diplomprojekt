@@ -10,19 +10,15 @@ import {
 export default function TabTwoScreen() {
   //const AppointmentPage: React.FC = () => {
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <NavigationContainer>
-        <View style={styles.container}>
-          <Background2>
-            <View>
-              <ScrollView>
-                <Text> hej</Text>
-              </ScrollView>
-            </View>
-          </Background2>
+    <View style={styles.container}>
+      <Background2>
+        <View>
+          <ScrollView>
+            <Text> hej</Text>
+          </ScrollView>
         </View>
-      </NavigationContainer>
-    </GestureHandlerRootView>
+      </Background2>
+    </View>
   );
 }
 
