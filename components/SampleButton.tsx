@@ -1,68 +1,69 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"; // Importer MaterialCommunityIcons
-import Icon from "react-native-vector-icons/FontAwesome";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-// Opdater ButtonProps til at inkludere 'date' som en prop
-type ButtonProps = {
+interface SampleButtonProps {
   title: string;
-  onPress: () => void; //implementer ny side der viser testresultatet
-  icon: string; // Ikon for knappen
-  date: string; // Datoen for testresultatet
-};
+  onPress: () => void;
+  icon: string;
+  date: string;
+}
 
-const SampleButton: React.FC<ButtonProps> = ({
-  title,
-  onPress,
-  icon,
-  date,
-}) => {
+const SampleButton: React.FC<SampleButtonProps> = ({ title, onPress, icon, date }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <View style={styles.iconTextContainer}>
-        <MaterialCommunityIcons name="test-tube-empty" size={24} color="#888" />
-        <Text style={styles.buttonText}>{title}</Text>
-        <Icon name="check" size={20} color="green" style={styles.checkMark} />
+      {/* Ikon til venstre */}
+      <View style={styles.iconContainer}>
+        <Icon name={icon} size={24} color="#4f4f4f" />
       </View>
-      {/* Tilføj datoen under knappen */}
 
-      <Text style={styles.dateText}>{date}</Text>
+      {/* Tekstindhold */}
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.date}>{date}</Text>
+      </View>
+
+      {/* Tjek-tegn til højre */}
+      <Icon name="check" size={24} color="green" style={styles.checkIcon} />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#a7c68e",
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    marginVertical: 10,
-    borderRadius: 10,
-    width: "90%",
-    alignSelf: "center",
-    justifyContent: "center",
-  },
-  iconTextContainer: {
-    flexDirection: "row", // Ikon og tekst side om side
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start", // Sørger for, at tekst og ikon er i samme linje til venstre
+    backgroundColor: "#A3B78C", // Grøn farve (matchende din knap)
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.5,
+    elevation: 2,
   },
-  icon: {
-    marginRight: 10, // Afstand mellem ikon og tekst
+  iconContainer: {
+    marginRight: 15, // Afstand mellem ikon og tekst
   },
-  buttonText: {
+  textContainer: {
+    flex: 1,
+  },
+  title: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "white",
+    color: "#000",
+    marginBottom: 5,
   },
-  dateText: {
+  date: {
     fontSize: 14,
-    color: "#888",
-    marginTop: 5, // Sørger for lidt afstand mellem knappen og datoen
+    color: "#4f4f4f", // Grå farve til dato
   },
-  checkMark: {
-    marginLeft: "auto",
+  checkIcon: {
+    marginLeft: 10, // Afstand mellem tekst og tjek-tegn
   },
 });
 
 export default SampleButton;
+
+
