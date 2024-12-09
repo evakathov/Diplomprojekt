@@ -26,6 +26,10 @@ export default function HomeLayout() {
           name="DonorProfile"
           options={{ title: "Step 5 - Donor Profile" }}
         />
+          <Stack.Screen
+          name="SurveyScreen"
+          options={{ title: "Initial Questionnaire " }}
+        />
       </Stack>
     </GestureHandlerRootView>
   );

@@ -8,7 +8,7 @@ interface Background2Props {
 const Background2: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ImageBackground
-      source={require("@/assets/images/baggrundint1.png")}
+      source={require("@/assets/images/baggrundhome.png")}
       style={styles.background}
     >
       <View style={styles.logoContainer}>

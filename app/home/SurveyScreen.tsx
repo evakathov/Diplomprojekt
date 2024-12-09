@@ -3,21 +3,12 @@ import {
   View,
   Text,
   StyleSheet,
-  ImageBackground,
   TouchableOpacity,
   Linking,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-//import { RootStackParamList } from '../App'; // Importer den rigtige type
-import { Ionicons } from "@expo/vector-icons"; // Importer Ionicons til knap-ikoner
-
-// const backgroundImage = require('../assets/baggrundint1.png'); // Baggrund
-
-// Definer navigation typen
-// type SurveyScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'SurveyScreen'>;
+import Background6 from "@/components/Background2"; // Behold eksisterende baggrund
 
 const SurveyScreen = () => {
-  // Funktion der åbner URL
   const openURL = () => {
     const url =
       "https://www.europeanspermbank.com/da?gad_source=1&gclid=CjwKCAiAxea5BhBeEiwAh4t5KxWknfzXfyhTns4IKZcArKsQ0eisCtF-sS2WffZ08EaQORk1H1qTVRoCbgAQAvD_BwE";
@@ -27,13 +18,8 @@ const SurveyScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {/*       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-       */}{" "}
-      <View style={styles.contentContainer}>
-        {/* Overskrift */}
-        <Text style={styles.title}>Survey</Text>
-
+    <Background6>
+      <View style={styles.container}>
         {/* Beskrivelse */}
         <Text style={styles.description}>
           Before your interview, please complete the survey. It will help us
@@ -42,67 +28,40 @@ const SurveyScreen = () => {
 
         {/* Knap */}
         <TouchableOpacity style={styles.button} onPress={openURL}>
-          <Ionicons
-            name="checkmark-circle"
-            size={24}
-            color="white"
-            style={styles.icon}
-          />
-          <Text style={styles.buttonText}>Start Survey</Text>
+          <Text style={styles.buttonText}>Fill out questionnaire</Text>
         </TouchableOpacity>
       </View>
-      {/*       </ImageBackground>
-       */}{" "}
-    </View>
+    </Background6>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  backgroundImage: {
-    flex: 1,
-    justifyContent: "center", // Centrer indholdet
-    alignItems: "center", // Centrer indholdet
-    resizeMode: "cover", // Baggrund skal dække hele skærmen
-  },
-  contentContainer: {
-    alignItems: "center", // Centrer alle elementer horisontalt
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    backgroundColor: "rgba(255, 255, 255, 0.7)", // Lys baggrund for læsbarhed
-    borderRadius: 15,
-    width: "90%", // Giver lidt bredde til containeren
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 20,
+    justifyContent: "flex-start", // Flyt indholdet op
+    paddingTop: 87, // Flytter teksten 1 cm ned
+    paddingHorizontal: 20, // Tilføj lidt indrykning fra venstre og højre
   },
   description: {
     fontSize: 16,
     color: "#555",
-    textAlign: "center",
-    marginBottom: 30,
+    textAlign: "left", // Juster teksten fra venstre mod højre
+    marginBottom: 20, // Reducér afstand til knappen
   },
   button: {
-    flexDirection: "row", // Gør knappen horisontal
-    alignItems: "center",
-    backgroundColor: "#A3B78C", // Grøn farve til knappen
+    backgroundColor: "#FFD700", // Gul farve til knappen
     paddingVertical: 15,
     paddingHorizontal: 25,
     borderRadius: 10,
-  },
-  icon: {
-    marginRight: 10, // Afstand mellem ikon og tekst
+    alignItems: "center", // Centraliserer teksten vertikalt
+    justifyContent: "center", // Centraliserer teksten horisontalt
   },
   buttonText: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "white",
+    color: "black", // Sort tekst for kontrast mod gul baggrund
   },
 });
 
 export default SurveyScreen;
+

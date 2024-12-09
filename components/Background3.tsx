@@ -1,43 +1,51 @@
 import React from "react";
-import { ImageBackground, StyleSheet, Image, View } from "react-native";
+import { ImageBackground, StyleSheet, View, Image } from "react-native";
 
-interface Background2Props {
+interface Background4Props {
   children: React.ReactNode;
 }
 
-const Background2: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Background4: React.FC<Background4Props> = ({ children }) => {
   return (
     <ImageBackground
-      source={require("@/assets/images/baggrundlogind.png")}
+      source={require("@/assets/images/baggrundlogind.png")} // Opdateret baggrundsbillede
       style={styles.background}
     >
+      {/* Logo i øverste venstre hjørne */}
       <View style={styles.logoContainer}>
         <Image
-          source={require("@/assets/images/fertioLogo.png")}
+          source={require("@/assets/images/fertioLogo.png")} // Logo bevares
           style={styles.logo}
         />
       </View>
-      {children}
+
+      {/* Børn indhold */}
+      <View style={styles.overlay}>{children}</View>
     </ImageBackground>
   );
 };
 
-export default Background2;
-
 const styles = StyleSheet.create({
   background: {
-    flex: 1, // Sikrer, at baggrundsbilledet dækker hele skærmen
+    flex: 1,
     resizeMode: "cover",
+    justifyContent: "flex-start", // Indhold starter øverst
   },
   logoContainer: {
     position: "absolute",
-    top: 20
-    , // Flyt logoet tættere på toppen
-    left: 10, // Hold det tæt på venstre hjørne
+    top: 30, // Justér denne værdi for at flytte logoet op/ned
+    left: 20, // Justér denne værdi for at flytte logoet til venstre/højre
   },
   logo: {
-    width: 100, // Juster logoets størrelse
-    height: 100,
+    width: 100, // Justér størrelsen af logoet
+    height: 40,
     resizeMode: "contain",
   },
+  overlay: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "transparent", // Sørger for gennemsigtig baggrund
+  },
 });
+
+export default Background4;
