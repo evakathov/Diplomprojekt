@@ -1,141 +1,148 @@
-// import React, { useState } from "react";
-// import {
-//   View,
-//   StyleSheet,
-//   Image,
-//   ImageBackground,
-//   Text,
-//   Alert,
-// } from "react-native";
-// import { EmailInput } from "../components/EmailInput";
-// import { PasswordInput } from "../components/PasswordInput";
-// import { LogIndButton } from "../components/LogIndButton";
-// import { ForgotPasswordButton } from "../components/ForgotPasswordButton";
-// import { useRouter } from "expo-router";
-// import DonorStore from "./stores/DonorStore";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  Text,
+  Alert,
+} from "react-native";
+import { EmailInput } from "../components/EmailInput";
+import { PasswordInput } from "../components/PasswordInput";
+import { LogIndButton } from "../components/LogIndButton";
+import { ForgotPasswordButton } from "../components/ForgotPasswordButton";
+import { useRouter } from "expo-router";
+import DonorStore from "./stores/DonorStore";
 
-// const LogInd: React.FC = () => {
-//   const [donorId, setDonorId] = useState<string>(""); // Donor ID input
-//   const [password, setPassword] = useState<string>(""); // Password input
-//   const [error, setError] = useState<string | null>(null); // Error message
-//   const router = useRouter();
+const Login: React.FC = () => {
+  const [donorId, setDonorId] = useState<string>(""); // Donor ID input
+  const [password, setPassword] = useState<string>(""); // Password input
+  const [error, setError] = useState<string | null>(null); // Error message
+  const router = useRouter();
 
-//   // Handle login using DonorStore
-//   const handleLogin = async () => {
-//     setError(null); // Clear previous errors
+  // Handle login using DonorStore
+  const handleLogin = async () => {
+    setError(null); // Clear previous errors
 
-//     if (!donorId || !password) {
-//       setError("Please enter both Username and Password.");
-//       return;
-//     }
+    if (!donorId || !password) {
+      setError("Please enter both Username and Password.");
+      return;
+    }
 
-//     if (donorId !== password) {
-//       setError("Wrong Username or Password. Please try again.");
-//       return;
-//     }
+    // Check for superuser credentials
+    if (donorId === "superuser" && password === "secret") {
+      Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
+      router.replace("./SuperUserSite"); // Redirect to the SuperUser site
+      return;
+    }
 
-//     try {
-//       const parsedDonorId = parseInt(donorId);
-//       if (isNaN(parsedDonorId)) {
-//         setError("Donor ID must be a number.");
-//         return;
-//       }
+    if (donorId !== password) {
+      setError("Wrong Username or Password. Please try again.");
+      return;
+    }
 
-//       await DonorStore.fetchDonor(parsedDonorId);
+    try {
+      const parsedDonorId = parseInt(donorId);
+      if (isNaN(parsedDonorId)) {
+        setError("Donor ID must be a number.");
+        return;
+      }
 
-//       if (DonorStore.donorObject) {
-//         Alert.alert(
-//           "Login Successful",
-//           `Welcome, ${DonorStore.donorObject.firstName}!`
-//         );
-//         router.replace("./(tabs)"); // Redirect to the homepage
-//       } else {
-//         setError("No donor found with the provided ID.");
-//       }
-//     } catch (error) {
-//       console.error("Login failed:", error);
-//       setError("An unexpected error occurred. Please try again.");
-//     }
-//   };
+      await DonorStore.fetchDonor(parsedDonorId);
 
-//   return (
-//     <ImageBackground
-//       source={require("../assets/images/baggrundlogind.png")}
-//       style={styles.background}
-//     >
-//       <View style={styles.logoContainer}>
-//         <Image
-//           source={require("../assets/images/fertioLogo.png")}
-//           style={styles.logo}
-//         />
-//       </View>
+      if (DonorStore.donorObject) {
+        Alert.alert(
+          "Login Successful",
+          `Welcome, ${DonorStore.donorObject.firstName}!`
+        );
+        router.replace("./(tabs)"); // Redirect to the homepage
+      } else {
+        setError("No donor found with the provided ID.");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("An unexpected error occurred. Please try again.");
+    }
+  };
 
-//       <View style={styles.inputContainer}>
-//         {/* Donor ID Input */}
-//         <EmailInput
-//           placeholder="Username"
-//           value={donorId}
-//           onChangeText={setDonorId}
-//         />
+  return (
+    <ImageBackground
+      source={require("../assets/images/baggrundlogind.png")}
+      style={styles.background}
+    >
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../assets/images/fertioLogo.png")}
+          style={styles.logo}
+        />
+      </View>
 
-//         {/* Password Input */}
-//         <PasswordInput
-//           placeholder="Password"
-//           value={password}
-//           onChangeText={setPassword}
-//         />
+      <View style={styles.inputContainer}>
+        {/* Donor ID Input */}
+        <EmailInput
+          placeholder="Username"
+          value={donorId}
+          onChangeText={setDonorId}
+        />
 
-//         {/* Error Message */}
-//         {error && <Text style={styles.errorText}>{error}</Text>}
+        {/* Password Input */}
+        <PasswordInput
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+        />
 
-//         {/* Forgot Password Button */}
-//         <ForgotPasswordButton
-//           onPress={() =>
-//             Alert.alert(
-//               "Forgot Password",
-//               "This feature is not implemented yet."
-//             )
-//           }
-//         />
+        {/* Error Message */}
+        {error && <Text style={styles.errorText}>{error}</Text>}
 
-//         {/* Login Button */}
-//         <LogIndButton onPress={handleLogin} />
-//       </View>
-//     </ImageBackground>
-//   );
-// };
+        {/* Forgot Password Button */}
+        <ForgotPasswordButton
+          onPress={() =>
+            Alert.alert(
+              "Forgot Password",
+              "This feature is not implemented yet."
+            )
+          }
+        />
 
-// const styles = StyleSheet.create({
-//   background: {
-//     flex: 1,
-//     resizeMode: "cover",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   logoContainer: {
-//     position: "absolute",
-//     top: 100,
-//     alignItems: "center",
-//   },
-//   logo: {
-//     width: 150,
-//     height: 80,
-//     resizeMode: "contain",
-//     marginBottom: 20,
-//   },
-//   inputContainer: {
-//     width: "90%",
-//     alignItems: "center",
-//     justifyContent: "center",
-//     padding: 16,
-//   },
-//   errorText: {
-//     color: "red",
-//     fontSize: 14,
-//     marginTop: 5,
-//     marginBottom: 15,
-//     textAlign: "center",
-//   },
-// });
+        {/* Login Button */}
+        <LogIndButton onPress={handleLogin} />
+      </View>
+    </ImageBackground>
+  );
+};
+export default Login;
 
-// export default LogInd;
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logoContainer: {
+    position: "static",
+    top: 100,
+    alignItems: "center",
+    backgroundColor: "transparent",
+  },
+  logo: {
+    width: 150,
+    height: 80,
+    resizeMode: "contain",
+    marginBottom: 20,
+  },
+  inputContainer: {
+    width: "90%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 16,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 5,
+    marginBottom: 15,
+    textAlign: "center",
+  },
+});

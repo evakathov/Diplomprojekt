@@ -37,20 +37,21 @@ const RootLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login-status
   const [isSuperUser, setIsSuperUser] = useState(false); // State for superuser access
 
-  // Tjek om der findes en token i AsyncStorage
+  //Når vi skal implementere login
+  /*   // Tjek om der findes en token i AsyncStorage
   const checkLoginStatus = async () => {
     const token = await AsyncStorage.getItem("authToken");
     setIsLoggedIn(!!token); // Hvis der er en token, er brugeren logget ind
-  };
+  }; */
 
   // Brug useEffect til at navigere baseret på login-status
 
   // Check login status and navigate accordingly
 
   useEffect(() => {
-    checkLoginStatus();
+    //checkLoginStatus();
     if (!isLoggedIn) {
-      router.replace("./LogInd");
+      router.replace("./Login");
     } else if (isSuperUser) {
       router.replace("./SuperUserSite");
     }
@@ -59,7 +60,7 @@ const RootLayout = () => {
   return (
     <Background>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Logind" options={{ title: "Log Ind" }} />
+        <Stack.Screen name="Login" options={{ title: "Log Ind" }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="SuperUserSite"
