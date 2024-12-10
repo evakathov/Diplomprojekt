@@ -1,12 +1,11 @@
 import Background3 from "@/components/Background3";
-import ToDo from "@/components/ToDo";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function BloodUrin() {
+export default function BloodUrinWhatWhy() {
   return (
     <Background3>
       <View style={styles.container}>
-        <ToDo qualificationStepNumber={4}></ToDo>
+        <Text> HEj</Text>
       </View>
     </Background3>
   );
