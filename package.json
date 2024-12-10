@@ -20,6 +20,7 @@
     "@expo/vector-icons": "^14.0.2",
     "@mui/material": "^6.1.7",
     "@mui/styled-engine-sc": "^6.1.7",
+    "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
     "expo": "^52.0.11",

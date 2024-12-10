@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, ImageBackground, Text, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  Text,
+  Alert,
+} from "react-native";
 import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
 import { LogIndButton } from "../components/LogIndButton";
@@ -133,4 +140,6 @@ const styles = StyleSheet.create({
 
 export default LogInd;
 
-
+function fetchUsers() {
+  throw new Error("Function not implemented.");
+}
