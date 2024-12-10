@@ -7,7 +7,7 @@ const LogoutButton = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    router.replace("/LogInd"); // Naviger brugeren tilbage til login
+    router.replace("/Login"); // Naviger brugeren tilbage til login
   };
 
   return (
