@@ -1,6 +1,6 @@
 const templateIdMapping: Record<number, { icon: string; route: string }> = {
-  252: { icon: "edit", route: "./BloodUrine" },
-  302: { icon: "plus", route: "./BloodUrine" },
+  252: { icon: "edit", route: "./SurveyScreen" },
+  302: { icon: "plus", route: "./BloodUrineWhatWhy" },
   352: { icon: "edit", route: "./SurveyScreen" },
   353: { icon: "book", route: "./PreperationScreen" },
   354: { icon: "calendar", route: "./AppointmentScreen" },

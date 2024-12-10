@@ -12,12 +12,30 @@ export default function TabTwoScreen() {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   const upcomingAppointments = [
-    { id: 1, date: "November 10, 2024", time: "1:45 PM", location: "Fertio", type: "Blood test" },
-    { id: 2, date: "November 20, 2024", time: "5:30 PM", location: "Fertio", type: "Interview 2" },
+    {
+      id: 1,
+      date: "November 10, 2024",
+      time: "1:45 PM",
+      location: "Fertio",
+      type: "Blood test",
+    },
+    {
+      id: 2,
+      date: "November 20, 2024",
+      time: "5:30 PM",
+      location: "Fertio",
+      type: "Interview 2",
+    },
   ];
 
   const pastAppointments = [
-    { id: 3, date: "November 1, 2024", time: "10:00 AM", location: "Fertio", type: "Interview 1" },
+    {
+      id: 3,
+      date: "November 1, 2024",
+      time: "10:00 AM",
+      location: "Fertio",
+      type: "Interview 1",
+    },
   ];
 
   const renderAppointment = ({ item }: any) => (
@@ -56,7 +74,10 @@ export default function TabTwoScreen() {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.tab, activeTab === "past" && styles.activeTabRight]}
+              style={[
+                styles.tab,
+                activeTab === "past" && styles.activeTabRight,
+              ]}
               onPress={() => setActiveTab("past")}
             >
               <Text
@@ -170,6 +191,3 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 });
-
-
-

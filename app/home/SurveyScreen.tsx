@@ -32,15 +32,19 @@ const SurveyScreen = () => {
        */}{" "}
       <View style={styles.contentContainer}>
         {/* Overskrift */}
-        <Text style={styles.title}>Survey</Text>
+        <Text style={styles.title}>Questionnaires</Text>
 
         {/* Beskrivelse */}
         <Text style={styles.description}>
-          Before your interview, please complete the survey. It will help us
-          understand your profile better.
+          As a part of your qualificationprocess, you will have to fill out the
+          questionnaires below.
         </Text>
-
         {/* Knap */}
+        <Text style={styles.description}>
+          The initial questionnaire should be filled out before your first
+          interview. Here you and the donor coordinator will go through your
+          answers.
+        </Text>
         <TouchableOpacity style={styles.button} onPress={openURL}>
           <Ionicons
             name="checkmark-circle"
@@ -48,7 +52,22 @@ const SurveyScreen = () => {
             color="white"
             style={styles.icon}
           />
-          <Text style={styles.buttonText}>Start Survey</Text>
+          <Text style={styles.buttonText}>Initial questionnaire</Text>
+        </TouchableOpacity>
+        <Text> </Text>
+
+        <Text style={styles.description}>
+          Filling out you donor profile questionnaire is importan for us to make
+          the best representation of you for customers to see.
+        </Text>
+        <TouchableOpacity style={styles.button} onPress={openURL}>
+          <Ionicons
+            name="checkmark-circle"
+            size={24}
+            color="white"
+            style={styles.icon}
+          />
+          <Text style={styles.buttonText}>Donor profile</Text>
         </TouchableOpacity>
       </View>
       {/*       </ImageBackground>
@@ -94,6 +113,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 25,
     borderRadius: 10,
+    paddingBottom: 20,
   },
   icon: {
     marginRight: 10, // Afstand mellem ikon og tekst
