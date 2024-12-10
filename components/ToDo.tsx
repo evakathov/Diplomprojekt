@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { runInAction } from "mobx";
 import {
@@ -20,6 +20,9 @@ interface ToDoProps {
 const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
   const donorObject = DonorStore.donorObject;
   const router = useRouter();
+
+  // State to track the currently clicked subStepID
+  const [clickedSubStep, setClickedSubStep] = useState<number | null>(null);
 
   if (!donorObject) {
     return (
@@ -55,9 +58,12 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
     );
 
     try {
+      // Set clickedSubStep to track the clicked task
+      setClickedSubStep(metaDataId);
+
       // Update the backend only if `isCompleted` is false
       if (!currentStatus) {
-        await DonorStore.updateStep(metaDataId);
+        await DonorStore.updateSubStep(metaDataId);
 
         // Update local state to reflect the change
         runInAction(() => {
@@ -87,23 +93,32 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
           route: "/default-route",
         };
 
+        const isClicked = clickedSubStep === meta.subStepID;
+        const isCompleted = meta.isCompleted;
+        const iconColor = isClicked || isCompleted ? "white" : "#000";
+
         return (
           <TouchableOpacity
             key={meta.subStepID}
             style={[
               styles.taskButton,
-              meta.isCompleted && styles.taskButtonCompleted,
+              (isClicked || isCompleted) && styles.taskButtonCompleted,
             ]}
             onPress={() =>
-              handleButtonClick(meta.subStepID, meta.isCompleted, mapping.route)
+              handleButtonClick(meta.subStepID, isCompleted, mapping.route)
             }
           >
             <View style={styles.buttonContent}>
-              <Icon name={mapping.icon} size={20} color="#000" />
-              <Text style={styles.taskButtonText}>
+              <Icon name={mapping.icon} size={20} color={iconColor} />
+              <Text
+                style={[
+                  styles.taskButtonText,
+                  (isClicked || isCompleted) && styles.taskButtonTextCompleted,
+                ]}
+              >
                 {meta.metaDataTemplate.infoText}
               </Text>
-              {meta.isCompleted && (
+              {isCompleted && (
                 <Icon
                   name="check"
                   size={20}
@@ -138,9 +153,19 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     alignItems: "center",
     flexDirection: "row",
+    // Shadow for Android
+    elevation: 6,
+    // Shadow for iOS
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   taskButtonCompleted: {
     backgroundColor: "#a7c68e",
+    elevation: 4, // Optional: More pronounced shadow for completed tasks
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
   },
   buttonContent: {
     flexDirection: "row",
@@ -152,6 +177,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#000",
     fontWeight: "bold",
+    marginLeft: 10,
+    flex: 1,
+  },
+  taskButtonTextCompleted: {
+    fontSize: 16,
+    color: "white",
+    fontWeight: "normal",
+    textDecorationLine: "line-through",
     marginLeft: 10,
     flex: 1,
   },

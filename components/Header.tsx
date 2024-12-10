@@ -19,22 +19,23 @@ const Header: React.FC = () => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: "#f5f1d4",
-    paddingTop: 40, // Luft over logoet
-    paddingHorizontal: 16, // Luft til siderne
-    flexDirection: "row", // Placerer logo og logudknap på samme række
-    justifyContent: "space-between", // Logo til venstre og logudknap til højre
-    alignItems: "flex-start", // Sørger for, at logout-knappen starter højere op
+    backgroundColor: "transparent", // Makes the header background fully transparent
+    paddingTop: 40, // Space above the logo
+    paddingBottom: 50,
+    paddingHorizontal: 16, // Space on the sides
+    flexDirection: "row", // Places logo and logout button in the same row
+    justifyContent: "space-between", // Logo to the left and logout button to the right
+    alignItems: "flex-start", // Aligns items to start at the top
   },
   logo: {
-    width: 200, // Juster bredde på logoet
-    height: 100, // Juster højde på logoet
-    resizeMode: "contain", // Bevarer billedets proportioner
-    marginBottom: -10, // Trækker logoet lidt længere op
+    width: 200, // Adjust the logo's width
+    height: 100, // Adjust the logo's height
+    resizeMode: "contain", // Preserves the image proportions
+    marginBottom: -10, // Moves the logo slightly upward
   },
   logoutButtonWrapper: {
-    marginTop: -12, // Flytter logout-knappen minimalt ned
-    marginRight: -10, // Flytter logout-knappen lidt til højre
+    marginTop: -12, // Moves the logout button slightly downward
+    marginRight: -10, // Moves the logout button slightly to the right
   },
 });
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import React from "react";
+import { TextInput, StyleSheet } from "react-native";
 
 interface PasswordInputProps {
   value: string;
@@ -7,12 +7,16 @@ interface PasswordInputProps {
   placeholder?: string; // Optional placeholder prop
 }
 
-export const PasswordInput: React.FC<PasswordInputProps> = ({ value, onChangeText, placeholder = "Password" }) => {
+export const PasswordInput: React.FC<PasswordInputProps> = ({
+  value,
+  onChangeText,
+  placeholder = "Password",
+}) => {
   return (
     <TextInput
       style={styles.input}
       placeholder={placeholder} // Use the provided placeholder or default to "Password"
-      placeholderTextColor="#444"
+      placeholderTextColor="#888"
       secureTextEntry
       value={value}
       onChangeText={onChangeText}
@@ -22,17 +26,16 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({ value, onChangeTex
 
 const styles = StyleSheet.create({
   input: {
-    width: '100%',
+    width: "100%",
     height: 45,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 8,
     paddingHorizontal: 10,
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
-

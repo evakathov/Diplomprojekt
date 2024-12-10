@@ -35,6 +35,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"; // Expo's 
 const RootLayout = () => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login-status
+  const [isSuperUser, setIsSuperUser] = useState(false); // State for superuser access
 
   // Tjek om der findes en token i AsyncStorage
   const checkLoginStatus = async () => {
@@ -43,18 +44,27 @@ const RootLayout = () => {
   };
 
   // Brug useEffect til at navigere baseret på login-status
+
+  // Check login status and navigate accordingly
+
   useEffect(() => {
     checkLoginStatus();
     if (!isLoggedIn) {
-      router.replace("./LogInd"); // Naviger til login-siden, hvis brugeren ikke er logget ind
+      router.replace("./LogInd");
+    } else if (isSuperUser) {
+      router.replace("./SuperUserSite");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, isSuperUser]);
 
   return (
     <Background>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Logind" options={{ title: "Log Ind" }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="SuperUserSite"
+          options={{ title: "SuperUser Site" }}
+        />
       </Stack>
     </Background>
   );

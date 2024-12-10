@@ -1,7 +1,4 @@
-import Interview1Button from "@/components/Interview1Button";
-import templateIdMapping from "@/components/TemplateMapping";
 import ToDo from "@/components/ToDo";
-// import MetadataComponent from "@/components/MetadataComponent";
 import { useRouter } from "expo-router";
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
@@ -15,13 +12,12 @@ export default function InterviewInformation() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {/* Overskrift */}
         <Text style={styles.title}>Step 2 - Interview</Text>
-
         {/* Beskrivelse */}
         <Text style={styles.description}>
           Before your interview, you must complete a survey and thoroughly
           prepare by reviewing the provided preparation materials. It is
-          important to be well-prepared, you can see how and what to prepare for clikcking the button below. 
-          This will help ensure a successful
+          important to be well-prepared, you can see how and what to prepare for
+          clikcking the button below. This will help ensure a successful
           interview process.
         </Text>
 

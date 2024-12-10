@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 3 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
+    elevation: 6, // elevation for androind
   },
   activeCircle: {
     backgroundColor: "#6c8b74", // Grøn for aktive trin
@@ -98,6 +99,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 3 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
+    elevation: 6, // elevation for androind
   },
   stepText: {
     position: "absolute",

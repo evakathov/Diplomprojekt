@@ -29,6 +29,13 @@ const LogInd: React.FC = () => {
       return;
     }
 
+    // Check for superuser credentials
+    if (donorId === "superuser" && password === "secret") {
+      Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
+      router.replace("./SuperUserSite"); // Redirect to the SuperUser site
+      return;
+    }
+
     if (donorId !== password) {
       setError("Wrong Username or Password. Please try again.");
       return;
@@ -113,9 +120,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoContainer: {
-    position: "absolute",
+    position: "static",
     top: 100,
     alignItems: "center",
+    backgroundColor: "transparent",
   },
   logo: {
     width: 150,
@@ -137,9 +145,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
-export default LogInd;
-
-function fetchUsers() {
-  throw new Error("Function not implemented.");
-}
