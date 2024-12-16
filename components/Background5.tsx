@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: 20
-    , // Flyt logoet tættere på toppen
-    left: 10, // Hold det tæt på venstre hjørne
+    top: 40, // Flytter logoet endnu tættere på toppen
+    left: 15, // Justerer lidt fra venstre kant
+    alignItems: "flex-start", // Sørger for, at logoet er venstrestillet
   },
   logo: {
-    width: 100, // Juster logoets størrelse
-    height: 100,
+    width: 100, // Juster logoets bredde
+    height: 100, // Juster logoets højde
     resizeMode: "contain",
   },
 });

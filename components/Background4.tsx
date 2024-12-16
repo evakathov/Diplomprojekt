@@ -1,51 +1,43 @@
 import React from "react";
-import { ImageBackground, StyleSheet, View, Image } from "react-native";
+import { ImageBackground, StyleSheet, Image, View } from "react-native";
 
-interface Background4Props {
+interface Background2Props {
   children: React.ReactNode;
 }
 
-const Background4: React.FC<Background4Props> = ({ children }) => {
+const Background2: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ImageBackground
-      source={require("@/assets/images/baggrundsample.png")} // Opdateret baggrundsbillede
+      source={require("@/assets/images/baggrundsample.png")}
       style={styles.background}
     >
-      {/* Logo i øverste venstre hjørne */}
       <View style={styles.logoContainer}>
         <Image
-          source={require("@/assets/images/fertioLogo.png")} // Logo bevares
+          source={require("@/assets/images/fertioLogo.png")}
           style={styles.logo}
         />
       </View>
-
-      {/* Børn indhold */}
-      <View style={styles.overlay}>{children}</View>
+      {children}
     </ImageBackground>
   );
 };
 
+export default Background2;
+
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
+    flex: 1, // Sikrer, at baggrundsbilledet dækker hele skærmen
     resizeMode: "cover",
-    justifyContent: "flex-start", // Indhold starter øverst
   },
   logoContainer: {
     position: "absolute",
-    top: 30, // Justér denne værdi for at flytte logoet op/ned
-    left: 20, // Justér denne værdi for at flytte logoet til venstre/højre
+    top: 40, // Flytter logoet endnu tættere på toppen
+    left: 15, // Justerer lidt fra venstre kant
+    alignItems: "flex-start", // Sørger for, at logoet er venstrestillet
   },
   logo: {
-    width: 100, // Justér størrelsen af logoet
-    height: 40,
+    width: 100, // Juster logoets bredde
+    height: 100, // Juster logoets højde
     resizeMode: "contain",
   },
-  overlay: {
-    flex: 1,
-    width: "100%",
-    backgroundColor: "transparent", // Sørger for gennemsigtig baggrund
-  },
 });
-
-export default Background4;

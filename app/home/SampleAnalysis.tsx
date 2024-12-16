@@ -5,9 +5,9 @@ import Background4 from "@/components/Background4";
 
 const SampleScreen = () => {
   return (
-    <View style={styles.container}>
-      <Background4>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <Background4>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.container}>
           {/* Beskrivelse */}
           <Text style={styles.description}>
             Your samples have been approved. You can find the test results below.
@@ -38,22 +38,21 @@ const SampleScreen = () => {
               date="September 7, 2024"
             />
           </View>
-        </ScrollView>
-      </Background4>
-    </View>
+        </View>
+      </ScrollView>
+    </Background4>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: "flex-start",
-    paddingTop: 100,
+    paddingTop: 120, // Justeret for at kompensere for headeren
+    paddingBottom: 50,
+  },
+  container: {
     paddingHorizontal: 20,
-    paddingBottom: 90,
   },
   description: {
     fontSize: 16,
@@ -62,24 +61,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   buttonContainer: {
-    width: "100%", // Gør knappen bredere
-  },
-  button: {
-    backgroundColor: "#2E7D32", // Mørkegrøn farve
-    paddingVertical: 18, // Tykkelse
-    paddingHorizontal: 25, // Gør knappen længere
-    borderRadius: 8, // Afrundede hjørner
-    marginBottom: 15,
-    alignItems: "center",
-    flexDirection: "row",
-    width: "100%", // Fuld bredde
-    alignSelf: "center", // Centrerer knappen
-  },
-  buttonText: {
-    fontSize: 16,
-    color: "#FFF", // Hvid tekst for kontrast
-    fontWeight: "bold",
-    marginLeft: 10,
+    marginBottom: 10, // Mindre afstand mellem knapperne
   },
 });
 
