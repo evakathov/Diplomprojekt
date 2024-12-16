@@ -12,52 +12,49 @@ import { PasswordInput } from "../components/PasswordInput";
 import { LogIndButton } from "../components/LogIndButton";
 import { ForgotPasswordButton } from "../components/ForgotPasswordButton";
 import { useRouter } from "expo-router";
+import { observer } from "mobx-react-lite";
+import { tokenStore } from "./stores/TokenStore";
 import DonorStore from "./stores/DonorStore";
 
-const Login: React.FC = () => {
-  const [donorId, setDonorId] = useState<string>(""); // Donor ID input
+const Login: React.FC = observer(() => {
+  const [username, setusername] = useState<string>(""); // Donor ID input
   const [password, setPassword] = useState<string>(""); // Password input
   const [error, setError] = useState<string | null>(null); // Error message
   const router = useRouter();
 
-  // Handle login using DonorStore
+  // Handle login using TokenStore
   const handleLogin = async () => {
     setError(null); // Clear previous errors
 
-    if (!donorId || !password) {
+    if (!username || !password) {
       setError("Please enter both Username and Password.");
       return;
     }
 
     // Check for superuser credentials
-    if (donorId === "superuser" && password === "secret") {
+    if (username === "superuser" && password === "secret") {
       Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
       router.replace("./SuperUserSite"); // Redirect to the SuperUser site
       return;
     }
 
-    if (donorId !== password) {
-      setError("Wrong Username or Password. Please try again.");
-      return;
-    }
-
     try {
-      const parsedDonorId = parseInt(donorId);
-      if (isNaN(parsedDonorId)) {
-        setError("Donor ID must be a number.");
-        return;
-      }
+      // fetch token
+      tokenStore.logindata = { username, password };
+      await tokenStore.doLogin();
 
-      await DonorStore.fetchDonor(parsedDonorId);
-
-      if (DonorStore.donorObject) {
-        Alert.alert(
-          "Login Successful",
-          `Welcome, ${DonorStore.donorObject.firstName}!`
-        );
-        router.replace("./(tabs)"); // Redirect to the homepage
+      if (tokenStore.state === "LoggedIn") {
+        if (DonorStore.donorObject) {
+          Alert.alert(
+            "Login Successful",
+            `Welcome, ${DonorStore.donorObject.firstName}!`
+          );
+          router.replace("./(tabs)"); // Redirect to the homepage
+        } else {
+          setError("No donor found with the provided ID.");
+        }
       } else {
-        setError("No donor found with the provided ID.");
+        setError("Wrong Username or Password. Please try again.");
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -81,8 +78,8 @@ const Login: React.FC = () => {
         {/* Donor ID Input */}
         <EmailInput
           placeholder="Username"
-          value={donorId}
-          onChangeText={setDonorId}
+          value={username}
+          onChangeText={setusername}
         />
 
         {/* Password Input */}
@@ -110,7 +107,8 @@ const Login: React.FC = () => {
       </View>
     </ImageBackground>
   );
-};
+});
+
 export default Login;
 
 const styles = StyleSheet.create({
@@ -146,3 +144,139 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+
+///////////////Original Login////////////////////
+
+// const Login: React.FC = () => {
+//   const [donorId, setDonorId] = useState<string>(""); // Donor ID input
+//   const [password, setPassword] = useState<string>(""); // Password input
+//   const [error, setError] = useState<string | null>(null); // Error message
+//   const router = useRouter();
+
+//   // Handle login using DonorStore
+//   const handleLogin = async () => {
+//     setError(null); // Clear previous errors
+
+//     if (!donorId || !password) {
+//       setError("Please enter both Username and Password.");
+//       return;
+//     }
+
+//     // Check for superuser credentials
+//     if (donorId === "superuser" && password === "secret") {
+//       Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
+//       router.replace("./SuperUserSite"); // Redirect to the SuperUser site
+//       return;
+//     }
+
+//     if (donorId !== password) {
+//       setError("Wrong Username or Password. Please try again.");
+//       return;
+//     }
+
+//     try {
+//       const parsedDonorId = parseInt(donorId);
+//       if (isNaN(parsedDonorId)) {
+//         setError("Donor ID must be a number.");
+//         return;
+//       }
+
+//       await DonorStore.fetchDonor(parsedDonorId);
+
+//       if (DonorStore.donorObject) {
+//         Alert.alert(
+//           "Login Successful",
+//           `Welcome, ${DonorStore.donorObject.firstName}!`
+//         );
+//         router.replace("./(tabs)"); // Redirect to the homepage
+//       } else {
+//         setError("No donor found with the provided ID.");
+//       }
+//     } catch (error) {
+//       console.error("Login failed:", error);
+//       setError("An unexpected error occurred. Please try again.");
+//     }
+//   };
+
+//   return (
+//     <ImageBackground
+//       source={require("../assets/images/baggrundlogind.png")}
+//       style={styles.background}
+//     >
+//       <View style={styles.logoContainer}>
+//         <Image
+//           source={require("../assets/images/fertioLogo.png")}
+//           style={styles.logo}
+//         />
+//       </View>
+
+//       <View style={styles.inputContainer}>
+//         {/* Donor ID Input */}
+//         <EmailInput
+//           placeholder="Username"
+//           value={donorId}
+//           onChangeText={setDonorId}
+//         />
+
+//         {/* Password Input */}
+//         <PasswordInput
+//           placeholder="Password"
+//           value={password}
+//           onChangeText={setPassword}
+//         />
+
+//         {/* Error Message */}
+//         {error && <Text style={styles.errorText}>{error}</Text>}
+
+//         {/* Forgot Password Button */}
+//         <ForgotPasswordButton
+//           onPress={() =>
+//             Alert.alert(
+//               "Forgot Password",
+//               "This feature is not implemented yet."
+//             )
+//           }
+//         />
+
+//         {/* Login Button */}
+//         <LogIndButton onPress={handleLogin} />
+//       </View>
+//     </ImageBackground>
+//   );
+// };
+// export default Login;
+
+// const styles = StyleSheet.create({
+//   background: {
+//     flex: 1,
+//     resizeMode: "cover",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   logoContainer: {
+//     position: "static",
+//     top: 100,
+//     alignItems: "center",
+//     backgroundColor: "transparent",
+//   },
+//   logo: {
+//     width: 150,
+//     height: 80,
+//     resizeMode: "contain",
+//     marginBottom: 20,
+//   },
+//   inputContainer: {
+//     width: "90%",
+//     alignItems: "center",
+//     justifyContent: "center",
+//     padding: 16,
+//   },
+//   errorText: {
+//     color: "red",
+//     fontSize: 14,
+//     marginTop: 5,
+//     marginBottom: 15,
+//     textAlign: "center",
+//   },
+// });

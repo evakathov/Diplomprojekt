@@ -7,8 +7,6 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-//import { RootStackParamList } from '../App'; // Importer den rigtige type
 import { Ionicons } from "@expo/vector-icons"; // Importer Ionicons til knap-ikoner
 
 // const backgroundImage = require('../assets/baggrundint1.png'); // Baggrund
