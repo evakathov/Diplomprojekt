@@ -65,7 +65,6 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
       if (!currentStatus) {
         await DonorStore.updateSubStep(metaDataId);
 
-        // Update local state to reflect the change
         runInAction(() => {
           const metaData = metaDataList.find((m) => m.subStepID === metaDataId);
           if (metaData) {
@@ -76,7 +75,6 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
         console.log(`Step ID ${metaDataId} status updated to completed.`);
       }
 
-      // Always route to the next screen
       if (route) {
         router.push(route as `./home/${string}`);
       }
@@ -148,7 +146,8 @@ const styles = StyleSheet.create({
   },
   taskButton: {
     backgroundColor: "#E3EDDC",
-    padding: 15,
+    paddingVertical: 15, // Matcher tykkelsen fra SampleButton
+    paddingHorizontal: 25, // Matcher bredden fra SampleButton
     borderRadius: 8,
     marginBottom: 15,
     alignItems: "center",

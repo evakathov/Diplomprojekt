@@ -5,55 +5,63 @@ import Background4 from "@/components/Background4";
 
 const SampleScreen = () => {
   return (
-    <View style={styles.container}>
-      <Background4>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <Background4>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.container}>
           {/* Beskrivelse */}
           <Text style={styles.description}>
             Your samples have been approved. You can find the test results below.
           </Text>
 
           {/* Knapper */}
-          <SampleButton
-            title="Test results - Sample Analysis"
-            onPress={() => {}}
-            icon="test-tube"
-            date="October 7, 2024"
-          />
-          <SampleButton
-            title="Test results - Sample Analysis"
-            onPress={() => {}}
-            icon="test-tube"
-            date="September 22, 2024"
-          />
-          <SampleButton
-            title="Test results - Sample Analysis"
-            onPress={() => {}}
-            icon="test-tube"
-            date="September 7, 2024"
-          />
-        </ScrollView>
-      </Background4>
-    </View>
+          <View style={styles.buttonContainer}>
+            <SampleButton
+              title="Test results - Sample Analysis"
+              onPress={() => {}}
+              icon="test-tube"
+              date="October 7, 2024"
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <SampleButton
+              title="Test results - Sample Analysis"
+              onPress={() => {}}
+              icon="test-tube"
+              date="September 22, 2024"
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <SampleButton
+              title="Test results - Sample Analysis"
+              onPress={() => {}}
+              icon="test-tube"
+              date="September 7, 2024"
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </Background4>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: "flex-start",
-    paddingTop: 100, // Mindre plads for at rykke teksten og knapperne op
+    paddingTop: 120, // Justeret for at kompensere for headeren
+    paddingBottom: 50,
+  },
+  container: {
     paddingHorizontal: 20,
-    paddingBottom: 90,
   },
   description: {
     fontSize: 16,
     color: "#555",
-    marginBottom: 20, // Mindre afstand under beskrivelsen
+    marginBottom: 20,
     textAlign: "left",
+  },
+  buttonContainer: {
+    marginBottom: 10, // Mindre afstand mellem knapperne
   },
 });
 
