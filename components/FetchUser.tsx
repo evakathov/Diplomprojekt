@@ -1,15 +1,18 @@
-// import { tokenStore } from "@/app/stores/TokenStore";
+import React, { useEffect } from "react";
+import { View, Text } from "react-native";
 
-// fetchUsers (){
-//     const token = tokenStore.token;
-//     this.loading = states.LOADING;
-//     fetch(baseUrl + "api/users", {
-//         headers: {
-//             Authorization: token
-//         }
-//     }).then(/*....*/)
+const FetchUser = () => {
+  useEffect(() => {
+    fetch("http://localhost:8080/api/users/queryName")
+      .then((res) => console.log("Status:", res.status))
+      .catch((err) => console.error("Error:", err));
+  }, []);
 
-// function fetchUsers() {
-//         throw new Error("Function not implemented.");
-//     };
-// }
+  return (
+    <View>
+      <Text>Fetching Test...</Text>
+    </View>
+  );
+};
+
+export default FetchUser;

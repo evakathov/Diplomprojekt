@@ -10,7 +10,7 @@ class UserStore {
   }
 
   async fetchUsers() {
-    const apiUrl = "http://localhost:8080/api/users/query"; // Backend-URL
+    const apiUrl = "http://localhost:8080/api/users/queryName"; // Backend-URL
 
     try {
       const response = await fetch(apiUrl);
