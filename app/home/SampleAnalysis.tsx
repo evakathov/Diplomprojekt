@@ -10,7 +10,8 @@ const SampleScreen = () => {
         <View style={styles.container}>
           {/* Beskrivelse */}
           <Text style={styles.description}>
-            Your samples have been approved. You can find the test results below.
+            Your samples have been approved. You can find the{" "}
+            <Text style={styles.highlightText}>test results</Text> below.
           </Text>
 
           {/* Knapper */}
@@ -56,9 +57,15 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
+    fontFamily: "Helvetica",
     color: "#555",
+    textAlign: "justify",
+    lineHeight: 22,
     marginBottom: 20,
-    textAlign: "left",
+  },
+  highlightText: {
+    color: "#6C8B74", // Grøn farve for fremhævning
+    fontWeight: "600",
   },
   buttonContainer: {
     marginBottom: 10, // Mindre afstand mellem knapperne

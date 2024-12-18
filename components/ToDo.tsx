@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { observer } from "mobx-react-lite";
-import { runInAction } from "mobx";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
 import DonorStore from "@/app/stores/DonorStore";
+import { runInAction } from "mobx";
 import { useRouter } from "expo-router";
-import templateIdMapping from "./TemplateMapping";
 import Icon from "react-native-vector-icons/FontAwesome";
+import templateIdMapping from "./TemplateMapping";
 
 interface ToDoProps {
   qualificationStepNumber: number;
@@ -20,9 +14,6 @@ interface ToDoProps {
 const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
   const donorObject = DonorStore.donorObject;
   const router = useRouter();
-
-  // State to track the currently clicked subStepID
-  const [clickedSubStep, setClickedSubStep] = useState<number | null>(null);
 
   if (!donorObject) {
     return (
@@ -39,29 +30,17 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
   if (!step) {
     return (
       <View style={styles.container}>
-        <Text style={styles.errorText}>
-          No metadata found for step {qualificationStepNumber}
-        </Text>
+        <Text style={styles.errorText}>No metadata found for step {qualificationStepNumber}</Text>
       </View>
     );
   }
 
   const metaDataList = step.metaDataList;
 
-  const handleButtonClick = async (
-    metaDataId: number,
-    currentStatus: boolean,
-    route: string
-  ) => {
-    console.log(
-      `Toggling step ID: ${metaDataId}, Current status: ${currentStatus}`
-    );
+  const handleButtonClick = async (metaDataId: number, currentStatus: boolean, route: string) => {
+    console.log(`Toggling step ID: ${metaDataId}, Current status: ${currentStatus}`);
 
     try {
-      // Set clickedSubStep to track the clicked task
-      setClickedSubStep(metaDataId);
-
-      // Update the backend only if `isCompleted` is false
       if (!currentStatus) {
         await DonorStore.updateSubStep(metaDataId);
 
@@ -91,32 +70,28 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
           route: "/default-route",
         };
 
-        const isClicked = clickedSubStep === meta.subStepID;
-        const isCompleted = meta.isCompleted;
-        const iconColor = isClicked || isCompleted ? "white" : "#000";
-
         return (
           <TouchableOpacity
             key={meta.subStepID}
             style={[
               styles.taskButton,
-              (isClicked || isCompleted) && styles.taskButtonCompleted,
+              meta.isCompleted && styles.taskButtonCompleted,
             ]}
             onPress={() =>
-              handleButtonClick(meta.subStepID, isCompleted, mapping.route)
+              handleButtonClick(meta.subStepID, meta.isCompleted, mapping.route)
             }
           >
             <View style={styles.buttonContent}>
-              <Icon name={mapping.icon} size={20} color={iconColor} />
+              <Icon name={mapping.icon} size={20} color="#000" />
               <Text
                 style={[
                   styles.taskButtonText,
-                  (isClicked || isCompleted) && styles.taskButtonTextCompleted,
+                  meta.isCompleted && styles.taskButtonTextCompleted,
                 ]}
               >
                 {meta.metaDataTemplate.infoText}
               </Text>
-              {isCompleted && (
+              {meta.isCompleted && (
                 <Icon
                   name="check"
                   size={20}
@@ -145,26 +120,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   taskButton: {
-    backgroundColor: "#E3EDDC",
-    paddingVertical: 15, // Matcher tykkelsen fra SampleButton
-    paddingHorizontal: 25, // Matcher bredden fra SampleButton
+    backgroundColor: "#E3EDDC", // Lys grøn baggrund
+    padding: 15,
     borderRadius: 8,
     marginBottom: 15,
     alignItems: "center",
     flexDirection: "row",
-    // Shadow for Android
-    elevation: 6,
-    // Shadow for iOS
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
   taskButtonCompleted: {
-    backgroundColor: "#a7c68e",
-    elevation: 4, // Optional: More pronounced shadow for completed tasks
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
+    backgroundColor: "#C5D8B6", // En mørkere grøn nuance når færdig
   },
   buttonContent: {
     flexDirection: "row",
@@ -174,18 +138,17 @@ const styles = StyleSheet.create({
   },
   taskButtonText: {
     fontSize: 16,
-    color: "#000",
+    color: "#4F4F4F", // Gråsort nuance
     fontWeight: "bold",
     marginLeft: 10,
     flex: 1,
+    textDecorationLine: "none", // Ingen streg ved default
   },
   taskButtonTextCompleted: {
-    fontSize: 16,
-    color: "white",
-    fontWeight: "normal",
-    textDecorationLine: "line-through",
-    marginLeft: 10,
-    flex: 1,
+    color: "#4F4F4F", // Gråsort nuance
+    textDecorationLine: "line-through", // Streg gennem teksten
+    textDecorationColor: "#555", // Farve på stregen
+    fontWeight: "bold", // Gør skriften lidt tydeligere
   },
   checkMark: {
     marginLeft: 10,

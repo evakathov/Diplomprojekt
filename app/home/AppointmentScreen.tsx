@@ -1,4 +1,3 @@
-import Background2 from "@/components/Background2";
 import React, { useState } from "react";
 import {
   View,
@@ -7,12 +6,14 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
+import Background6 from "@/components/Background6";
+import Feather from "react-native-vector-icons/Feather";
 
 const AppointmentScreen = () => {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   const upcomingAppointments = [
-    { id: 1, date: "November 10, 2024", time: "1:45 PM", location: "Fertio", type: "Blood test" },
+    { id: 1, date: "November 10, 2024", time: "1:45 PM", location: "Fertio", type: "Blood Test" },
     { id: 2, date: "November 20, 2024", time: "5:30 PM", location: "Fertio", type: "Interview 2" },
   ];
 
@@ -22,84 +23,104 @@ const AppointmentScreen = () => {
 
   const renderAppointment = ({ item }: any) => (
     <View style={styles.appointmentContainer}>
-      <View>
-        <Text style={styles.date}>{item.date}</Text>
-        <Text style={styles.time}>{item.time}</Text>
-        <Text style={styles.location}>{item.location}</Text>
+      <View style={styles.leftSection}>
+        <View>
+          <Text style={styles.date}>{item.date}</Text>
+          <Text style={styles.time}>{item.time}</Text>
+          <Text style={styles.location}>{item.location}</Text>
+        </View>
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.whiteCircle}>
         <Text style={styles.buttonText}>{item.type}</Text>
       </TouchableOpacity>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <Background2>
-        <View style={styles.innerContainer}>
-          {/* Tabs */}
-          <View style={styles.tabsContainer}>
-            <TouchableOpacity
-              style={[
-                styles.tab,
-                activeTab === "upcoming" && styles.activeTabLeft,
-              ]}
-              onPress={() => setActiveTab("upcoming")}
-            >
-              <Text
-                style={[
-                  styles.tabText,
-                  activeTab === "upcoming" && styles.activeTabText,
-                ]}
-              >
-                Upcoming
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.tab, activeTab === "past" && styles.activeTabRight]}
-              onPress={() => setActiveTab("past")}
-            >
-              <Text
-                style={[
-                  styles.tabText,
-                  activeTab === "past" && styles.activeTabText,
-                ]}
-              >
-                Past
-              </Text>
-            </TouchableOpacity>
-          </View>
+    <Background6>
+      <View style={styles.container}>
+        <Text style={styles.title}>Appointments</Text>
+        <Text style={styles.description}>
+          Here you can find an overview of your upcoming and past appointments.
+        </Text>
 
-          {/* Appointment List */}
-          <FlatList
-            data={
-              activeTab === "upcoming" ? upcomingAppointments : pastAppointments
-            }
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={renderAppointment}
-            contentContainerStyle={styles.appointmentsList}
-          />
+        {/* Tabs */}
+        <View style={styles.tabsContainer}>
+          <TouchableOpacity
+            style={[
+              styles.tab,
+              activeTab === "upcoming" && styles.activeTabLeft,
+            ]}
+            onPress={() => setActiveTab("upcoming")}
+          >
+            <Text
+              style={[
+                styles.tabText,
+                activeTab === "upcoming" && styles.activeTabText,
+              ]}
+            >
+              Upcoming
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.tab,
+              activeTab === "past" && styles.activeTabRight,
+            ]}
+            onPress={() => setActiveTab("past")}
+          >
+            <Text
+              style={[
+                styles.tabText,
+                activeTab === "past" && styles.activeTabText,
+              ]}
+            >
+              Past
+            </Text>
+          </TouchableOpacity>
         </View>
-      </Background2>
-    </View>
+
+        {/* Appointment List */}
+        <FlatList
+          data={
+            activeTab === "upcoming" ? upcomingAppointments : pastAppointments
+          }
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderAppointment}
+          contentContainerStyle={styles.appointmentsList}
+        />
+      </View>
+    </Background6>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
-  },
-  innerContainer: {
-    flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 150, // Gør plads øverst på siden
+    paddingTop: 80,
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: "Georgia",
+    fontWeight: "bold",
+    color: "#285C4B",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  description: {
+    fontSize: 16,
+    fontFamily: "Helvetica",
+    color: "#555",
+    textAlign: "center",
+    marginBottom: 20,
+    lineHeight: 22,
   },
   tabsContainer: {
-    flexDirection: "row", // Sørger for at tabs vises på samme linje
+    flexDirection: "row",
     justifyContent: "center",
     marginBottom: 20,
-    backgroundColor: "#e0e0e0", // Baggrund for hele tabområdet
+    backgroundColor: "#E3EDDC",
     borderRadius: 25,
   },
   tab: {
@@ -120,29 +141,34 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 16,
+    fontFamily: "Helvetica",
     color: "#888",
   },
   activeTabText: {
-    color: "#333",
+    color: "#285C4B",
     fontWeight: "bold",
   },
   appointmentsList: {
-    flexGrow: 1,
-    paddingBottom: 20, // Plads under listen for bedre visning
+    paddingBottom: 20,
   },
   appointmentContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 15,
+    backgroundColor: "#F0EAD6",
+    borderRadius: 12,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     marginBottom: 15,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
     elevation: 2,
+  },
+  leftSection: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   date: {
     fontSize: 16,
@@ -151,7 +177,7 @@ const styles = StyleSheet.create({
   },
   time: {
     fontSize: 14,
-    color: "#666",
+    color: "#555",
     marginTop: 2,
   },
   location: {
@@ -159,17 +185,20 @@ const styles = StyleSheet.create({
     color: "#888",
     marginTop: 2,
   },
-  button: {
-    backgroundColor: "#e0e0e0",
+  whiteCircle: {
+    backgroundColor: "#fff", // Hvid cirkel
     borderRadius: 20,
-    paddingVertical: 5,
+    paddingVertical: 8,
     paddingHorizontal: 15,
+    borderColor: "#E3EDDC",
+    borderWidth: 1, // Giver en let kant med grøn
   },
   buttonText: {
     fontSize: 14,
+    fontFamily: "Helvetica",
+    fontWeight: "bold",
     color: "#333",
   },
 });
 
 export default AppointmentScreen;
-
