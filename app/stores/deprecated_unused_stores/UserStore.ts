@@ -9,8 +9,8 @@ class UserStore {
     makeAutoObservable(this, {}, { autoBind: true }); // Auto-bind metoder og gør observable
   }
 
-  async fetchUsers() {
-    const apiUrl = "http://localhost:8080/api/users/queryName"; // Backend-URL
+  async fetchUser() {
+    const apiUrl = "http://localhost:8080/api/users/query"; // Backend-URL
 
     try {
       const response = await fetch(apiUrl);
@@ -46,4 +46,4 @@ class UserStore {
   }
 }
 
-export const userStore = new UserStore();
+export default UserStore;

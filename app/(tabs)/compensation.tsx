@@ -1,3 +1,4 @@
+import CheckUserQuery from "@/components/CheckUserQuery";
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Background4 from "@/components/Background4";
@@ -29,7 +30,12 @@ const CompensationScreen = () => {
             <View key={item.id} style={styles.card}>
               {/* Venstre sektion med ikon og tekst */}
               <View style={styles.leftSection}>
-                <Icon name={item.icon} size={30} color="#333" style={styles.icon} />
+                <Icon
+                  name={item.icon}
+                  size={30}
+                  color="#333"
+                  style={styles.icon}
+                />
                 <View>
                   <Text style={styles.title}>{item.title}</Text>
                   <Text style={styles.date}>{item.date}</Text>
@@ -104,6 +110,3 @@ const styles = StyleSheet.create({
 });
 
 export default CompensationScreen;
-
-
-
