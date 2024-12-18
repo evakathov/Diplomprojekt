@@ -1,3 +1,5 @@
+import Background from "@/components/Background";
+import Background2 from "@/components/Background2";
 import Background3 from "@/components/Background3";
 import ToDo from "@/components/ToDo";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,16 +10,22 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Button,
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function BloodUrin() {
   return (
-    <Background3>
+    <Background2>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
           <Text style={styles.text}>
-            Now you only need one last visit bofore you can start donating! At
-            this visit we need to go through three things. It will take about
+            Now you only need one last visit bofore you can donate regularly and
+            get compensated!
+          </Text>
+          {/*<Text style={styles.text}>
+            
+             At this visit we need to go through three things. It will take about
             45-60 minutes:
           </Text>
           <Text style={styles.listItem}>
@@ -29,66 +37,47 @@ export default function BloodUrin() {
           </Text>
           <Text style={styles.listItem}>
             3. Please bring photos of yourself as a child (aged 2-5 years).
-          </Text>
-          <Text style={styles.text}>
-            See or book your Appointment for the blood and urin test here:
-          </Text>
-          <TouchableOpacity style={styles.button}>
-            <Link href="/appointment">
-              <Text style={styles.buttonText}>Appointment</Text>
-            </Link>
-          </TouchableOpacity>
+          </Text> */}
 
-          <ToDo qualificationStepNumber={4} />
+          <View style={styles.contentContainer}>
+            <View style={styles.buttonGroup}>
+              {/* Første tekst og knap */}
+              <View style={styles.textButtonContainer}>
+                <Text style={styles.text}>
+                  See or book your Appointment for the last test here:
+                </Text>
+                <TouchableOpacity style={styles.bookButton}>
+                  <Link href="/appointment">
+                    <Icon name={"calendar"} color="white" size={20} />
+                    <Text style={styles.buttonText}>Appointment</Text>
+                  </Link>
+                </TouchableOpacity>
+              </View>
+
+              {/* Anden tekst og knap */}
+              <View style={styles.textButtonContainer}>
+                <Text style={styles.text}>Check your compensation here:</Text>
+                <TouchableOpacity style={styles.bookButton}>
+                  <Link href="/compensation">
+                    <Icon name={"money"} color="white" size={20} />
+                    <Text style={styles.buttonText}>Compensation</Text>
+                  </Link>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          <View style={styles.todoContainer}>
+            <ToDo qualificationStepNumber={4} />
+          </View>
 
           {/* Additional Information */}
-          <Text style={styles.text}>
-            After your blood and urine test, you can donate regularly.
-          </Text>
+
           <Text style={styles.text}>
             Now you may donate. Here is a video on how to maintain quality:
           </Text>
-          <TouchableOpacity style={styles.button}>
-            <Ionicons name="checkmark-circle" size={24} color="white" />
-            <Link href="/home/HowToGetGoodSperm">
-              <Text style={styles.buttonText}>
-                How to Get Good Sperm Quality
-              </Text>
-            </Link>
-          </TouchableOpacity>
-
-          {/* Information about Results */}
-          <Text style={styles.text}>
-            You will receive information about your results in approximately 6
-            weeks. Your samples will be quarantined until the blood and urine
-            test is approved, but you will still be compensated.
-          </Text>
-          <TouchableOpacity style={styles.button}>
-            <Link href="/compensation">
-              <Text style={styles.buttonText}>
-                Learn More About Compensation
-              </Text>
-            </Link>
-          </TouchableOpacity>
-
-          {/* Screening Purpose */}
-          <Text style={styles.heading}>WHAT DO WE TEST FOR?</Text>
-          <Text style={styles.text}>
-            It is an important part of the qualification process that we screen
-            you for serious hereditary diseases. The purpose is to minimize the
-            risk that children conceived with your sperm inherit a genetic
-            defect from you that could cause a serious illness.
-          </Text>
-
-          {/* Book Blood and Urine Test */}
-          <TouchableOpacity style={styles.bookButton}>
-            <Link href="/appointment">
-              <Text style={styles.buttonText}>Book Blood and Urine Test</Text>
-            </Link>
-          </TouchableOpacity>
         </View>
       </ScrollView>
-    </Background3>
+    </Background2>
   );
 }
 
@@ -102,14 +91,34 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 20,
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  heading: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 10,
-    color: "#2d2d2d",
+
+  todoContainer: {
+    width: "100%",
+    marginBottom: -10, // Mindre afstand mellem knapper og teksten efter knapper
   },
+  buttonGroup: {
+    flexDirection: "row", // Lægger de to knap-grupper ved siden af hinanden
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  textButtonContainer: {
+    flexDirection: "column", // Tekst over knappen
+    alignItems: "center", // Centrer både tekst og knap
+    flex: 1, // Lige meget plads til hver knap-gruppe
+    marginHorizontal: 5, // Lidt plads mellem grupperne
+  },
+  contentContainer: {
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    borderRadius: 15,
+    width: "90%",
+  },
+
   text: {
     fontSize: 16,
     marginBottom: 10,
@@ -130,18 +139,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 10,
     paddingBottom: 20,
+    width: "100%",
   },
   bookButton: {
-    backgroundColor: "#a7c68e",
-    padding: 12,
-    borderRadius: 8,
+    backgroundColor: "#7DA3C8",
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    borderRadius: 10,
     alignItems: "center",
     marginVertical: 20,
+    width: "100%",
+    flexDirection: "row", // Sørger for at ikonet og teksten står side om side
+    justifyContent: "center", // Centrerer indholdet horisontalt
   },
+
   buttonText: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+    marginLeft: 8, // Giver afstand mellem ikon og tekst
   },
   backgroundImage: {
     flex: 1,
@@ -149,14 +165,7 @@ const styles = StyleSheet.create({
     alignItems: "center", // Centrer indholdet
     resizeMode: "cover", // Baggrund skal dække hele skærmen
   },
-  // contentContainer: {
-  //   alignItems: "center", // Centrer alle elementer horisontalt
-  //   paddingHorizontal: 20,
-  //   paddingVertical: 30,
-  //   backgroundColor: "rgba(255, 255, 255, 0.7)", // Lys baggrund for læsbarhed
-  //   borderRadius: 15,
-  //   width: "90%", // Giver lidt bredde til containeren
-  // },
+
   title: {
     fontSize: 28,
     fontWeight: "bold",
@@ -169,7 +178,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 30,
   },
-
+  iconTextContainer: {
+    flexDirection: "row", // Læg ikonet og teksten ved siden af hinanden
+    alignItems: "center", // Centrer begge vertikalt
+  },
   icon: {
     marginRight: 10, // Afstand mellem ikon og tekst
   },
