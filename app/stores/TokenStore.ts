@@ -1,7 +1,9 @@
 import { makeAutoObservable } from "mobx";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:8080/" : "";
+const baseUrl = process.env.NODE_ENV === "development" 
+//? "http://localhost:8080/" : "";
+?"https://test-app.donor.4a4b.dk/" : "";
 
 export enum LoginStates {
   LOGGING_IN = "Loading",
