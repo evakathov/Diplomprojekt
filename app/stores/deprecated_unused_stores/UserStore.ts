@@ -46,4 +46,4 @@ class UserStore {
   }
 }
 
-export const userStore = new UserStore();
+export default UserStore;

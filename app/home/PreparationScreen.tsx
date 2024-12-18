@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { View, Text, Button, StyleSheet, FlatList } from "react-native";
-import { userStore } from "../stores/UserStore";
-
+import { userStore } from "../stores/deprecated_unused_stores/UserStore";
+/* 
 const UserScreen = observer(() => {
   useEffect(() => {
     userStore.fetchUsers(); // Hent brugere, når komponenten indlæses
@@ -24,7 +24,7 @@ const UserScreen = observer(() => {
     </View>
   );
 });
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -39,27 +39,28 @@ const styles = StyleSheet.create({
 });
 
 export default UserScreen;
+*/
+
 // import React from "react";
 // import { View, Text, StyleSheet } from "react-native";
 
-// const PreparationScreen = () => {
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.text}>Hej, dette er PreparationScreen!</Text>
-//     </View>
-//   );
-// };
+const PreparationScreen = () => {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.text}>Hej, dette er PreparationScreen!</Text>
+  //     </View>
+  //   );
+  // };
+  // const styles = StyleSheet.create({
+  //   container: {
+  //     flex: 1,
+  //     justifyContent: "center",
+  //     alignItems: "center",
+  //   },
+  //   text: {
+  //     fontSize: 24,
+  //     fontWeight: "bold",
+  //   },
+};
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   text: {
-//     fontSize: 24,
-//     fontWeight: "bold",
-//   },
-// });
-
-// export default PreparationScreen;
+export default PreparationScreen;
