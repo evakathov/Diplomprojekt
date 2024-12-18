@@ -33,6 +33,7 @@
     "expo-system-ui": "~4.0.5",
     "expo-web-browser": "~14.0.1",
     "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
     "metro": "^0.81.0",
     "metro-cache": "^0.81.0",
     "metro-config": "^0.81.0",

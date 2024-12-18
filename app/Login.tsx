@@ -7,6 +7,7 @@ import {
   Text,
   Alert,
 } from "react-native";
+import { jwtDecode } from "jwt-decode";
 import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
 import { LogIndButton } from "../components/LogIndButton";
@@ -17,12 +18,11 @@ import { tokenStore } from "./stores/TokenStore";
 import DonorStore from "./stores/DonorStore";
 
 const Login: React.FC = observer(() => {
-  const [username, setusername] = useState<string>(""); // Donor ID input
+  const [username, setUsername] = useState<string>(""); // Username input
   const [password, setPassword] = useState<string>(""); // Password input
   const [error, setError] = useState<string | null>(null); // Error message
   const router = useRouter();
 
-  // Handle login using TokenStore
   const handleLogin = async () => {
     setError(null); // Clear previous errors
 
@@ -39,19 +39,40 @@ const Login: React.FC = observer(() => {
     }
 
     try {
-      // fetch token
+      // Fetch token from backend
       tokenStore.logindata = { username, password };
       await tokenStore.doLogin();
 
-      if (tokenStore.state === "LoggedIn") {
-        if (DonorStore.donorObject) {
-          Alert.alert(
-            "Login Successful",
-            `Welcome, ${DonorStore.donorObject.firstName}!`
-          );
-          router.replace("./(tabs)"); // Redirect to the homepage
+      if (tokenStore.state === "LoggedIn" && tokenStore.token) {
+        // Decode token to extract donorId
+        const decodedToken: any = jwtDecode(tokenStore.token);
+
+        let donorId;
+
+        try {
+          const userObject = JSON.parse(decodedToken.user); // Parse user string
+          donorId = userObject.donorId; // Extract donorId
+        } catch (parseError) {
+          console.error("Failed to parse user object from token:", parseError);
+          setError("Failed to extract donor information from the token.");
+          return;
+        }
+
+        if (donorId) {
+          // Fetch donor details using donorId
+          await DonorStore.fetchDonor(donorId);
+
+          if (DonorStore.donorObject) {
+            Alert.alert(
+              "Login Successful",
+              `Welcome, ${DonorStore.donorObject.firstName}!`
+            );
+            router.replace("./(tabs)"); // Redirect to the homepage
+          } else {
+            setError("No donor found with the provided ID.");
+          }
         } else {
-          setError("No donor found with the provided ID.");
+          setError("Failed to extract donor information from the token.");
         }
       } else {
         setError("Wrong Username or Password. Please try again.");
@@ -75,11 +96,11 @@ const Login: React.FC = observer(() => {
       </View>
 
       <View style={styles.inputContainer}>
-        {/* Donor ID Input */}
+        {/* Username Input */}
         <EmailInput
           placeholder="Username"
           value={username}
-          onChangeText={setusername}
+          onChangeText={setUsername}
         />
 
         {/* Password Input */}
@@ -144,7 +165,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
 
 ///////////////Original Login////////////////////
 
