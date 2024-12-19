@@ -159,11 +159,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 15,
     marginBottom: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
-    elevation: 2,
+    boxShadow: "0px 1px 1.5px rgba(0, 0, 0, 0.2)", // Replace shadow properties with boxShadow
+    elevation: 2, // This is optional and may be removed if unnecessary
   },
   date: {
     fontSize: 16,

@@ -82,24 +82,18 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 45,
-    backgroundColor: "#f5f1d4", // farve for inaktive trin
+    backgroundColor: "#f5f1d4", // Color for inactive steps
     justifyContent: "center",
     alignItems: "center",
     marginRight: 16,
     position: "relative",
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 6, // elevation for androind
+    boxShadow: "2px 3px 4px rgba(0, 0, 0, 0.3)", // Combined shadow properties into boxShadow
+    elevation: 6, // Retain for Android-specific shadow
   },
   activeCircle: {
-    backgroundColor: "#6c8b74", // Grøn for aktive trin
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 6, // elevation for androind
+    backgroundColor: "#6c8b74", // Green for active steps
+    boxShadow: "2px 3px 4px rgba(0, 0, 0, 0.3)", // Combined shadow properties into boxShadow
+    elevation: 6, // Retain for Android-specific shadow
   },
   stepText: {
     position: "absolute",

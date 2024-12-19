@@ -2,12 +2,18 @@ import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { tokenStore } from "@/app/stores/TokenStore";
 
 const LogoutButton = () => {
   const router = useRouter();
 
-  const handleLogout = () => {
-    router.replace("/Login"); // Naviger brugeren tilbage til login
+  const handleLogout = async () => {
+    try {
+      await tokenStore.logout();
+      router.replace("/Login");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
@@ -23,20 +29,17 @@ const LogoutButton = () => {
 const styles = StyleSheet.create({
   logoutButton: {
     position: "absolute",
-    top: 20, // Juster højden over logoet
-    right: 5, // Flyt knappen tættere på kanten
-    backgroundColor: "#F3F4F6", // Lys grå baggrund
+    top: 20,
+    right: 5,
+    backgroundColor: "#F3F4F6",
     paddingVertical: 6,
     paddingHorizontal: 12,
-    borderRadius: 25, // Rundt design
-    flexDirection: "row", // Ikon og tekst ved siden af hinanden
+    borderRadius: 25,
+    flexDirection: "row",
     alignItems: "center",
     zIndex: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 3, // Tilføjer skygge på Android
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+    elevation: 3,
   },
   logoutContent: {
     flexDirection: "row",
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 14,
     fontWeight: "500",
-    marginLeft: 6, // Plads mellem ikon og tekst
+    marginLeft: 6,
   },
 });
 
