@@ -12,12 +12,30 @@ const AppointmentScreen = () => {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   const upcomingAppointments = [
-    { id: 1, date: "November 10, 2024", time: "1:45 PM", location: "Fertio", type: "Blood test" },
-    { id: 2, date: "November 20, 2024", time: "5:30 PM", location: "Fertio", type: "Interview 2" },
+    {
+      id: 1,
+      date: "November 10, 2024",
+      time: "1:45 PM",
+      location: "Fertio",
+      type: "Blood test",
+    },
+    {
+      id: 2,
+      date: "November 20, 2024",
+      time: "5:30 PM",
+      location: "Fertio",
+      type: "Interview 2",
+    },
   ];
 
   const pastAppointments = [
-    { id: 3, date: "November 1, 2024", time: "10:00 AM", location: "Fertio", type: "Interview 1" },
+    {
+      id: 3,
+      date: "November 1, 2024",
+      time: "10:00 AM",
+      location: "Fertio",
+      type: "Interview 1",
+    },
   ];
 
   const renderAppointment = ({ item }: any) => (
@@ -56,7 +74,10 @@ const AppointmentScreen = () => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.tab, activeTab === "past" && styles.activeTabRight]}
+              style={[
+                styles.tab,
+                activeTab === "past" && styles.activeTabRight,
+              ]}
               onPress={() => setActiveTab("past")}
             >
               <Text
@@ -138,10 +159,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 15,
     marginBottom: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
+    boxShadow: "0px 1px 1.5px rgba(0, 0, 0, 0.2)",
     elevation: 2,
   },
   date: {
@@ -172,4 +190,3 @@ const styles = StyleSheet.create({
 });
 
 export default AppointmentScreen;
-
