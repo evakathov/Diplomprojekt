@@ -1,33 +1,45 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Linking } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const ContactComponent1 = () => {
+  const handleCall = () => {
+    Linking.openURL("tel:+4533139070");
+  };
+
+  const handleWebsite = () => {
+    Linking.openURL("https://lvbh.dk/");
+  };
+
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>Doctor</Text>
-      <Text style={styles.subTitle}>Fertio</Text>
-      <Text style={styles.address}>Struensegade 9, 2 sal</Text>
-      <Text style={styles.address}>2200 København N</Text>
-      <Text style={styles.openingHours}>Opening hours: 09.00 - 17.00</Text>
+      {/* Titel og separator */}
+      <Text style={styles.title}>Lægerne ved Botanisk Have</Text>
+      <View style={styles.separator} />
 
-      {/* Icons for contact */}
-      <View style={styles.iconContainer}>
-        <TouchableOpacity style={styles.iconButton}>
-          <FontAwesome name="phone" size={28} color="#555" />
-          <Text style={styles.iconLabel}>Call</Text>
+      {/* Adresse */}
+      <Text style={styles.subTitle}>Marlene Askær Iversen og Niels Iversen</Text>
+      <Text style={styles.address}>Øster Farimagsgade 7, st</Text>
+      <Text style={styles.address}>1353, København K</Text>
+      <Text style={styles.openingHours}>
+        Opening hours: Monday - Friday: 08:00 - 15:30 & Wednesday: 15:00 - 18:00
+      </Text>
+
+      {/* Knapper */}
+      <View style={styles.rowContainer}>
+        {/* Call-knap */}
+        <TouchableOpacity style={styles.callButton} onPress={handleCall}>
+          <View style={styles.callContent}>
+            <FontAwesome name="phone" size={20} color="#555" />
+            <Text style={styles.callLabel}>Call</Text>
+          </View>
+          <Text style={styles.phoneNumber}>+45 33 13 90 70</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
-          <FontAwesome name="envelope" size={28} color="#555" />
-          <Text style={styles.iconLabel}>Email</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
-          <FontAwesome name="comment" size={28} color="#555" />
-          <Text style={styles.iconLabel}>Chat</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
-          <FontAwesome name="home" size={28} color="#555" />
-          <Text style={styles.iconLabel}>Website</Text>
+
+        {/* Website-knap */}
+        <TouchableOpacity style={styles.websiteButton} onPress={handleWebsite}>
+          <FontAwesome name="home" size={20} color="#555" />
+          <Text style={styles.buttonLabel}>Website</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -44,13 +56,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   title: {
-    fontSize: 22,
+    fontSize: 19,
     fontWeight: "bold",
     color: "#333",
-    marginBottom: 5,
+    marginBottom: 10,
+  },
+  separator: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+    marginBottom: 15,
   },
   subTitle: {
-    fontSize: 18,
+    fontSize: 16,
     color: "#666",
     marginVertical: 5,
   },
@@ -64,26 +81,54 @@ const styles = StyleSheet.create({
     color: "#888",
     marginBottom: 20,
   },
-  iconContainer: {
+  rowContainer: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginTop: 10,
-  },
-  iconButton: {
     alignItems: "center",
-    padding: 12,
-    borderRadius: 50,
-    backgroundColor: "#f5f5f5",
-    width: 70,
-    height: 70,
-    justifyContent: "center",
-    color: "#888",
-    marginBottom: 20,
+    justifyContent: "space-between", // Sørger for plads mellem knapperne
+    marginTop: 20,
   },
-  iconLabel: {
-    fontSize: 12,
-    marginTop: 5,
+  callButton: {
+    flex: 1, // Lige bredde som Website-knap
+    backgroundColor: "#f9f9f9",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginRight: 10, // Mellemrum mellem knapperne
+    justifyContent: "space-between",
+  },
+  websiteButton: {
+    flex: 1, // Lige bredde som Call-knap
+    backgroundColor: "#f9f9f9",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 15,
+    marginLeft: 10, // Mellemrum mellem knapperne
+  },
+  callContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 5, // Lidt afstand mellem Call og nummer
+  },
+  callLabel: {
+    fontSize: 14,
+    fontWeight: "bold",
     color: "#333",
+    marginLeft: 10,
+  },
+  phoneNumber: {
+    fontSize: 12,
+    color: "#555",
+  },
+  buttonLabel: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#333",
+    textAlign: "center", // Centrer teksten
   },
 });
 

@@ -7,6 +7,10 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
+import Background6 from "@/components/Background2"; // Behold eksisterende baggrund
+
+import { useNavigation } from "@react-navigation/native";
+//import { RootStackParamList } from '../App'; // Importer den rigtige type
 import { Ionicons } from "@expo/vector-icons"; // Importer Ionicons til knap-ikoner
 
 // const backgroundImage = require('../assets/baggrundint1.png'); // Baggrund
@@ -25,52 +29,54 @@ const SurveyScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {/*       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-       */}{" "}
-      <View style={styles.contentContainer}>
-        {/* Overskrift */}
-        <Text style={styles.title}>Questionnaires</Text>
+    <Background6>
+      <View style={styles.container}>
+        {/*       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+         */}{" "}
+        <View style={styles.contentContainer}>
+          {/* Overskrift */}
+          <Text style={styles.title}>Questionnaires</Text>
 
-        {/* Beskrivelse */}
-        <Text style={styles.description}>
-          As a part of your qualificationprocess, you will have to fill out the
-          questionnaires below.
-        </Text>
-        {/* Knap */}
-        <Text style={styles.description}>
-          The initial questionnaire should be filled out before your first
-          interview. Here you and the donor coordinator will go through your
-          answers.
-        </Text>
-        <TouchableOpacity style={styles.button} onPress={openURL}>
-          <Ionicons
-            name="checkmark-circle"
-            size={24}
-            color="white"
-            style={styles.icon}
-          />
-          <Text style={styles.buttonText}>Initial questionnaire</Text>
-        </TouchableOpacity>
-        <Text> </Text>
+          {/* Beskrivelse */}
+          <Text style={styles.description}>
+            As a part of your qualificationprocess, you will have to fill out
+            the questionnaires below.
+          </Text>
+          {/* Knap */}
+          <Text style={styles.description}>
+            The initial questionnaire should be filled out before your first
+            interview. Here you and the donor coordinator will go through your
+            answers.
+          </Text>
+          <TouchableOpacity style={styles.button} onPress={openURL}>
+            <Ionicons
+              name="checkmark-circle"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
+            <Text style={styles.buttonText}>Initial questionnaire</Text>
+          </TouchableOpacity>
+          <Text> </Text>
 
-        <Text style={styles.description}>
-          Filling out you donor profile questionnaire is importan for us to make
-          the best representation of you for customers to see.
-        </Text>
-        <TouchableOpacity style={styles.button} onPress={openURL}>
-          <Ionicons
-            name="checkmark-circle"
-            size={24}
-            color="white"
-            style={styles.icon}
-          />
-          <Text style={styles.buttonText}>Donor profile</Text>
-        </TouchableOpacity>
+          <Text style={styles.description}>
+            Filling out you donor profile questionnaire is importan for us to
+            make the best representation of you for customers to see.
+          </Text>
+          <TouchableOpacity style={styles.button} onPress={openURL}>
+            <Ionicons
+              name="checkmark-circle"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
+            <Text style={styles.buttonText}>Donor profile</Text>
+          </TouchableOpacity>
+        </View>
+        {/*       </ImageBackground>
+         */}{" "}
       </View>
-      {/*       </ImageBackground>
-       */}{" "}
-    </View>
+    </Background6>
   );
 };
 
