@@ -1,64 +1,97 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Background2 from "@/components/Background2"; // Bruger baggrundskomponenten
+import Background2 from "@/components/Background2";
+import { useRouter } from "expo-router"; // Importér useRouter
 
-const PreperationScreen = () => {
-  const handleButtonPress = () => {
-    // Håndter knaptryk, f.eks. naviger eller vis en alert
-    console.log("Button Pressed");
-  };
+export default function PreperationScreen() {
+  const router = useRouter(); // Initialiser router
 
   return (
     <Background2>
       <View style={styles.container}>
-        {/* Tekstbeskrivelse */}
-        <Text style={styles.description}>
+        <Text style={styles.title}>Preparation for Interview</Text>
+
+        {/* Introduktionstekst */}
+        <Text style={styles.intro}>
           Prepare thoroughly for the interview by reviewing the provided materials. 
           Ensure that you have all the necessary information ready, including details about 
-          your family and medical history.
+          your <Text style={styles.highlightText}>family</Text> and <Text style={styles.highlightText}>medical history</Text>. 
+          <Text style={styles.italicText}> Get ready to make a great impression.</Text>
         </Text>
 
-        {/* Knap */}
-        <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-          <Text style={styles.buttonText}>View Preperation Materials</Text>
+        {/* Audio Button */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            router.push({
+              pathname: "/home/PDFViewer",
+              params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
+            })
+          }
+        >
+          <Text style={styles.buttonText}>Preperation material</Text>
         </TouchableOpacity>
       </View>
     </Background2>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center", // Centrerer indholdet vertikalt
+    justifyContent: "flex-start",
+    alignItems: "center",
     paddingHorizontal: 20,
+    paddingTop: 80,
   },
-  description: {
-    fontSize: 16,
-    color: "#555",
-    textAlign: "center", // Centrerer teksten horisontalt
+  title: {
+    fontSize: 24,
+    fontFamily: "Georgia",
+    fontWeight: "bold",
+    color: "#285C4B",
     marginBottom: 20,
+    textAlign: "center",
+  },
+  intro: {
+    fontSize: 16,
+    fontFamily: "Helvetica",
+    fontWeight: "400",
+    color: "#222",
+    textAlign: "justify",
+    marginBottom: 25,
+    lineHeight: 24,
+  },
+  highlightText: {
+    color: "#6C8B74",
+    fontWeight: "600",
+  },
+  italicText: {
+    color: "#6C8B74", // Grøn farve
+    fontStyle: "italic", // Skråskrift
+    fontWeight: "600", // Tyk skrift
   },
   button: {
-    backgroundColor: "#FFD700", // Gul farve til knappen
+    backgroundColor: "#E3EDDC",
     paddingVertical: 15,
-    paddingHorizontal: 25,
+    paddingHorizontal: 30,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    alignSelf: "center", // Centrerer knappen horisontalt
+    marginBottom: 15,
+    width: "90%",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   buttonText: {
     fontSize: 16,
+    fontFamily: "Helvetica",
     fontWeight: "bold",
-    color: "black", // Sort tekst for kontrast
+    color: "#333",
   },
 });
-
-export default PreperationScreen;
-
-
-
 
 
 

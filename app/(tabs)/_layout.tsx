@@ -14,14 +14,23 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: "#6c8b74", // Color for active icons/text
-          tabBarInactiveTintColor: "#8F8F8F", // Color for inactive icons/text
+          tabBarActiveTintColor: "#6C8B74", // Grøn farve til aktive ikoner/tekst
+          tabBarInactiveTintColor: "#555", // Neutral farve til inaktive ikoner/tekst
           tabBarStyle: {
-            backgroundColor: "#e2dec0", // Background color of tab bar
-            borderTopColor: "#333", // Color of the top border line
+            backgroundColor: "#F0EAD6", // Lys beige baggrund
+            borderTopWidth: 2,
+            borderTopColor: "#6C8B74", // Grøn kantlinje
+            height: 65, // Justeret højde for bedre design
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: -1 },
+            shadowOpacity: 0.1,
+            shadowRadius: 3,
+            elevation: 3,
           },
           tabBarLabelStyle: {
-            fontSize: 12, // Adjust text size
+            fontSize: 12, // Gør teksten lidt større
+            fontFamily: "Helvetica", // Konsistent skrifttype
+            fontWeight: "600", // Fremhævning af teksten
           },
         }}
       >
@@ -31,8 +40,9 @@ export default function TabLayout() {
             title: "Home",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
-                name={focused ? "home" : "home-outline"}
+                name={focused ? "home" : "home-outline"} // Brug understøttet ikon
                 color={color}
+                size={21} // Gør ikonerne større
               />
             ),
           }}
@@ -40,11 +50,12 @@ export default function TabLayout() {
         <Tabs.Screen
           name="appointment"
           options={{
-            title: "Appointment",
+            title: "Appointments",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
-                name={focused ? "code-slash" : "code-slash-outline"}
+                name={focused ? "calendar" : "calendar-outline"} // Brug understøttet ikon
                 color={color}
+                size={21}
               />
             ),
           }}
@@ -55,10 +66,9 @@ export default function TabLayout() {
             title: "Compensation",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
-                name={
-                  focused ? "information-circle" : "information-circle-outline"
-                }
+                name={focused ? "cash-outline" : "card-outline"} // Brug understøttede ikoner
                 color={color}
+                size={21}
               />
             ),
           }}
@@ -70,6 +80,6 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Ensure GestureHandlerRootView fills the screen
+    flex: 1, // Sørger for at `GestureHandlerRootView` fylder hele skærmen
   },
 });

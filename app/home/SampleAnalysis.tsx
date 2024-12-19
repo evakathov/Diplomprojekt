@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     justifyContent: "flex-start",
-    paddingTop: 120, // Justeret for at kompensere for headeren
-    paddingBottom: 50,
+    paddingTop: 80, // Justeret for at kompensere for headeren
+    paddingBottom: 40,
   },
   container: {
     paddingHorizontal: 20,

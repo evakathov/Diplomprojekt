@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 80,
+    paddingTop: 120,
   },
   title: {
     fontSize: 24,
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 20,
-    backgroundColor: "#E3EDDC",
+    backgroundColor: "#E5E5E5",
     borderRadius: 25,
   },
   tab: {
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontFamily: "Helvetica",
-    color: "#888",
+    color: "#555",
   },
   activeTabText: {
     color: "#285C4B",

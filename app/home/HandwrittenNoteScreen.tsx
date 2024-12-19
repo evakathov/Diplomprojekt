@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "Georgia",
     fontWeight: "bold",
-    color: "#333",
+    color: "#285C4B",
     marginBottom: 20,
     textAlign: "center",
   },

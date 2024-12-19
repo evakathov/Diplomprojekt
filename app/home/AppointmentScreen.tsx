@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import Background6 from "@/components/Background6";
+import Background7 from "@/components/Background7"; // Ændret fra Background6 til Background7
 import Feather from "react-native-vector-icons/Feather";
 
 const AppointmentScreen = () => {
@@ -37,7 +37,7 @@ const AppointmentScreen = () => {
   );
 
   return (
-    <Background6>
+    <Background7>
       <View style={styles.container}>
         <Text style={styles.title}>Appointments</Text>
         <Text style={styles.description}>
@@ -90,7 +90,7 @@ const AppointmentScreen = () => {
           contentContainerStyle={styles.appointmentsList}
         />
       </View>
-    </Background6>
+    </Background7>
   );
 };
 
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 20,
-    backgroundColor: "#E3EDDC",
+    backgroundColor: "#E5E5E5",
     borderRadius: 25,
   },
   tab: {
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontFamily: "Helvetica",
-    color: "#888",
+    color: "#555",
   },
   activeTabText: {
     color: "#285C4B",
