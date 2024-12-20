@@ -1,19 +1,19 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Image, View } from "react-native";
 
-interface Background3Props {
+interface Background7Props {
   children: React.ReactNode;
 }
 
-const Background3: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Background7: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ImageBackground
-      source={require("@/assets/images/baggrundlogind.png")}
+      source={require("@/assets/images/baggrundhome.png")} // Du kan ændre baggrundsbilledet, hvis nødvendigt
       style={styles.background}
     >
       <View style={styles.logoContainer}>
         <Image
-          source={require("@/assets/images/fertioLogo.png")}
+          source={require("@/assets/images/fertioLogo.png")} // Du kan ændre logoet, hvis nødvendigt
           style={styles.logo}
         />
       </View>
@@ -22,7 +22,7 @@ const Background3: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-export default Background3;
+export default Background7;
 
 const styles = StyleSheet.create({
   background: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: -3, // Flytter logoet endnu tættere på toppen
+    top: -10, // Du kan ændre denne værdi for at justere logoets placering
     left: 15, // Justerer lidt fra venstre kant
     alignItems: "flex-start", // Sørger for, at logoet er venstrestillet
   },

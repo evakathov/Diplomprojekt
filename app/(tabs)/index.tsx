@@ -10,15 +10,17 @@ export default function Index() {
       <View style={styles.container}>
         {/* FlatList wraps all scrollable content */}
         <FlatList
-          data={[{}]} //placeholder emtpty data, flatlist needs data for initalization, incase data is not yet fetched
+          data={[{}]} // placeholder empty data, flatlist needs data for initialization, in case data is not yet fetched
           renderItem={() => (
             <>
               <Header />
-              <QualificationStep
-                onStepPress={(stepNumber: number, stepTitle: string) => {
-                  console.log("Step clicked:", stepNumber, stepTitle);
-                }}
-              />
+              <View style={styles.qualificationContainer}>
+                <QualificationStep
+                  onStepPress={(stepNumber: number, stepTitle: string) => {
+                    console.log("Step clicked:", stepNumber, stepTitle);
+                  }}
+                />
+              </View>
             </>
           )}
           keyExtractor={() => "unique"}
@@ -36,5 +38,9 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     paddingTop: 50, // Adjust padding to align the content properly on the screen
+  },
+  qualificationContainer: {
+    alignItems: "center", // Center horizontally
+    marginHorizontal: 20, // Add margin on the sides
   },
 });

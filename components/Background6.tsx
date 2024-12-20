@@ -1,11 +1,11 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Image, View } from "react-native";
 
-interface Background2Props {
+interface Background7Props {
   children: React.ReactNode;
 }
 
-const Background2: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Background7: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ImageBackground
       source={require("@/assets/images/baggrundhome.png")}
@@ -22,7 +22,7 @@ const Background2: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-export default Background2;
+export default Background7;
 
 const styles = StyleSheet.create({
   background: {
