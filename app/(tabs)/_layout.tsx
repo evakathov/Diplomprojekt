@@ -14,11 +14,11 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: "#6c8b74", // Color for active icons/text
+          tabBarActiveTintColor: "#285c4b", // Color for active icons/text
           tabBarInactiveTintColor: "#8F8F8F", // Color for inactive icons/text
           tabBarStyle: {
-            backgroundColor: "#e2dec0", // Background color of tab bar
-            borderTopColor: "#333", // Color of the top border line
+            backgroundColor: "#f9f6e0", // Background color of tab bar
+            borderTopColor: "#f9f6e0", // Color of the top border line
           },
           tabBarLabelStyle: {
             fontSize: 12, // Adjust text size
@@ -70,6 +70,7 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   container: {
+    color: "white",
     flex: 1, // Ensure GestureHandlerRootView fills the screen
   },
 });

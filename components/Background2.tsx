@@ -7,33 +7,25 @@ interface Background2Props {
 
 const Background2: React.FC<Background2Props> = ({ children }) => {
   return (
-    <View style={styles.container}>
-      {/* Baggrundsbillede */}
-      <ImageBackground
-        source={require("@/assets/images/baggrundint1.png")}
-        style={styles.background}
-      >
-        {/* Logo placeret fast */}
-        <View style={styles.logoContainer}>
-          <Image
-            source={require("@/assets/images/fertioLogo.png")}
-            style={styles.logo}
-          />
-        </View>
-      </ImageBackground>
+    <ImageBackground
+      source={require("@/assets/images/baggrundint1.png")}
+      style={styles.background}
+    >
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("@/assets/images/fertioLogo.png")}
+          style={styles.logo}
+        />
+      </View>
 
-      {/* Indhold oven på baggrunden */}
-      <View style={styles.content}>{children}</View>
-    </View>
+      {children}
+    </ImageBackground>
   );
 };
-
+//@/assets/images/baggrundint1.png"
 export default Background2;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   background: {
     flex: 1,
     resizeMode: "cover", // Sørger for, at baggrundsbilledet fylder hele skærmen
@@ -47,7 +39,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -10, // Justér placeringen tættere på toppen
     left: 15, // Justér fra venstre kant
-    zIndex: 1, // Sørger for, at logoet vises over baggrunden
+    //zIndex: 1, // Sørger for, at logoet vises over baggrunden
   },
   logo: {
     width: 100,
