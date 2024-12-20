@@ -1,22 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Background2 from "@/components/Background2";
-import { useRouter } from "expo-router"; // Importér useRouter
+import Background6 from "@/components/Background6";
+import { useRouter } from "expo-router";
 
-export default function PreperationScreen() {
-  const router = useRouter(); // Initialiser router
+export default function FinalInterviewScreen() {
+  const router = useRouter();
 
   return (
-    <Background2>
+    <Background6>
       <View style={styles.container}>
-        <Text style={styles.title}>Preparation for Interview</Text>
+        <Text style={styles.title}>Final Interview</Text>
 
         {/* Introduktionstekst */}
         <Text style={styles.intro}>
-          Prepare thoroughly for the interview by reviewing the provided materials. 
-          Ensure that you have all the necessary information ready, including details about 
-          your <Text style={styles.highlightText}>family</Text> and <Text style={styles.highlightText}>medical history</Text>. 
-          <Text style={styles.italicText}> Get ready to make a great impression.</Text>
+          Under your final interview, we will record an{" "}
+          <Text style={styles.highlightText}>audio</Text>, review your{" "}
+          <Text style={styles.highlightText}>donor profile</Text>, and you will write a{" "}
+          <Text style={styles.highlightText}>handwritten note</Text>.{" "}
+          <Text style={styles.italicText}>Find more information below.</Text>
         </Text>
 
         {/* Audio Button */}
@@ -25,14 +26,30 @@ export default function PreperationScreen() {
           onPress={() =>
             router.push({
               pathname: "/home/PDFViewer",
-              params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
+              params: { url: "https://test-app.donor.4a4b.dk/Audio_interview_questions.pdf" },
             })
           }
         >
-          <Text style={styles.buttonText}>Preperation material</Text>
+          <Text style={styles.buttonText}>Audio</Text>
+        </TouchableOpacity>
+
+        {/* Handwritten Notes Button */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push("/home/HandwrittenNoteScreen")}
+        >
+          <Text style={styles.buttonText}>Handwritten Notes</Text>
+        </TouchableOpacity>
+
+        {/* Information Details Button */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push("/home/InformationDetailsScreen")}
+        >
+          <Text style={styles.buttonText}>Information Details</Text>
         </TouchableOpacity>
       </View>
-    </Background2>
+    </Background6>
   );
 }
 
@@ -92,10 +109,3 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 });
-
-
-
-
-
-
-

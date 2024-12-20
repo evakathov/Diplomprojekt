@@ -8,12 +8,12 @@ interface Background7Props {
 const Background7: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ImageBackground
-      source={require("@/assets/images/baggrundhome.png")}
+      source={require("@/assets/images/baggrundhome.png")} // Du kan ændre baggrundsbilledet, hvis nødvendigt
       style={styles.background}
     >
       <View style={styles.logoContainer}>
         <Image
-          source={require("@/assets/images/fertioLogo.png")}
+          source={require("@/assets/images/fertioLogo.png")} // Du kan ændre logoet, hvis nødvendigt
           style={styles.logo}
         />
       </View>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: 40, // Flytter logoet endnu tættere på toppen
+    top: -10, // Du kan ændre denne værdi for at justere logoets placering
     left: 15, // Justerer lidt fra venstre kant
     alignItems: "flex-start", // Sørger for, at logoet er venstrestillet
   },

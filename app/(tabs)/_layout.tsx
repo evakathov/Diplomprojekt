@@ -21,7 +21,9 @@ export default function TabLayout() {
             borderTopColor: "#f9f6e0", // Color of the top border line
           },
           tabBarLabelStyle: {
-            fontSize: 12, // Adjust text size
+            fontSize: 12, // Gør teksten lidt større
+            fontFamily: "Helvetica", // Konsistent skrifttype
+            fontWeight: "600", // Fremhævning af teksten
           },
         }}
       >
@@ -31,8 +33,9 @@ export default function TabLayout() {
             title: "Home",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
-                name={focused ? "home" : "home-outline"}
+                name={focused ? "home" : "home-outline"} // Brug understøttet ikon
                 color={color}
+                size={21} // Gør ikonerne større
               />
             ),
           }}
@@ -40,11 +43,12 @@ export default function TabLayout() {
         <Tabs.Screen
           name="appointment"
           options={{
-            title: "Appointment",
+            title: "Appointments",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
-                name={focused ? "code-slash" : "code-slash-outline"}
+                name={focused ? "calendar" : "calendar-outline"} // Brug understøttet ikon
                 color={color}
+                size={21}
               />
             ),
           }}
@@ -55,10 +59,9 @@ export default function TabLayout() {
             title: "Compensation",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
-                name={
-                  focused ? "information-circle" : "information-circle-outline"
-                }
+                name={focused ? "cash-outline" : "card-outline"} // Brug understøttede ikoner
                 color={color}
+                size={21}
               />
             ),
           }}
@@ -70,7 +73,7 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1, // Sørger for at `GestureHandlerRootView` fylder hele skærmen
     color: "white",
-    flex: 1, // Ensure GestureHandlerRootView fills the screen
   },
 });
