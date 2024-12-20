@@ -47,7 +47,7 @@ const StepComponent: React.FC<StepComponentProps> = ({
       {stepNumber > 1 && <View style={styles.line} />}
       <View style={styles.contentContainer}>
         <View style={[styles.circle, isCompleted && styles.activeCircle]}>
-          <MaterialIcons name={iconName} size={24} color="#4f4f4f" />
+          <MaterialIcons name={iconName} size={30} color="#4f4f4f" />
           <Text style={styles.stepText}>Step {stepNumber}</Text>
         </View>
         <View style={styles.textContainer}>
@@ -92,20 +92,20 @@ const styles = StyleSheet.create({
   },
   activeCircle: {
     backgroundColor: "#6c8b74", // Green for active steps
-    boxShadow: "2px 3px 4px rgba(0, 0, 0, 0.3)", // Combined shadow properties into boxShadow
-    elevation: 6, // Retain for Android-specific shadow
+    //boxShadow: "2px 3px 4px rgba(0, 0, 0, 0.3)", // Combined shadow properties into boxShadow
+    //elevation: 6, // Retain for Android-specific shadow
   },
   stepText: {
     position: "absolute",
     bottom: 5,
-    fontSize: 10,
+    fontSize: 13,
     color: "#4f4f4f",
   },
   textContainer: {
     flex: 1,
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
     color: "#4f4f4f",
   },

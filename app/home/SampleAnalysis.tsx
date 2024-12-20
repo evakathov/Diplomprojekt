@@ -10,7 +10,8 @@ const SampleScreen = () => {
         <View style={styles.container}>
           {/* Beskrivelse */}
           <Text style={styles.description}>
-            Your samples have been approved. You can find the test results below.
+            Your samples have been approved. You can find the test results
+            below.
           </Text>
 
           {/* Knapper */}
