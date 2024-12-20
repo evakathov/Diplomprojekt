@@ -71,6 +71,7 @@ class TokenStore {
       await AsyncStorage.removeItem("esbToken");
       this.token = null;
       this.state = LoginStates.LOGGEDOUT;
+      console.log(this.state)
     } catch (error) {
       console.error("Failed to remove token:", error);
     }

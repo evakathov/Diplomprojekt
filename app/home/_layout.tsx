@@ -18,15 +18,15 @@ export default function HomeLayout() {
           name="MedicalExamination"
           options={{ title: "Step 3 - Medical Examination" }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="BloodUrin"
-          options={{ title: "Step 4 - Blood & Urin test" }}
+          options={{ title: "Step 4 - Blood & Urin Test" }}
         />
-          <Stack.Screen
+        <Stack.Screen
           name="DonorProfile"
           options={{ title: "Step 5 - Donor Profile" }}
         />
-          <Stack.Screen
+        <Stack.Screen
           name="SurveyScreen"
           options={{ title: "Initial Questionnaire " }}
         />

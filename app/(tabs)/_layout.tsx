@@ -14,18 +14,11 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: "#6C8B74", // Grøn farve til aktive ikoner/tekst
-          tabBarInactiveTintColor: "#555", // Neutral farve til inaktive ikoner/tekst
+          tabBarActiveTintColor: "#285c4b", // Color for active icons/text
+          tabBarInactiveTintColor: "#8F8F8F", // Color for inactive icons/text
           tabBarStyle: {
-            backgroundColor: "#F0EAD6", // Lys beige baggrund
-            borderTopWidth: 2,
-            borderTopColor: "#6C8B74", // Grøn kantlinje
-            height: 65, // Justeret højde for bedre design
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: -1 },
-            shadowOpacity: 0.1,
-            shadowRadius: 3,
-            elevation: 3,
+            backgroundColor: "#f9f6e0", // Background color of tab bar
+            borderTopColor: "#f9f6e0", // Color of the top border line
           },
           tabBarLabelStyle: {
             fontSize: 12, // Gør teksten lidt større
@@ -81,5 +74,6 @@ export default function TabLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1, // Sørger for at `GestureHandlerRootView` fylder hele skærmen
+    color: "white",
   },
 });

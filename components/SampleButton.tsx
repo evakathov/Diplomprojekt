@@ -9,7 +9,12 @@ interface SampleButtonProps {
   date: string;
 }
 
-const SampleButton: React.FC<SampleButtonProps> = ({ title, onPress, icon, date }) => {
+const SampleButton: React.FC<SampleButtonProps> = ({
+  title,
+  onPress,
+  icon,
+  date,
+}) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       {/* Ikon til venstre */}
@@ -34,14 +39,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#C5D8B6", // Grøn baggrundsfarve
+    //backgroundColor: "#A3B78C", // Green color (matching your button)
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
-    elevation: 2,
+    boxShadow: "0px 1px 1.5px rgba(0, 0, 0, 0.2)", // Combined shadow properties into boxShadow
+    elevation: 2, // Retain for Android-specific shadow
   },
   iconContainer: {
     marginRight: 15, // Afstand mellem ikon og tekst

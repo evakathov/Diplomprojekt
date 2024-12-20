@@ -11,6 +11,12 @@ const Background: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       source={require("@/assets/images/baggrundhome.png")} // Refererer til baggrundsbilledet
       style={styles.background} // Stil for baggrunden
     >
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("@/assets/images/fertioLogo.png")}
+          style={styles.logo}
+        />
+      </View>
       {children}
     </ImageBackground>
   );
@@ -25,14 +31,14 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute", // Gør det muligt at placere logoet øverst
-    top:40, // Juster topmargen for at placere logoet
+    top:20, // Juster topmargen for at placere logoet
     left: 20, // Juster venstremargen som nødvendigt
-    zIndex: 10, // Sørger for, at logoet er øverst
+    //zIndex: 10, // Sørger for, at logoet er øverst
   },
   logo: {
-    width: 120, // Juster logoets bredde
-    height: 40, // Juster logoets højde
-    resizeMode: "contain", // Bevarer logoets aspect ratio
+    width: 130, // Juster logoets bredde
+    height: 100, // Juster logoets højde
+    resizeMode: "contain",
   },
   overlay: {
     flex: 1,

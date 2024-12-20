@@ -38,12 +38,12 @@ const Login: React.FC = observer(() => {
     }
 
     // Check for superuser credentials
-    if (username === "superuser" && password === "secret") {
+    /*    if (username === "superuser" && password === "secret") {
       Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
       router.replace("./SuperUserSite"); // Redirect to the SuperUser site
 
       return;
-    }
+    } */
 
     try {
       // Fetch token from backend
@@ -79,7 +79,9 @@ const Login: React.FC = observer(() => {
             setError("No donor found with the provided ID.");
           }
         } else {
-          setError("Failed to extract donor information from the token.");
+          Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
+          router.replace("./SuperUserSite"); // Redirect to the SuperUser site
+          return;
         }
 
       } else {

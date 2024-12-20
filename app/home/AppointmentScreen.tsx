@@ -13,12 +13,31 @@ const AppointmentScreen = () => {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   const upcomingAppointments = [
-    { id: 1, date: "November 10, 2024", time: "1:45 PM", location: "Fertio", type: "Blood Test" },
-    { id: 2, date: "November 20, 2024", time: "5:30 PM", location: "Fertio", type: "Interview 2" },
+  
+    {
+      id: 1,
+      date: "November 10, 2024",
+      time: "1:45 PM",
+      location: "Fertio",
+      type: "Blood test",
+    },
+    {
+      id: 2,
+      date: "November 20, 2024",
+      time: "5:30 PM",
+      location: "Fertio",
+      type: "Interview 2",
+    },
   ];
 
   const pastAppointments = [
-    { id: 3, date: "November 1, 2024", time: "10:00 AM", location: "Fertio", type: "Interview 1" },
+    {
+      id: 3,
+      date: "November 1, 2024",
+      time: "10:00 AM",
+      location: "Fertio",
+      type: "Interview 1",
+    },
   ];
 
   const renderAppointment = ({ item }: any) => (
@@ -160,10 +179,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 20,
     marginBottom: 15,
-    shadowColor: "#000",
+    //shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
+    boxShadow: "0px 1px 1.5px rgba(0, 0, 0, 0.2)",
     elevation: 2,
   },
   leftSection: {

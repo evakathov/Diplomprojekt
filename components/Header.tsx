@@ -6,13 +6,13 @@ import LogoutButton from "@/components/LogOutButton";
 const Header: React.FC = () => {
   return (
     <View style={styles.headerContainer}>
-      <Image
+{/*       <Image
         source={require("@/assets/images/fertioLogo.png")}
         style={styles.logo}
       />
       <View style={styles.logoutButtonWrapper}>
         <LogoutButton />
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: "transparent", // Makes the header background fully transparent
-    paddingTop: 40, // Space above the logo
+    paddingTop: 80, // Space above the logo
     paddingBottom: 50,
     paddingHorizontal: 16, // Space on the sides
     flexDirection: "row", // Places logo and logout button in the same row

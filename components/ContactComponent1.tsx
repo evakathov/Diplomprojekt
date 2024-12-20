@@ -52,10 +52,7 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 20,
     borderRadius: 12,
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
+    boxShadow: "0px 6px 10px rgba(0, 0, 0, 0.1)", // Combined shadow properties into boxShadow
     elevation: 5,
   },
   title: {
