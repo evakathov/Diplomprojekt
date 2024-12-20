@@ -37,6 +37,7 @@ export default function HomeLayout() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Ensures GestureHandlerRootView fills the screen
+    flex: 1, // Ensures GestureHandlerRootView fills the <screen
+    //kommentar
   },
 });
