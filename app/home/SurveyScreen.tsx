@@ -1,28 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
-  ImageBackground,
   TouchableOpacity,
   Linking,
 } from "react-native";
-import Background6 from "@/components/Background2"; // Behold eksisterende baggrund
-
-import { useNavigation } from "@react-navigation/native";
-//import { RootStackParamList } from '../App'; // Importer den rigtige type
-import { Ionicons } from "@expo/vector-icons"; // Importer Ionicons til knap-ikoner
-
-// const backgroundImage = require('../assets/baggrundint1.png'); // Baggrund
-
-// Definer navigation typen
-// type SurveyScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'SurveyScreen'>;
+import Background6 from "@/components/Background2"; // Background component
+import { Ionicons } from "@expo/vector-icons"; // Icons for buttons
 
 const SurveyScreen = () => {
-  // Funktion der åbner URL
-  const openURL = () => {
-    const url =
-      "https://www.europeanspermbank.com/da?gad_source=1&gclid=CjwKCAiAxea5BhBeEiwAh4t5KxWknfzXfyhTns4IKZcArKsQ0eisCtF-sS2WffZ08EaQORk1H1qTVRoCbgAQAvD_BwE";
+  // State to track completed buttons
+  const [completed, setCompleted] = useState({
+    initialQuestionnaire: false,
+    donorProfile: false,
+  });
+
+  // Function to handle button clicks
+  const handleButtonClick = (key: string, url: string) => {
+    setCompleted((prev) => ({ ...prev, [key]: true }));
     Linking.openURL(url).catch((err) =>
       console.error("Failed to open URL: ", err)
     );
@@ -31,50 +27,87 @@ const SurveyScreen = () => {
   return (
     <Background6>
       <View style={styles.container}>
-        {/*       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-         */}{" "}
         <View style={styles.contentContainer}>
-          {/* Overskrift */}
           <Text style={styles.title}>Questionnaires</Text>
+          <Text style={styles.description}>
+            As part of your qualification process, you will need to complete the
+            following questionnaires.
+          </Text>
 
-          {/* Beskrivelse */}
+          {/* Initial Questionnaire */}
           <Text style={styles.description}>
-            As a part of your qualificationprocess, you will have to fill out
-            the questionnaires below.
+            The initial questionnaire should be completed before your first
+            interview.
           </Text>
-          {/* Knap */}
-          <Text style={styles.description}>
-            The initial questionnaire should be filled out before your first
-            interview. Here you and the donor coordinator will go through your
-            answers.
-          </Text>
-          <TouchableOpacity style={styles.button} onPress={openURL}>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              completed.initialQuestionnaire && styles.buttonCompleted,
+            ]}
+            onPress={() =>
+              handleButtonClick(
+                "initialQuestionnaire",
+                "https://testdonorportal.europeanspermbank.com/register/?invitation=MGDlhD0xtI9sGHBC01xwmqGDuzAVlsfkWDSJLtOj43XRe41zLJ2p0yvPy3S8uNB4I8HcWG7pMBpktEFHuXKinsgRJqmzRNJ4uzQ1xbaZSThZ4nKd3mPLDvhG2C51r2pb-fyRK1BpcTPyYaFN1mp6kOqNiLnmV3HaySRUXgPj0Zs-&returnUrl=%2Fsperm%2Finfo-details-sperm"
+              )
+            }
+          >
             <Ionicons
-              name="checkmark-circle"
+              name={
+                completed.initialQuestionnaire
+                  ? "checkmark-done-circle"
+                  : "checkmark-circle"
+              }
               size={24}
               color="white"
               style={styles.icon}
             />
-            <Text style={styles.buttonText}>Initial questionnaire</Text>
+            <Text
+              style={[
+                styles.buttonText,
+                completed.initialQuestionnaire && styles.buttonTextCompleted,
+              ]}
+            >
+              Initial Questionnaire
+            </Text>
           </TouchableOpacity>
-          <Text> </Text>
 
+          {/* Donor Profile */}
           <Text style={styles.description}>
-            Filling out you donor profile questionnaire is importan for us to
-            make the best representation of you for customers to see.
+            Completing your donor profile helps us present you best to
+            customers.
           </Text>
-          <TouchableOpacity style={styles.button} onPress={openURL}>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              completed.donorProfile && styles.buttonCompleted,
+            ]}
+            onPress={() =>
+              handleButtonClick(
+                "donorProfile",
+                "https://testdonorportal.europeanspermbank.com/SignIn?returnUrl=%2Fsperm"
+              )
+            }
+          >
             <Ionicons
-              name="checkmark-circle"
+              name={
+                completed.donorProfile
+                  ? "checkmark-done-circle"
+                  : "checkmark-circle"
+              }
               size={24}
               color="white"
               style={styles.icon}
             />
-            <Text style={styles.buttonText}>Donor profile</Text>
+            <Text
+              style={[
+                styles.buttonText,
+                completed.donorProfile && styles.buttonTextCompleted,
+              ]}
+            >
+              Donor Profile
+            </Text>
           </TouchableOpacity>
         </View>
-        {/*       </ImageBackground>
-         */}{" "}
       </View>
     </Background6>
   );
@@ -83,20 +116,16 @@ const SurveyScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  backgroundImage: {
-    flex: 1,
-    justifyContent: "center", // Centrer indholdet
-    alignItems: "center", // Centrer indholdet
-    resizeMode: "cover", // Baggrund skal dække hele skærmen
+    marginTop: 60,
   },
   contentContainer: {
-    alignItems: "center", // Centrer alle elementer horisontalt
+    alignItems: "center",
+    alignSelf: "center",
     paddingHorizontal: 20,
     paddingVertical: 30,
-    backgroundColor: "rgba(255, 255, 255, 0.7)", // Lys baggrund for læsbarhed
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
     borderRadius: 15,
-    width: "90%", // Giver lidt bredde til containeren
+    width: "90%",
   },
   title: {
     fontSize: 28,
@@ -111,21 +140,28 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
-    flexDirection: "row", // Gør knappen horisontal
+    flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#A3B78C", // Grøn farve til knappen
+    backgroundColor: "#A3B78C",
     paddingVertical: 15,
     paddingHorizontal: 25,
     borderRadius: 10,
-    paddingBottom: 20,
+    marginBottom: 20,
+  },
+  buttonCompleted: {
+    backgroundColor: "#C5D8B6",
   },
   icon: {
-    marginRight: 10, // Afstand mellem ikon og tekst
+    marginRight: 10,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: "bold",
     color: "white",
+  },
+  buttonTextCompleted: {
+    textDecorationLine: "line-through",
+    textDecorationColor: "#555",
   },
 });
 
