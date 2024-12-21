@@ -19,7 +19,7 @@ const SampleScreen = () => {
             <SampleButton
               title="Test results - Sample Analysis"
               onPress={() => {}}
-              icon="test-tube"
+              icon="test-tube" // Replace with a valid MaterialCommunityIcons name
               date="October 7, 2024"
             />
           </View>

@@ -39,16 +39,17 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 30,
+    marginHorizontal: 2,
   },
   scrollContainer: {
-   // Adjust padding to align the content properly on the screen
+    // Adjust padding to align the content properly on the screen
   },
   logoutContainer: {
     marginVertical: 25,
   },
   qualificationContainer: {
+    //backgroundColor: "white",
     alignItems: "center", // Center horizontally
-    marginHorizontal: 20, // Add margin on the sides
+    marginHorizontal: 35, // Add margin on the sides
   },
 });
