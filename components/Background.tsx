@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute", // Gør det muligt at placere logoet øverst
-    top:15, // Juster topmargen for at placere logoet
+    top:35, // Juster topmargen for at placere logoet
     left: 20, // Juster venstremargen som nødvendigt
     //zIndex: 10, // Sørger for, at logoet er øverst
   },

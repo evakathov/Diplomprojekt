@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   container: {
-    backgroundColor: "#FFF", // Hvid baggrund
+    backgroundColor: "#rgba(255, 255, 255, 0.6)", // Hvid baggrund
     borderRadius: 20,
     padding: 20,
     shadowColor: "#000",
@@ -137,10 +137,10 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     color: "#4F4F4F",
-    textAlign: "center",
     lineHeight: 22,
     marginBottom: 20,
     fontFamily: "Helvetica",
+    textAlign: "justify",
   },
   infoSectionWrapper: {
     backgroundColor: "#EDE7DB", // Beige omkreds
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   infoSection: {
-    backgroundColor: "#F8F6E2", // Beige baggrund
+    backgroundColor: "#F0EAD6", // Beige baggrund
     padding: 15,
     borderRadius: 8,
   },
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#285c4b",
     fontFamily: "Helvetica",
+    textAlign: "left",
   },
   description: {
     fontSize: 16,

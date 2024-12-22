@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     paddingTop: 80,
   },
   opaqueBackground: {
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
     padding: 20,
     borderRadius: 20,
     shadowColor: "#000",

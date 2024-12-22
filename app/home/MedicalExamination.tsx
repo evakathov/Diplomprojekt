@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   mainBox: {
-    backgroundColor: "#ffffff", // Hvid baggrund
+    backgroundColor: "#rgba(255, 255, 255, 0.6)", // Hvid baggrund
     padding: 20,
     borderRadius: 18,
     marginHorizontal: 15,

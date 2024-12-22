@@ -88,11 +88,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   opaqueBackground: {
-    backgroundColor: "rgba(255, 255, 255, 0.8)", // White with 80% opacity
-    padding: 5, // Optional, for spacing
-    borderRadius: 18, // Optional, for rounded corners
-    marginBottom: 15, // Optional, for spacing between sections
-  },
+    backgroundColor: "rgba(255, 255, 255, 0.6)", // Hvid baggrund med 80% gennemsigtighed
+    padding: 5, // Indre afstand
+    borderRadius: 18, // Afrundede hjørner
+    marginBottom: 15, // Afstand mellem sektioner
+    shadowColor: "#000", // Skyggefarve
+    shadowOffset: { width: 0, height: 2 }, // Skyggens position
+    shadowOpacity: 0.1, // Skyggens gennemsigtighed
+    shadowRadius: 4, // Skyggens spredning
+    elevation: 3, // Skygge til Android
+     },
   title: {
     fontSize: 24,
     fontFamily: "Georgia",

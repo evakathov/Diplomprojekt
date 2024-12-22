@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   container: {
-    backgroundColor: "#FFF", // Hvid baggrund
+    backgroundColor: "rgba(255, 255, 255, 0.6)", // Hvid baggrund
     borderRadius: 12,
     padding: 20,
     shadowColor: "#000",

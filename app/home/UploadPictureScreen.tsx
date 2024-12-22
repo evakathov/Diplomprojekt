@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     paddingTop: 90, // Starter 1,5 cm længere nede
   },
   whiteBackground: {
-    backgroundColor: "rgba(255, 255, 255, 0.9)", // White background
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
     padding: 20,
     borderRadius: 20,
     shadowColor: "#000",

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: -10, // Du kan ændre denne værdi for at justere logoets placering
+    top: 30, // Du kan ændre denne værdi for at justere logoets placering
     left: 15, // Justerer lidt fra venstre kant
     alignItems: "flex-start", // Sørger for, at logoet er venstrestillet
   },

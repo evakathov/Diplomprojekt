@@ -46,11 +46,12 @@ const styles = StyleSheet.create({
   },
   logoutContainer: {
     marginVertical: 25,
-    marginTop: 30,
+    marginTop: 40,
   },
   qualificationContainer: {
     //backgroundColor: "white",
     alignItems: "center", // Center horizontally
     marginHorizontal: 35, // Add margin on the sides
+    marginTop: -8,
   },
 });

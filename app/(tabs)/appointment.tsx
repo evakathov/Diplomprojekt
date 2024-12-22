@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import Background6 from "@/components/Background6";
+import Background7 from "@/components/Background7";
 import Feather from "react-native-vector-icons/Feather";
 
 const AppointmentScreen = () => {
@@ -55,7 +55,7 @@ const AppointmentScreen = () => {
   );
 
   return (
-    <Background6>
+    <Background7>
       <View style={styles.container}>
         <Text style={styles.title}>Appointments</Text>
         <Text style={styles.description}>
@@ -105,7 +105,7 @@ const AppointmentScreen = () => {
           contentContainerStyle={styles.appointmentsList}
         />
       </View>
-    </Background6>
+    </Background7>
   );
 };
 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingTop: 110,
   },
   title: {
     fontSize: 24,
