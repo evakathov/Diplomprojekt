@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Background6 from "@/components/Background6";
+import Background2 from "@/components/Background2";
 import DonorStore from "@/app/stores/DonorStore";
+import Feather from "react-native-vector-icons/Feather";
 
 export default function UploadBabyPictureScreen() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -60,66 +61,78 @@ export default function UploadBabyPictureScreen() {
   };
 
   return (
-    <Background6>
-      <View style={styles.container}>
-        <Text style={styles.title}>Upload Baby Picture</Text>
-        <Text style={styles.description}>
-          Please upload a baby picture. It must be between <Text style={styles.highlightText}>2 and 5 years old</Text> 
-          and should <Text style={styles.highlightText}>not</Text> have been used on social media.
-        </Text>
+    <Background2>
+      <View style={styles.scrollContainer}>
+        <View style={styles.whiteBackground}>
+          <Text style={styles.title}>Upload Baby Picture</Text>
+          <Text style={styles.description}>
+            Please upload a baby picture. It must be between{" "}
+            <Text style={styles.highlightText}>2 and 5 years old</Text> and should{" "}
+            <Text style={styles.highlightText}>not</Text> have been used on social media.
+          </Text>
 
-        {selectedImage && (
-          <Image source={{ uri: selectedImage }} style={styles.roundImage} />
-        )}
+          {selectedImage && (
+            <Image source={{ uri: selectedImage }} style={styles.roundImage} />
+          )}
 
-        <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
-          <Text style={styles.uploadButtonText}>Upload Picture</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
+            <Feather name="upload" size={20} color="#333" style={styles.icon} />
+            <Text style={styles.uploadButtonText}>Upload Picture</Text>
+          </TouchableOpacity>
 
-        <Modal
-          transparent={true}
-          animationType="fade"
-          visible={modalVisible}
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContainer}>
-              <TouchableOpacity
-                style={styles.closeButton}
-                onPress={() => setModalVisible(false)}
-              >
-                <Text style={styles.closeButtonText}>X</Text>
-              </TouchableOpacity>
-
-              <Text style={styles.modalText}>
-                Do you want to save this picture?
-              </Text>
-              <View style={styles.modalButtonContainer}>
-                <TouchableOpacity onPress={saveImage} style={styles.modalOkButton}>
-                  <Text style={styles.modalButtonText}>Yes</Text>
-                </TouchableOpacity>
+          <Modal
+            transparent={true}
+            animationType="fade"
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalContainer}>
                 <TouchableOpacity
+                  style={styles.closeButton}
                   onPress={() => setModalVisible(false)}
-                  style={styles.modalCancelButton}
                 >
-                  <Text style={styles.modalButtonText}>No</Text>
+                  <Text style={styles.closeButtonText}>X</Text>
                 </TouchableOpacity>
+
+                <Text style={styles.modalText}>
+                  Do you want to save this picture?
+                </Text>
+                <View style={styles.modalButtonContainer}>
+                  <TouchableOpacity onPress={saveImage} style={styles.modalOkButton}>
+                    <Text style={styles.modalButtonText}>Yes</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => setModalVisible(false)}
+                    style={styles.modalCancelButton}
+                  >
+                    <Text style={styles.modalButtonText}>No</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
+        </View>
       </View>
-    </Background6>
+    </Background2>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
+  scrollContainer: {
+    flexGrow: 1,
     paddingHorizontal: 20,
-    paddingTop: 80,
+    paddingTop: 90, // Starter 1,5 cm længere nede
+  },
+  whiteBackground: {
+    backgroundColor: "rgba(255, 255, 255, 0.9)", // White background
+    padding: 20,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   title: {
     fontSize: 24,
@@ -132,7 +145,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     fontFamily: "Helvetica",
-    color: "#555",
+    color: "#4F4F4F",
     textAlign: "justify",
     lineHeight: 22,
     marginBottom: 20,
@@ -146,15 +159,17 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
     marginBottom: 20,
+    alignSelf: "center",
   },
   uploadButton: {
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: "#E3EDDC",
     paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     borderRadius: 10,
-    alignItems: "center",
     justifyContent: "center",
-    width: "90%",
+    width: "100%",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -166,6 +181,10 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     fontWeight: "bold",
     color: "#333",
+    marginLeft: 10,
+  },
+  icon: {
+    marginRight: 10,
   },
   modalOverlay: {
     flex: 1,

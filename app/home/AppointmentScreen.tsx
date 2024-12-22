@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     fontFamily: "Helvetica",
-    color: "#555",
+    color: "#4F4F4F",
     textAlign: "center",
     marginBottom: 20,
     lineHeight: 22,
@@ -141,6 +141,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#E5E5E5",
     borderRadius: 25,
+    borderWidth: 1, // Tilføjer kant
+    borderColor: "#E3EDDC", // Grå farve til kanten
   },
   tab: {
     flex: 1,
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontFamily: "Helvetica",
-    color: "#555",
+    color: "#4F4F4F",
   },
   activeTabText: {
     color: "#285C4B",
@@ -217,7 +219,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Helvetica",
     fontWeight: "bold",
-    color: "#333",
+    color: "#4F4F4F",
   },
 });
 

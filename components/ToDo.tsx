@@ -82,7 +82,7 @@ const ToDo = observer(({ qualificationStepNumber }: ToDoProps) => {
             }
           >
             <View style={styles.buttonContent}>
-              <Icon name={mapping.icon} size={20} color="#000" />
+              <Icon name={mapping.icon} size={20} color="#555" />
               <Text
                 style={[
                   styles.taskButtonText,

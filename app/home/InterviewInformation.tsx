@@ -27,13 +27,17 @@ export default function InterviewInformation() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.paddingContainer}></View>
         <View style={styles.opaqueBackground}>
-          {/* Beskrivelsen over ToDo */}
+          {/* Overskrift */}
+          <Text style={styles.title}>Interview & Information</Text>
+
+          {/* Beskrivelse */}
           <Text style={styles.description}>
-            Before your interview, you must complete a survey and thoroughly
-            prepare by reviewing the provided preparation materials. It is
-            important to be well-prepared. You can see how and what to prepare
-            for by clicking the button below. This will help ensure a successful
-            interview process.
+            Before your first interview, you must complete a{" "}
+            <Text style={styles.highlightText}>questionnaire</Text> and review the{" "}
+            <Text style={styles.highlightText}>provided preparation material</Text>.{" "}
+            It is important to be well-prepared.{" "}
+            This will help ensure a{" "}
+            <Text style={styles.highlightText}>successful interview process</Text>.
           </Text>
 
           {/* ToDo-komponent */}
@@ -41,10 +45,8 @@ export default function InterviewInformation() {
             <ToDo qualificationStepNumber={2} />
           </View>
 
-          {/* Beskrivelsen over videoen */}
+          {/* Video Sektion */}
           <Text style={styles.videoDescription}>Learn about your journey:</Text>
-
-          {/* Video */}
           {Platform.OS === "web" ? (
             <View style={styles.webContainer}>
               <iframe
@@ -78,33 +80,46 @@ export default function InterviewInformation() {
 
 const styles = StyleSheet.create({
   paddingContainer: {
-    marginTop: 65,
-  },
-  opaqueBackground: {
-    backgroundColor: "rgba(255, 255, 255, 0.8)", // White with 80% opacity
-    padding: 5, // Optional, for spacing
-    borderRadius: 18, // Optional, for rounded corners
-    marginBottom: 5, // Optional, for spacing between sections
+    marginTop: 75,
   },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: "flex-start",
     paddingHorizontal: 15,
   },
+  opaqueBackground: {
+    backgroundColor: "rgba(255, 255, 255, 0.8)", // White with 80% opacity
+    padding: 5, // Optional, for spacing
+    borderRadius: 18, // Optional, for rounded corners
+    marginBottom: 15, // Optional, for spacing between sections
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: "Georgia",
+    fontWeight: "bold",
+    color: "#285C4B",
+    marginBottom: 0,
+    textAlign: "center",
+    marginTop: 20,
+  },
   description: {
     fontSize: 16,
-    color: "#888",
-    padding: 20,
-    lineHeight: 25, // Mindre afstand mellem beskrivelse og knapper
+    fontFamily: "Helvetica",
+    color: "#4F4F4F",
+    padding: 20, // Tilpasser indrykket på begge sider
+    lineHeight: 24, // Forbedrer læsbarheden
+    textAlign: "left", // Venstrejusteret tekst
+    marginBottom: -15, // Reduceret afstand mellem beskrivelse og ToDo
   },
   todoContainer: {
     width: "100%",
-    marginBottom: -10, // Mindre afstand mellem knapper og teksten efter knapper
+    marginTop: 0, // Reduceret afstand mellem beskrivelse og ToDo
+    marginBottom: -15, // Afstand mellem ToDo og video
   },
   videoDescription: {
     fontSize: 16,
     color: "#333",
-    marginBottom: 10, // Reduceret afstand mellem teksten og videoen
+    marginBottom: 15, // Reduceret afstand mellem teksten og videoen
     textAlign: "center",
     fontWeight: "bold",
   },
@@ -120,4 +135,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 20, // Afstand under videoen
   },
+  highlightText: {
+    color: "#6C8B74", // Grøn farve
+    fontWeight: "bold", // Fed for at fremhæve ordene
+    fontFamily: "Helvetica", // Matcher det eksisterende layout
+  },
 });
+

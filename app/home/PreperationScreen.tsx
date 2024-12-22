@@ -1,48 +1,95 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import Background2 from "@/components/Background2";
-import { useRouter } from "expo-router"; // Importér useRouter
+import { useRouter } from "expo-router";
+import Feather from "react-native-vector-icons/Feather";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default function PreperationScreen() {
   const router = useRouter(); // Initialiser router
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  // Læs status fra AsyncStorage ved opstart
+  useEffect(() => {
+    const fetchStatus = async () => {
+      const storedStatus = await AsyncStorage.getItem("PreparationCompleted");
+      setIsCompleted(storedStatus === "true");
+    };
+    fetchStatus();
+  }, []);
+
+  // Håndter tryk på knappen
+  const handleButtonPress = async () => {
+    setIsCompleted(true); // Sæt som færdig
+    await AsyncStorage.setItem("PreparationCompleted", "true"); // Gem status i AsyncStorage
+    router.push({
+      pathname: "/home/PDFViewer",
+      params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
+    });
+  };
 
   return (
     <Background2>
-      <View style={styles.container}>
-        <Text style={styles.title}>Preparation for Interview</Text>
+      <View style={styles.scrollContainer}>
+        <View style={styles.opaqueBackground}>
+          <Text style={styles.title}>Preparation for Interview</Text>
 
-        {/* Introduktionstekst */}
-        <Text style={styles.intro}>
-          Prepare thoroughly for the interview by reviewing the provided materials. 
-          Ensure that you have all the necessary information ready, including details about 
-          your <Text style={styles.highlightText}>family</Text> and <Text style={styles.highlightText}>medical history</Text>. 
-          <Text style={styles.italicText}> Get ready to make a great impression.</Text>
-        </Text>
+          {/* Introduktionstekst */}
+          <Text style={styles.intro}>
+            Prepare thoroughly for the interview by reviewing the provided
+            materials. Ensure that you have all the necessary information ready,
+            including details about your{" "}
+            <Text style={styles.highlightText}>family</Text> and{" "}
+            <Text style={styles.highlightText}>medical history</Text>.
+          </Text>
 
-        {/* Audio Button */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            router.push({
-              pathname: "/home/PDFViewer",
-              params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
-            })
-          }
-        >
-          <Text style={styles.buttonText}>Preperation material</Text>
-        </TouchableOpacity>
+          {/* Button */}
+          <TouchableOpacity
+            style={[styles.button, isCompleted && styles.buttonPressed]}
+            onPress={handleButtonPress}
+          >
+            <Feather
+              name="file-text"
+              size={20}
+              color={isCompleted ? "#4F4F4F" : "#4F4F4F"} // Ændret farve hvis trykket
+              style={styles.icon}
+            />
+            <Text
+              style={[
+                styles.buttonText,
+                isCompleted && styles.buttonTextPressed,
+              ]}
+            >
+              Preparation material
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Background2>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
+  scrollContainer: {
+    flexGrow: 1,
     paddingHorizontal: 20,
-    paddingTop: 80,
+    paddingTop: 90, // Starter 1,5 cm længere nede
+  },
+  opaqueBackground: {
+    backgroundColor: "rgba(255, 255, 255, 0.9)", // White background with slight transparency
+    padding: 20,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   title: {
     fontSize: 24,
@@ -56,8 +103,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Helvetica",
     fontWeight: "400",
-    color: "#222",
-    textAlign: "justify",
+    color: "#555",
+    textAlign: "left", // Juster tekst til venstre
     marginBottom: 25,
     lineHeight: 24,
   },
@@ -65,37 +112,38 @@ const styles = StyleSheet.create({
     color: "#6C8B74",
     fontWeight: "600",
   },
-  italicText: {
-    color: "#6C8B74", // Grøn farve
-    fontStyle: "italic", // Skråskrift
-    fontWeight: "600", // Tyk skrift
-  },
   button: {
-    backgroundColor: "#E3EDDC",
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#E3EDDC", // Light green background
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    justifyContent: "flex-start", // Venstrejusterer indholdet
     marginBottom: 15,
-    width: "90%",
+    width: "100%",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
+  buttonPressed: {
+    backgroundColor: "#C5D8B6", // Ændret farve når trykket
+  },
   buttonText: {
     fontSize: 16,
     fontFamily: "Helvetica",
     fontWeight: "bold",
-    color: "#333",
+    color: "#4F4F4F",
+    marginLeft: 10, // Space between icon and text
+  },
+  buttonTextPressed: {
+    textDecorationLine: "line-through", // Streg gennem teksten
+    color: "#4F4F4F", // Samme farve, så det matcher stilen
+    textDecorationColor: "#555", // Stregfarve
+  },
+  icon: {
+    marginRight: 10, // Space between icon and text
   },
 });
-
-
-
-
-
-
-
