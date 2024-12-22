@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: 40, // Flytter logoet endnu tættere på toppen
+    top: 10, // Flytter logoet endnu tættere på toppen
     left: 15, // Justerer lidt fra venstre kant
     alignItems: "flex-start", // Sørger for, at logoet er venstrestillet
     //zIndex: 1, // Sørger for, at logoet vises over baggrunden

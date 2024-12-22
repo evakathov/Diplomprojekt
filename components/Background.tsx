@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute", // Gør det muligt at placere logoet øverst
-    top:20, // Juster topmargen for at placere logoet
+    top:15, // Juster topmargen for at placere logoet
     left: 20, // Juster venstremargen som nødvendigt
     //zIndex: 10, // Sørger for, at logoet er øverst
   },
   logo: {
-    width: 130, // Juster logoets bredde
-    height: 100, // Juster logoets højde
+    width: 150, // Juster logoets bredde
+    height: 120, // Juster logoets højde
     resizeMode: "contain",
   },
   overlay: {
