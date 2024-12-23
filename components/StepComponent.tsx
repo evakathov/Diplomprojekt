@@ -61,10 +61,10 @@ const StepComponent: React.FC<StepComponentProps> = ({
         <View style={[styles.circle, isCompleted && styles.activeCircle]}>
           <IconComponent name={iconName} size={30} color="#4f4f4f" />
           <Text style={styles.stepText}>Step {stepNumber}</Text>
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{stepTitle}</Text>
-        </View>
+         </View>
+         <View style={styles.textContainer}>
+        <Text style={styles.title}>{stepTitle}</Text>
+       </View>
       </View>
     </TouchableOpacity>
   );
