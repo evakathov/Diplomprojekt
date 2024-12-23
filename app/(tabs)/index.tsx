@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
   logoutContainer: {
     marginVertical: 25,
+    zIndex: 10,
   },
   qualificationContainer: {
     //backgroundColor: "white",

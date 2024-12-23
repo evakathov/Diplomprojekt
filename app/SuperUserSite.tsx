@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Header from "@/components/Header";
 import DonorStore from "./stores/DonorStore";
+import LogoutButton from "@/components/LogOutButton";
 
 const SuperUserSite = () => {
   const [donorId, setDonorId] = useState<number>();
@@ -52,6 +53,9 @@ const SuperUserSite = () => {
       source={require("../assets/images/baggrundlogind.png")}
       style={styles.background}
     >
+      <View>
+        <LogoutButton></LogoutButton>
+      </View>
       <Header />
       <View style={styles.container}>
         <Text style={styles.title}>Superuser Panel</Text>
