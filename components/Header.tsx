@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     width: 200, // Adjust the logo's width
     height: 100, // Adjust the logo's height
     resizeMode: "contain", // Preserves the image proportions
-    marginBottom: -10, // Moves the logo slightly upward
+    marginBottom: 30, // Moves the logo slightly upward
   },
   logoutButtonWrapper: {
     marginTop: -12, // Moves the logout button slightly downward

@@ -9,68 +9,65 @@ import {
   Platform,
   Dimensions,
 } from "react-native";
-import Background2 from "@/components/Background2";
+import Background2 from "@/components/Background2"; // Baggrundskomponent
 import { WebView } from "react-native-webview";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const { height, width } = Dimensions.get("window");
 
-export default function InterviewInformation() {
-  const router = useRouter();
-
+export default function BloodUrineTest() {
   const youtubeUrlMobile =
-    "https://www.youtube.com/watch?v=YaIBUHrvrMM&ab_channel=EuropeanSpermBank";
+    "https://www.youtube.com/embed/YaIBUHrvrMM?autoplay=0&modestbranding=1&rel=0&showinfo=0";
   const youtubeUrlWeb =
-    "https://www.youtube.com/watch?v=YaIBUHrvrMM&ab_channel=EuropeanSpermBank";
-
-  const renderBoldFirstWord = (text: string) => {
-    const words = text.split(" ");
-    const firstWord = words.shift();
-    const restOfText = words.join(" ");
-    return (
-      <Text>
-        <Text style={styles.boldText}>{firstWord} </Text>
-        <Text style={styles.description}>{restOfText}</Text>
-      </Text>
-    );
-  };
+    "https://www.youtube.com/embed/YaIBUHrvrMM?autoplay=0&modestbranding=1&rel=0&showinfo=0";
 
   return (
     <Background2>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.paddingContainer}></View>
-        <View style={styles.opaqueBackground}>
-          {/* Header Section */}
-          <View style={styles.headerContainer}>
-            <Text style={styles.headerText}>
-              During this stage, you will have to do both a blood and a urine
-              test.
-            </Text>
-          </View>
+        <View style={styles.container}>
+          {/* Overskrift */}
+          <Text style={styles.mainTitle}>Blood & Urine Test</Text>
+
+          {/* Underoverskrift */}
+          <Text style={styles.subtitle}>
+            During this stage, you will have to do both a blood and a urine
+            test. Additionally, you need to upload a baby picture and complete
+            a questionnaire, both will be used for your donor profile.
+          </Text>
+
           {/* Information Section */}
-          <View style={styles.textContainer}>
-            {renderBoldFirstWord(
-              "Your donor coordinator will contact you regarding appointment booking."
-            )}
-            {renderBoldFirstWord(
-              "The appointment will take about 45-60 minutes."
-            )}
-            <Icon name="circle" size={12} color="#285c4b" style={styles.icon} />
-            {renderBoldFirstWord(
-              "Firstly, we will take a blood and urine sample. It's important that you haven't urinated in the last hour before the urine sample."
-            )}
-            {renderBoldFirstWord(
-              "Secondly, you need to fill out some documents as part of your contract."
-            )}
+          <View style={styles.infoSectionWrapper}>
+            <View style={styles.infoSection}>
+              <Text style={styles.description}>
+                <Text style={styles.boldText}>Your donor coordinator </Text>
+                will contact you regarding appointment booking.
+              </Text>
+              <Text style={styles.description}>
+                <Text style={styles.boldText}>The appointment </Text>
+                will take about 45-60 minutes.
+              </Text>
+              <Text style={styles.description}>
+                <Text style={styles.boldText}>Firstly, </Text>
+                we will take a blood and urine sample. It's important that you
+                haven't urinated in the last hour before the urine sample.
+              </Text>
+              <Text style={styles.description}>
+                <Text style={styles.boldText}>Secondly, </Text>
+                you need to fill out some documents as part of your contract.
+              </Text>
+            </View>
           </View>
 
           {/* ToDo Component */}
           <View style={styles.todoContainer}>
             <ToDo qualificationStepNumber={4} />
           </View>
+
+          {/* Additional Information */}
           <View style={styles.headerContainer}>
             <Text style={styles.headerText}>
-              After your appointment you can start donating regularly while
+              After your appointment, you can start donating regularly while
               being compensated.
             </Text>
           </View>
@@ -112,64 +109,78 @@ export default function InterviewInformation() {
 
 const styles = StyleSheet.create({
   paddingContainer: {
-    marginTop: 60,
-  },
-  opaqueBackground: {
-    backgroundColor: "rgba(248, 246, 226, 0.75)", // White with 80% opacity
-    padding: 5, // Optional, for spacing
-    borderRadius: 20, // Optional, for rounded corners
-    marginBottom: 5, // Optional, for spacing between sections
+    marginTop: 70,
   },
   scrollContainer: {
     flexGrow: 1,
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
-  headerContainer: {
-    marginBottom: 20, // Increased margin for spacing between sections
-    paddingHorizontal: 15,
-    paddingVertical: 15, // Increased vertical padding
-    backgroundColor: "transparent",
-    alignItems: "center",
-    justifyContent: "center", // Center the content
+  container: {
+    backgroundColor: "#rgba(255, 255, 255, 0.6)", // Hvid baggrund
+    borderRadius: 20,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 3,
   },
-  headerText: {
-    fontSize: 25, // Increased font size for better readability
+  mainTitle: {
+    fontSize: 24,
     fontWeight: "bold",
     color: "#285c4b",
     textAlign: "center",
-    lineHeight: 30, // Increased line height for better readability and spacing
-    marginVertical: 10, // Added margin for spacing around the text
+    marginBottom: 10,
+    fontFamily: "Georgia",
   },
-  textContainer: {
-    backgroundColor: "#FFF",
-    padding: 20,
-    borderRadius: 8,
+  subtitle: {
+    fontSize: 16,
+    color: "#4F4F4F",
+    lineHeight: 22,
     marginBottom: 20,
-    //shadowColor: "#000",
-    //shadowOffset: { width: 0, height: 2 },
-    //shadowOpacity: 0.1,
-    //shadowRadius: 3,
-    //elevation: 3,
-    alignItems: "flex-start",
+    fontFamily: "Helvetica",
+    textAlign: "justify",
+  },
+  infoSectionWrapper: {
+    backgroundColor: "#EDE7DB", // Beige omkreds
+    padding: 1,
+    borderRadius: 12,
+  },
+  infoSection: {
+    backgroundColor: "#F0EAD6", // Beige baggrund
+    padding: 15,
+    borderRadius: 8,
   },
   boldText: {
     fontWeight: "bold",
     fontSize: 16,
     color: "#285c4b",
+    fontFamily: "Helvetica",
+    textAlign: "left",
   },
   description: {
     fontSize: 16,
-    color: "#888",
-    padding: 20,
+    color: "#555",
     lineHeight: 25,
-  },
-  icon: {
-    marginVertical: 10,
-    alignSelf: "center",
+    marginBottom: 10,
+    fontFamily: "Helvetica",
   },
   todoContainer: {
     width: "100%",
+    marginBottom: 20,
+  },
+  headerContainer: {
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  headerText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#285c4b",
+    textAlign: "center",
+    lineHeight: 25,
+    marginTop: -25,
   },
   videoDescription: {
     fontSize: 18,
@@ -177,6 +188,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     fontWeight: "bold",
+    fontFamily: "Helvetica",
   },
   webview: {
     width: width * 0.9,
@@ -191,3 +203,4 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
