@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: "transparent", // Makes the header background fully transparent
-    paddingTop: 80, // Space above the logo
+    paddingTop: 60, // Space above the logo
     paddingBottom: 50,
     paddingHorizontal: 16, // Space on the sides
     flexDirection: "row", // Places logo and logout button in the same row
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     width: 200, // Adjust the logo's width
     height: 100, // Adjust the logo's height
     resizeMode: "contain", // Preserves the image proportions
-    marginBottom: -10, // Moves the logo slightly upward
+    marginBottom: 30, // Moves the logo slightly upward
   },
   logoutButtonWrapper: {
     marginTop: -12, // Moves the logout button slightly downward

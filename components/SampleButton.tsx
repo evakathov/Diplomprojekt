@@ -17,19 +17,19 @@ const SampleButton: React.FC<SampleButtonProps> = ({
 }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      {/* Ikon til venstre */}
+      {/* Icon on the left */}
       <View style={styles.iconContainer}>
-        <Icon name={icon} size={24} color="#000000" /> {/* Sort ikon */}
+        <Icon name={icon || "alert-circle"} size={24} color="#000000" />
       </View>
 
-      {/* Tekstindhold */}
+      {/* Text content */}
       <View style={styles.textContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.date}>{date}</Text>
       </View>
 
-      {/* Tjek-tegn til højre */}
-      <Icon name="check" size={24} color="#000000" style={styles.checkIcon} /> {/* Sort tjek-tegn */}
+      {/* Checkmark icon on the right */}
+      <Icon name="check" size={24} color="#000000" style={styles.checkIcon} />
     </TouchableOpacity>
   );
 };
@@ -38,16 +38,14 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#C5D8B6", // Grøn baggrundsfarve
-    //backgroundColor: "#A3B78C", // Green color (matching your button)
+    backgroundColor: "#C5D8B6", // Green background color
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,
-    boxShadow: "0px 1px 1.5px rgba(0, 0, 0, 0.2)", // Combined shadow properties into boxShadow
-    elevation: 2, // Retain for Android-specific shadow
+    elevation: 2, // Shadow for Android
   },
   iconContainer: {
-    marginRight: 15, // Afstand mellem ikon og tekst
+    marginRight: 15, // Space between icon and text
   },
   textContainer: {
     flex: 1,
@@ -56,16 +54,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Helvetica",
     fontWeight: "bold",
-    color: "#000000", // Sort tekstfarve
+    color: "#000000", // Black text color
     marginBottom: 5,
   },
   date: {
     fontSize: 14,
     fontFamily: "Helvetica",
-    color: "#000000", // Sort tekstfarve for dato
+    color: "#000000", // Black text color for date
   },
   checkIcon: {
-    marginLeft: 10, // Afstand mellem tekst og tjek-tegn
+    marginLeft: 10, // Space between text and check icon
   },
 });
 

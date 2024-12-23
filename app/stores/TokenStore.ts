@@ -78,5 +78,6 @@ class TokenStore {
   }
 }
 export const tokenStore = new TokenStore();
+export default tokenStore;
 
 

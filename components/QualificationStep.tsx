@@ -12,12 +12,10 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
   ({ onStepPress }) => {
     const donorObject = DonorStore.donorObject;
 
-    // Ensure donorObject and its qualificationSteps exist before rendering
     if (!donorObject || !donorObject.qualificationSteps) {
       return <Text>Loading donor steps...</Text>;
     }
 
-    // Sort the steps by stepNumber
     const sortedSteps = [...donorObject.qualificationSteps].sort(
       (a, b) => a.stepNumber - b.stepNumber
     );
@@ -25,34 +23,40 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
     const getIconName = (stepNumber: number) => {
       switch (stepNumber) {
         case 1:
-          return "biotech";
+          return { library: "MaterialCommunityIcons", name: "test-tube" };
         case 2:
-          return "people";
+          return { library: "Feather", name: "users" };
         case 3:
-          return "accessibility";
+          return { library: "MaterialCommunityIcons", name: "stethoscope" };
         case 4:
-          return "bloodtype";
+          return { library: "Feather", name: "droplet" };
         case 5:
-          return "flag";
+          return { library: "Feather", name: "user" };
         default:
-          return "star";
+          return { library: "Feather", name: "star" };
       }
     };
 
     return (
       <View>
         <FlatList
-          data={sortedSteps} // Use the sorted steps here
+          data={sortedSteps}
           keyExtractor={(item) => item.qualificationStepID.toString()}
-          renderItem={({ item }) => (
-            <StepComponent
-              stepNumber={item.stepNumber}
-              stepTitle={item.title}
-              isCompleted={item.isCompleted}
-              iconName={getIconName(item.stepNumber)}
-              onPress={() => onStepPress(item.stepNumber, item.title)}
-            />
-          )}
+          renderItem={({ item }) => {
+            const { library, name } = getIconName(item.stepNumber);
+
+            return (
+              <StepComponent
+                stepNumber={item.stepNumber}
+                stepTitle={item.title}
+                isCompleted={item.isCompleted}
+                iconName={name}
+                iconLibrary={library}
+                onPress={() => onStepPress(item.stepNumber, item.title)}
+              />
+            );  
+          }}
+          keyboardShouldPersistTaps="handled"
         />
       </View>
     );
@@ -60,4 +64,4 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
 );
 
 export default QualificationStep;
-//State - farven på det givne komponent skal være afhængig af state
+

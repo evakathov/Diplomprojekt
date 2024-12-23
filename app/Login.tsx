@@ -37,14 +37,6 @@ const Login: React.FC = observer(() => {
       return;
     }
 
-    // Check for superuser credentials
-    /*    if (username === "superuser" && password === "secret") {
-      Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
-      router.replace("./SuperUserSite"); // Redirect to the SuperUser site
-
-      return;
-    } */
-
     try {
       // Fetch token from backend
       tokenStore.logindata = { username, password };
@@ -83,7 +75,6 @@ const Login: React.FC = observer(() => {
           router.replace("./SuperUserSite"); // Redirect to the SuperUser site
           return;
         }
-
       } else {
         setError("Wrong Username or Password. Please try again.");
       }
@@ -100,11 +91,14 @@ const Login: React.FC = observer(() => {
   const handleForgotOk = () => {
     if (contactInput.trim() !== "") {
       Alert.alert(
-        "", 
+        "",
         "If the entered email/phone number is recognized, we have sent you a message with a link to reset your password."
       );
     } else {
-      Alert.alert("", "The entered email/phone number is not recognized. Please try again.");
+      Alert.alert(
+        "",
+        "The entered email/phone number is not recognized. Please try again."
+      );
     }
     setForgotModalVisible(false);
   };
@@ -122,7 +116,6 @@ const Login: React.FC = observer(() => {
       </View>
 
       <View style={styles.inputContainer}>
-
         <EmailInput
           placeholder="Username"
           value={username}
@@ -173,7 +166,10 @@ const Login: React.FC = observer(() => {
             />
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.actionButton} onPress={handleForgotOk}>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={handleForgotOk}
+              >
                 <Text style={styles.buttonText}>Ok</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -292,138 +288,3 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-
-///////////////Original Login////////////////////
-
-// const Login: React.FC = () => {
-//   const [donorId, setDonorId] = useState<string>(""); // Donor ID input
-//   const [password, setPassword] = useState<string>(""); // Password input
-//   const [error, setError] = useState<string | null>(null); // Error message
-//   const router = useRouter();
-
-//   // Handle login using DonorStore
-//   const handleLogin = async () => {
-//     setError(null); // Clear previous errors
-
-//     if (!donorId || !password) {
-//       setError("Please enter both Username and Password.");
-//       return;
-//     }
-
-//     // Check for superuser credentials
-//     if (donorId === "superuser" && password === "secret") {
-//       Alert.alert("Login Successful", "Welcome to the SuperUser Site!");
-//       router.replace("./SuperUserSite"); // Redirect to the SuperUser site
-//       return;
-//     }
-
-//     if (donorId !== password) {
-//       setError("Wrong Username or Password. Please try again.");
-//       return;
-//     }
-
-//     try {
-//       const parsedDonorId = parseInt(donorId);
-//       if (isNaN(parsedDonorId)) {
-//         setError("Donor ID must be a number.");
-//         return;
-//       }
-
-//       await DonorStore.fetchDonor(parsedDonorId);
-
-//       if (DonorStore.donorObject) {
-//         Alert.alert(
-//           "Login Successful",
-//           `Welcome, ${DonorStore.donorObject.firstName}!`
-//         );
-//         router.replace("./(tabs)"); // Redirect to the homepage
-//       } else {
-//         setError("No donor found with the provided ID.");
-//       }
-//     } catch (error) {
-//       console.error("Login failed:", error);
-//       setError("An unexpected error occurred. Please try again.");
-//     }
-//   };
-
-//   return (
-//     <ImageBackground
-//       source={require("../assets/images/baggrundlogind.png")}
-//       style={styles.background}
-//     >
-//       <View style={styles.logoContainer}>
-//         <Image
-//           source={require("../assets/images/fertioLogo.png")}
-//           style={styles.logo}
-//         />
-//       </View>
-
-//       <View style={styles.inputContainer}>
-//         {/* Donor ID Input */}
-//         <EmailInput
-//           placeholder="Username"
-//           value={donorId}
-//           onChangeText={setDonorId}
-//         />
-
-//         {/* Password Input */}
-//         <PasswordInput
-//           placeholder="Password"
-//           value={password}
-//           onChangeText={setPassword}
-//         />
-
-//         {/* Error Message */}
-//         {error && <Text style={styles.errorText}>{error}</Text>}
-
-//         {/* Forgot Password Button */}
-//         <ForgotPasswordButton
-//           onPress={() =>
-//             Alert.alert(
-//               "Forgot Password",
-//               "This feature is not implemented yet."
-//             )
-//           }
-//         />
-
-//         {/* Login Button */}
-//         <LogIndButton onPress={handleLogin} />
-//       </View>
-//     </ImageBackground>
-//   );
-// };
-// export default Login;
-
-// const styles = StyleSheet.create({
-//   background: {
-//     flex: 1,
-//     resizeMode: "cover",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   logoContainer: {
-//     position: "static",
-//     top: 100,
-//     alignItems: "center",
-//     backgroundColor: "transparent",
-//   },
-//   logo: {
-//     width: 150,
-//     height: 80,
-//     resizeMode: "contain",
-//     marginBottom: 20,
-//   },
-//   inputContainer: {
-//     width: "90%",
-//     alignItems: "center",
-//     justifyContent: "center",
-//     padding: 16,
-//   },
-//   errorText: {
-//     color: "red",
-//     fontSize: 14,
-//     marginTop: 5,
-//     marginBottom: 15,
-//     textAlign: "center",
-//   },
-// });

@@ -7,7 +7,10 @@ const SampleScreen = () => {
   return (
     <Background4>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.container}>
+        <View style={styles.opaqueBackground}>
+          {/* Overskrift */}
+          <Text style={styles.title}>Sample Analysis</Text>
+
           {/* Beskrivelse */}
           <Text style={styles.description}>
             Your samples have been approved. You can find the{" "}
@@ -19,7 +22,7 @@ const SampleScreen = () => {
             <SampleButton
               title="Test results - Sample Analysis"
               onPress={() => {}}
-              icon="test-tube"
+              icon="test-tube" // Replace with a valid MaterialCommunityIcons name
               date="October 7, 2024"
             />
           </View>
@@ -51,14 +54,30 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingTop: 80, // Justeret for at kompensere for headeren
     paddingBottom: 40,
-  },
-  container: {
     paddingHorizontal: 20,
+  },
+  opaqueBackground: {
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    padding: 20,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: "Georgia",
+    fontWeight: "bold",
+    color: "#285C4B",
+    marginBottom: 20,
+    textAlign: "center",
   },
   description: {
     fontSize: 16,
     fontFamily: "Helvetica",
-    color: "#555",
+    color: "#4F4F4F",
     textAlign: "justify",
     lineHeight: 22,
     marginBottom: 20,

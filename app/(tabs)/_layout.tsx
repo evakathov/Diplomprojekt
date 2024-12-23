@@ -59,7 +59,7 @@ export default function TabLayout() {
             title: "Compensation",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
-                name={focused ? "cash-outline" : "card-outline"} // Brug understøttede ikoner
+                name={focused ? "cash" : "cash-outline"} // Brug understøttede ikoner
                 color={color}
                 size={21}
               />

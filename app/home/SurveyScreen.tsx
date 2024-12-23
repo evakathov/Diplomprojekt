@@ -1,132 +1,228 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
-  ImageBackground,
   TouchableOpacity,
   Linking,
+  Platform,
 } from "react-native";
-import Background6 from "@/components/Background2"; // Behold eksisterende baggrund
+import Background2 from "@/components/Background2";
+import Feather from "react-native-vector-icons/Feather";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { useNavigation } from "@react-navigation/native";
-//import { RootStackParamList } from '../App'; // Importer den rigtige type
-import { Ionicons } from "@expo/vector-icons"; // Importer Ionicons til knap-ikoner
+export default function SurveyScreen() {
+  const [initialCompleted, setInitialCompleted] = useState(false);
+  const [profileCompleted, setProfileCompleted] = useState(false);
 
-// const backgroundImage = require('../assets/baggrundint1.png'); // Baggrund
+  const STORAGE_KEYS = {
+    initial: "InitialQuestionnaireStatus",
+    profile: "DonorProfileQuestionnaireStatus",
+  };
 
-// Definer navigation typen
-// type SurveyScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'SurveyScreen'>;
+  const openURL = async (url: string, type: "initial" | "profile") => {
+    if (Platform.OS === "web") {
+      window.open(url, "_blank");
+    } else {
+      try {
+        await Linking.openURL(url);
+      } catch (err) {
+        console.error("Failed to open URL: ", err);
+      }
+    }
 
-const SurveyScreen = () => {
-  // Funktion der åbner URL
-  const openURL = () => {
-    const url =
-      "https://www.europeanspermbank.com/da?gad_source=1&gclid=CjwKCAiAxea5BhBeEiwAh4t5KxWknfzXfyhTns4IKZcArKsQ0eisCtF-sS2WffZ08EaQORk1H1qTVRoCbgAQAvD_BwE";
-    Linking.openURL(url).catch((err) =>
-      console.error("Failed to open URL: ", err)
-    );
+    handleComplete(type);
+  };
+
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const initialSavedStatus = await AsyncStorage.getItem(
+          STORAGE_KEYS.initial
+        );
+        const profileSavedStatus = await AsyncStorage.getItem(
+          STORAGE_KEYS.profile
+        );
+
+        if (initialSavedStatus !== null) {
+          setInitialCompleted(JSON.parse(initialSavedStatus));
+        }
+        if (profileSavedStatus !== null) {
+          setProfileCompleted(JSON.parse(profileSavedStatus));
+        }
+      } catch (error) {
+        console.error("Failed to load status from AsyncStorage", error);
+      }
+    };
+
+    fetchStatus();
+  }, []);
+
+  const handleComplete = async (type: "initial" | "profile") => {
+    try {
+      const key =
+        type === "initial"
+          ? STORAGE_KEYS.initial
+          : STORAGE_KEYS.profile;
+      await AsyncStorage.setItem(key, JSON.stringify(true));
+
+      if (type === "initial") {
+        setInitialCompleted(true);
+      } else {
+        setProfileCompleted(true);
+      }
+    } catch (error) {
+      console.error("Failed to save status to AsyncStorage", error);
+    }
   };
 
   return (
-    <Background6>
-      <View style={styles.container}>
-        {/*       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-         */}{" "}
-        <View style={styles.contentContainer}>
-          {/* Overskrift */}
+    <Background2>
+      <View style={styles.scrollContainer}>
+        <View style={styles.opaqueBackground}>
           <Text style={styles.title}>Questionnaires</Text>
 
-          {/* Beskrivelse */}
-          <Text style={styles.description}>
-            As a part of your qualificationprocess, you will have to fill out
-            the questionnaires below.
-          </Text>
-          {/* Knap */}
-          <Text style={styles.description}>
-            The initial questionnaire should be filled out before your first
-            interview. Here you and the donor coordinator will go through your
-            answers.
-          </Text>
-          <TouchableOpacity style={styles.button} onPress={openURL}>
-            <Ionicons
-              name="checkmark-circle"
-              size={24}
-              color="white"
-              style={styles.icon}
-            />
-            <Text style={styles.buttonText}>Initial questionnaire</Text>
-          </TouchableOpacity>
-          <Text> </Text>
+          {/* Initial Questionnaire Section */}
+          <View style={styles.section}>
+            <Text style={styles.sectionDescription}>
+              The <Text style={styles.highlightText}>Initial Questionnaire</Text>{" "}
+              must be completed <Text style={styles.highlightText}>before your first interview</Text>. 
+              This is used to gather important medical and personal details about you.
+            </Text>
+            <TouchableOpacity
+              style={[styles.button, initialCompleted && styles.buttonCompleted]}
+              onPress={() =>
+                openURL(
+                  "https://testdonorportal.europeanspermbank.com/register/?invitation=MGDlhD0xtI9sGHBC01xwmqGDuzAVlsfkWDSJLtOj43XRe41zLJ2p0yvPy3S8uNB4I8HcWG7pMBpktEFHuXKinsgRJqmzRNJ4uzQ1xbaZSThZ4nKd3mPLDvhG2C51r2pb-fyRK1BpcTPyYaFN1mp6kOqNiLnmV3HaySRUXgPj0Zs-&returnUrl=%2Fsperm%2Finfo-details-sperm",
+                  "initial"
+                )
+              }
+            >
+              <Feather
+                name="edit"
+                size={20}
+                color="#4F4F4F"
+                style={styles.icon}
+              />
+              <Text
+                style={[
+                  styles.buttonText,
+                  initialCompleted && styles.buttonTextCompleted,
+                ]}
+              >
+                Initial Questionnaire
+              </Text>
+            </TouchableOpacity>
+          </View>
 
-          <Text style={styles.description}>
-            Filling out you donor profile questionnaire is importan for us to
-            make the best representation of you for customers to see.
-          </Text>
-          <TouchableOpacity style={styles.button} onPress={openURL}>
-            <Ionicons
-              name="checkmark-circle"
-              size={24}
-              color="white"
-              style={styles.icon}
-            />
-            <Text style={styles.buttonText}>Donor profile</Text>
-          </TouchableOpacity>
+          {/* Donor Profile Questionnaire Section */}
+          <View style={styles.section}>
+            <Text style={styles.sectionDescription}>
+              The <Text style={styles.highlightText}>Donor Profile Questionnaire</Text>{" "}
+              helps us present you <Text style={styles.highlightText}>professionally to customers</Text>. 
+              It should be completed <Text style={styles.highlightText}>before your final interview</Text>.
+            </Text>
+            <TouchableOpacity
+              style={[styles.button, profileCompleted && styles.buttonCompleted]}
+              onPress={() =>
+                openURL(
+                  "https://testdonorportal.europeanspermbank.com/SignIn?returnUrl=%2Fsperm",
+                  "profile"
+                )
+              }
+            >
+              <Feather
+                name="file-text"
+                size={20}
+                color="#4F4F4F"
+                style={styles.icon}
+              />
+              <Text
+                style={[
+                  styles.buttonText,
+                  profileCompleted && styles.buttonTextCompleted,
+                ]}
+              >
+                Donor Profile Questionnaire
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        {/*       </ImageBackground>
-         */}{" "}
       </View>
-    </Background6>
+    </Background2>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  backgroundImage: {
-    flex: 1,
-    justifyContent: "center", // Centrer indholdet
-    alignItems: "center", // Centrer indholdet
-    resizeMode: "cover", // Baggrund skal dække hele skærmen
-  },
-  contentContainer: {
-    alignItems: "center", // Centrer alle elementer horisontalt
+  scrollContainer: {
+    flexGrow: 1,
     paddingHorizontal: 20,
-    paddingVertical: 30,
-    backgroundColor: "rgba(255, 255, 255, 0.7)", // Lys baggrund for læsbarhed
-    borderRadius: 15,
-    width: "90%", // Giver lidt bredde til containeren
+    paddingTop: 90,
+  },
+  opaqueBackground: {
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    padding: 20,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
+    fontFamily: "Georgia",
     fontWeight: "bold",
-    color: "#333",
+    color: "#285C4B",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  section: {
     marginBottom: 20,
   },
-  description: {
+  sectionDescription: {
     fontSize: 16,
-    color: "#555",
-    textAlign: "center",
-    marginBottom: 30,
+    fontFamily: "Helvetica",
+    color: "#4F4F4F",
+    lineHeight: 24,
+    marginBottom: 15,
+  },
+  highlightText: {
+    color: "#6C8B74",
+    fontWeight: "600",
   },
   button: {
-    flexDirection: "row", // Gør knappen horisontal
+    flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#A3B78C", // Grøn farve til knappen
+    backgroundColor: "#E3EDDC",
     paddingVertical: 15,
-    paddingHorizontal: 25,
+    paddingHorizontal: 20,
     borderRadius: 10,
-    paddingBottom: 20,
+    justifyContent: "flex-start",
+    marginBottom: 15,
+    width: "100%",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  icon: {
-    marginRight: 10, // Afstand mellem ikon og tekst
+  buttonCompleted: {
+    backgroundColor: "#C5D8B6",
   },
   buttonText: {
     fontSize: 16,
+    fontFamily: "Helvetica",
     fontWeight: "bold",
-    color: "white",
+    color: "#4F4F4F",
+    marginLeft: 10,
+  },
+  buttonTextCompleted: {
+    color: "#4F4F4F",
+    textDecorationLine: "line-through",
+    textDecorationColor: "#555",
+  },
+  icon: {
+    marginRight: 10,
   },
 });
-
-export default SurveyScreen;

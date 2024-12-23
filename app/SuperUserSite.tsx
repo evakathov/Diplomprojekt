@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import Header from "@/components/Header";
 import DonorStore from "./stores/DonorStore";
+import LogOutButton from "@/components/LogOutButton";
+
 
 const SuperUserSite = () => {
   const [donorId, setDonorId] = useState<number>();
@@ -52,7 +54,10 @@ const SuperUserSite = () => {
       source={require("../assets/images/baggrundlogind.png")}
       style={styles.background}
     >
-      <Header />
+        {/* Log Out Button */}
+  <View style={styles.logoutContainer}>
+    <LogOutButton />
+  </View>
       <View style={styles.container}>
         <Text style={styles.title}>Superuser Panel</Text>
         <Text style={styles.infoText}>
@@ -102,10 +107,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  logoutContainer: {
+    position: "absolute", // Placer log out-knappen i toppen af skærmen
+    top: 30, // Afstand fra toppen
+    right: 20, // Afstand fra højre side
+    zIndex: 10, // Sørg for, at den vises øverst
+  },
   container: {
     width: "90%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start", // Flyt indholdet op
+    marginTop: -100, // Justeret for at skubbe containeren længere op
     backgroundColor: "rgba(255, 255, 255, 0.9)",
     padding: 20,
     borderRadius: 20,

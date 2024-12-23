@@ -1,7 +1,6 @@
-import CheckUserQuery from "@/components/CheckUserQuery";
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import Background4 from "@/components/Background4";
+import Background8 from "@/components/Background8";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const CompensationScreen = () => {
@@ -23,34 +22,41 @@ const CompensationScreen = () => {
   ];
 
   return (
-    <Background4>
+    <Background8>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
+          {/* Title and Description */}
+          <Text style={styles.title}>Compensation</Text>
+          <Text style={styles.description}>
+            Here you can find an overview of your past compensations.
+          </Text>
+
+          {/* Compensation List */}
           {compensationData.map((item) => (
             <View key={item.id} style={styles.card}>
-              {/* Venstre sektion med ikon og tekst */}
+              {/* Left Section */}
               <View style={styles.leftSection}>
                 <Icon
                   name={item.icon}
                   size={30}
-                  color="#333"
+                  color="#000" // Sorte ikoner
                   style={styles.icon}
                 />
                 <View>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.date}>{item.date}</Text>
+                  <Text style={styles.titleText}>{item.title}</Text>
+                  <Text style={styles.dateText}>{item.date}</Text>
                 </View>
               </View>
 
-              {/* Højre sektion med beløb */}
+              {/* Right Section */}
               <View style={styles.amountBox}>
-                <Text style={styles.amount}>{item.amount}</Text>
+                <Text style={styles.amountText}>{item.amount}</Text>
               </View>
             </View>
           ))}
         </View>
       </ScrollView>
-    </Background4>
+    </Background8>
   );
 };
 
@@ -58,15 +64,31 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     justifyContent: "flex-start",
-    paddingTop: 150, // Giver plads til logo
+    paddingTop: 120, // Space for the logo
     paddingBottom: 50,
   },
   container: {
     paddingHorizontal: 20,
   },
+  title: {
+    fontSize: 24,
+    fontFamily: "Georgia",
+    fontWeight: "bold",
+    color: "#285C4B",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  description: {
+    fontSize: 16,
+    fontFamily: "Helvetica",
+    color: "#555",
+    textAlign: "center",
+    marginBottom: 20,
+    lineHeight: 22,
+  },
   card: {
     flexDirection: "row",
-    backgroundColor: "#F0EAD6", // Lysere beige farve
+    backgroundColor: "#F0EAD6", // Light beige background
     borderRadius: 12,
     paddingVertical: 15,
     paddingHorizontal: 20,
@@ -86,24 +108,31 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 15,
   },
-  title: {
+  titleText: {
     fontSize: 16,
+    fontFamily: "Helvetica",
     fontWeight: "bold",
     color: "#333",
   },
-  date: {
+  dateText: {
     fontSize: 14,
+    fontFamily: "Helvetica",
     color: "#555",
     marginTop: 4,
   },
   amountBox: {
-    backgroundColor: "#EDE7DB", // Lysere boks til beløbet
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-    borderRadius: 20,
+    backgroundColor: "#fff", // Hvid cirkel til beløbet
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 25, // Gør boksen cirkulær
+    borderWidth: 1,
+    borderColor: "#E3EDDC", // Lys grøn kant
+    justifyContent: "center",
+    alignItems: "center",
   },
-  amount: {
+  amountText: {
     fontSize: 14,
+    fontFamily: "Helvetica", // Matcher teksten i AppointmentScreen
     fontWeight: "bold",
     color: "#333",
   },
