@@ -1,53 +1,65 @@
-import { useNavigation, useRouter } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Feather from "react-native-vector-icons/Feather";
+import { useRouter } from "expo-router";
 
 interface StepComponentProps {
   stepNumber: number;
   stepTitle: string;
   iconName: string;
-  isCompleted: boolean; // bruger isCompleted direkte for at bestemme, om trinnet er aktivt
-  onPress: () => void; // onPress-Prop skal bruges ved routing
+  iconLibrary: string; // Biblioteket til ikonet
+  isCompleted: boolean;
+  onPress: () => void;
 }
 
 const StepComponent: React.FC<StepComponentProps> = ({
   stepNumber,
   stepTitle,
   iconName,
+  iconLibrary,
   isCompleted,
+  onPress,
 }) => {
+  const IconComponent =
+    iconLibrary === "MaterialCommunityIcons" ? MaterialCommunityIcons : Feather;
+
   const router = useRouter();
 
   const getRouteName = (stepNumber: number) => {
     switch (stepNumber) {
       case 1:
-        return "SampleAnalysis"; // Rutenavn for trin 1
+        return "SampleAnalysis";
       case 2:
-        return "InterviewInformation"; // Rutenavn for trin 2
+        return "InterviewInformation";
       case 3:
-        return "MedicalExamination"; // Rutenavn for trin 3
+        return "MedicalExamination";
       case 4:
-        return "BloodUrin"; // Rutenavn for trin 4
+        return "BloodUrin";
       case 5:
-        return "DonorProfile"; // Rutenavn for trin 5
+        return "DonorProfile";
       default:
-        return "Index"; // Standardrute
+        return "Index";
     }
   };
 
   const handlePress = () => {
     const routeName = getRouteName(stepNumber);
-    console.log(`Navigating to: /home/${routeName}`); // Debug
-    router.push(`./home/${routeName}`); // Naviger til den rigtige skærm
+    router.push(`./home/${routeName}`);
   };
 
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.stepContainer}>
+    <TouchableOpacity
+      onPress={() => {
+        onPress(); // Ekstern handling
+        handlePress(); // Navigation til næste skærm
+      }}
+      style={styles.stepContainer}
+    >
       {stepNumber > 1 && <View style={styles.line} />}
       <View style={styles.contentContainer}>
         <View style={[styles.circle, isCompleted && styles.activeCircle]}>
-          <MaterialIcons name={iconName} size={30} color="#4f4f4f" />
+          <IconComponent name={iconName} size={30} color="#4f4f4f" />
           <Text style={styles.stepText}>Step {stepNumber}</Text>
         </View>
         <View style={styles.textContainer}>
@@ -67,37 +79,38 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   contentContainer: {
-    flexDirection: "row", // Sørger for, at cirkel og tekst vises side om side
+    flexDirection: "row",
     alignItems: "center",
   },
   line: {
     position: "absolute",
     width: 1,
-    height: 40,
+    height: 60, // Forlæng stregen for større cirkel
     backgroundColor: "#ccc",
-    left: 35, // Tilpas placeringen så linjen passer med cirklen
-    top: -40, // Justér for placering mellem cirklerne
+    left: 45, // Centreret i forhold til større cirkel
+    top: -40, // Flyttet op for at passe til cirklernes position
   },
   circle: {
-    width: 70,
-    height: 70,
+    width: 83,
+    height: 83,
     borderRadius: 45,
-    backgroundColor: "#f5f1d4", // Color for inactive steps
+    backgroundColor: "#f5f1d4",
     justifyContent: "center",
     alignItems: "center",
     marginRight: 16,
     position: "relative",
-    boxShadow: "2px 3px 4px rgba(0, 0, 0, 0.3)", // Combined shadow properties into boxShadow
-    elevation: 6, // Retain for Android-specific shadow
+    elevation: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   activeCircle: {
-    backgroundColor: "#6c8b74", // Green for active steps
-    //boxShadow: "2px 3px 4px rgba(0, 0, 0, 0.3)", // Combined shadow properties into boxShadow
-    //elevation: 6, // Retain for Android-specific shadow
+    backgroundColor: "#6c8b74",
   },
   stepText: {
     position: "absolute",
-    bottom: 5,
+    bottom: 15,
     fontSize: 13,
     color: "#4f4f4f",
   },
@@ -107,10 +120,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#4f4f4f",
-  },
-  description: {
-    fontSize: 12,
     color: "#4f4f4f",
   },
 });
