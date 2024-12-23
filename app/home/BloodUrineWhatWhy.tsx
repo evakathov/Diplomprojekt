@@ -33,8 +33,8 @@ export default function BloodUrinWhatWhy() {
               {"\n"}- Chlamydia {"\n"}- Genital Herpes{"\n"}- Genital Warts
               {"\n"}- Gonorrhea{"\n"}- Syphilis{"\n"}- HIV/AIDS{"\n"}
               {"\n"}The genetic disorders we are testing for are: {"\n"}- Cystic
-              Fibrosis{"\n"}- Hemophilia{"\n"}- Sickle Cell Anemia{"\n"}-
-              Huntington's Disease{"\n"}
+              Fibrosis{"\n"}- Spinal Muscular Atrophy (SMA){"\n"}- Sickle Cell
+              Anemia{"\n"}- Thalassemia{"\n"}
             </Text>
             <Text style={styles.text}>
               You will receive information about your results in approximately 6
