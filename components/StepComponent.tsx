@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     top: -40, // Flyttet op for at passe til cirklernes position
   },
   circle: {
-    width: 90,
-    height: 90,
+    width: 83,
+    height: 83,
     borderRadius: 45,
     backgroundColor: "#f5f1d4",
     justifyContent: "center",
