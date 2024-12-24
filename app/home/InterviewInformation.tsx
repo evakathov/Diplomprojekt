@@ -18,9 +18,9 @@ export default function InterviewInformation() {
   const router = useRouter();
 
   const youtubeUrlMobile =
-    "https://www.youtube.com/embed/dHyq66SG2fo?autoplay=0&modestbranding=1&rel=0&showinfo=0";
+    "https://www.youtube.com/embed/ebveZy-w2PU?autoplay=0&mute=0&controls=0&origin=https%3A%2F%2Fwww.europeanspermbank.com&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=7";
   const youtubeUrlWeb =
-    "https://www.youtube.com/embed/dHyq66SG2fo?autoplay=0&modestbranding=1&rel=0&showinfo=0";
+    "https://www.youtube.com/embed/ebveZy-w2PU?autoplay=0&mute=0&controls=0&origin=https%3A%2F%2Fwww.europeanspermbank.com&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=7";
 
   return (
     <Background2>
@@ -33,11 +33,16 @@ export default function InterviewInformation() {
           {/* Beskrivelse */}
           <Text style={styles.description}>
             Before your first interview, you must complete a{" "}
-            <Text style={styles.highlightText}>questionnaire</Text> and review the{" "}
-            <Text style={styles.highlightText}>provided preparation material</Text>.{" "}
-            It is important to be well-prepared.{" "}
-            This will help ensure a{" "}
-            <Text style={styles.highlightText}>successful interview process</Text>.
+            <Text style={styles.highlightText}>questionnaire</Text> and review
+            the{" "}
+            <Text style={styles.highlightText}>
+              provided preparation material
+            </Text>
+            . It is important to be well-prepared. This will help ensure a{" "}
+            <Text style={styles.highlightText}>
+              successful interview process
+            </Text>
+            .
           </Text>
 
           {/* ToDo-komponent */}
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1, // Skyggens gennemsigtighed
     shadowRadius: 4, // Skyggens spredning
     elevation: 3, // Skygge til Android
-     },
+  },
   title: {
     fontSize: 24,
     fontFamily: "Georgia",
@@ -146,4 +151,3 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica", // Matcher det eksisterende layout
   },
 });
-
