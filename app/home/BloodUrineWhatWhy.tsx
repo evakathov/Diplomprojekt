@@ -50,9 +50,8 @@ export default function BloodUrinWhatWhy() {
           {/* Afsluttende afsnit */}
           <Text style={styles.description}>
             You will receive information about your results in approximately 6
-            weeks.
-            Your samples will be quarantined until the blood and urine test is
-            approved, but you will still be compensated.
+            weeks. Your samples will be quarantined until the blood and urine
+            test is approved, but you will still be compensated.
           </Text>
         </View>
       </ScrollView>
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
-    elevation: 2,
+    //elevation: 2,
   },
   title: {
     fontSize: 22,

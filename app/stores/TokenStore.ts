@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const baseUrl = process.env.NODE_ENV === "development" 
-//? "http://localhost:8080/" : "";
+//? "http://localhost:8082/" : "";
 ?"https://test-app.donor.4a4b.dk/" : "";
 
 export enum LoginStates {
@@ -37,34 +37,41 @@ class TokenStore {
 
   // Perform login
   async doLogin() {
+    console.log("Starting login process");
     this.state = LoginStates.LOGGING_IN;
+    console.log("State set to LOGGING_IN");
 
     try {
-      const response = await fetch(`${baseUrl}api/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(this.logindata),
-      });
+        console.log("Sending login request to API");
+        const response = await fetch(`${baseUrl}api/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(this.logindata),
+        });
 
-      if (!response.ok) {
-        throw new Error("Invalid login credentials");
-      }
+        console.log("Response received from API");
+        
+        if (!response.ok) {
+            console.error("Login failed: Invalid login credentials");
+            throw new Error("Invalid login credentials");
+        }
 
-      const token = await response.text();
-      this.token = token;
+        console.log("Login successful, parsing token");
+        const token = await response.text();
+        this.token = token;
 
-      // Save token to AsyncStorage
-      await AsyncStorage.setItem("esbToken", token);
-      this.state = LoginStates.LOGGED_IN;
-      console.log(this.state)
-
+        console.log("Saving token to AsyncStorage");
+        await AsyncStorage.setItem("esbToken", token);
+        this.state = LoginStates.LOGGED_IN;
+        console.log("State set to LOGGED_IN, login process complete");
+        
     } catch (error) {
-      console.error("Login failed:", error);
-      this.state = LoginStates.LOGGEDOUT;
-      this.token = null;
+        console.error("Login failed:", error);
+        this.state = LoginStates.LOGGEDOUT;
+        this.token = null;
+        console.log("State set to LOGGEDOUT, token cleared");
     }
   }
-
   // Logout and clear the token
   async logout() {
     try {

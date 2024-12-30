@@ -32,8 +32,8 @@ export default function BloodUrineTest() {
           {/* Underoverskrift */}
           <Text style={styles.subtitle}>
             During this stage, you will have to do both a blood and a urine
-            test. Additionally, you need to upload a baby picture and complete
-            a questionnaire, both will be used for your donor profile.
+            test. Additionally, you need to upload a baby picture and complete a
+            questionnaire, both will be used for your donor profile.
           </Text>
 
           {/* Information Section */}
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
-    elevation: 3,
+    //elevation: 3,
   },
   mainTitle: {
     fontSize: 24,
@@ -203,4 +203,3 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-

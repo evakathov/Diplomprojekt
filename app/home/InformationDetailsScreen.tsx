@@ -18,23 +18,36 @@ export default function InformationDetailsScreen() {
           {/* Interview */}
           <Text style={styles.sectionTitle}>Interview</Text>
           <Text style={styles.sectionDescription}>
-            We will do a short interview in <Text style={styles.boldText}>English</Text>. The interview is recorded and will be a part of your online donor profile. This interview is available as an audio recording. You can find more information about this under <Text style={styles.highlightText}>Audio</Text>.
+            We will do a short interview in{" "}
+            <Text style={styles.boldText}>English</Text>. The interview is
+            recorded and will be a part of your online donor profile. This
+            interview is available as an audio recording. You can find more
+            information about this under{" "}
+            <Text style={styles.highlightText}>Audio</Text>.
           </Text>
 
           {/* Handwritten Greetings */}
           <Text style={styles.sectionTitle}>Handwritten greetings</Text>
           <Text style={styles.sectionDescription}>
-            Your online profile will include a handwritten note with a greeting to a potential donor child. Find the <Text style={styles.highlightText}>guide</Text> and <Text style={styles.highlightText}>template</Text> under <Text style={styles.highlightText}>Handwritten Note</Text>.
+            Your online profile will include a handwritten note with a greeting
+            to a potential donor child. Find the{" "}
+            <Text style={styles.highlightText}>guide</Text> and{" "}
+            <Text style={styles.highlightText}>template</Text> under{" "}
+            <Text style={styles.highlightText}>Handwritten Note</Text>.
           </Text>
 
           {/* Questions */}
           <Text style={styles.sectionTitle}>Do you have any questions?</Text>
           <Text style={styles.sectionDescription}>
-            If you have any questions, you are very welcome to reply to this email or call <Text style={styles.highlightText}>+45 8877 1757</Text>.
+            If you have any questions, you are very welcome to reply to this
+            email or call{" "}
+            <Text style={styles.highlightText}>+45 8877 1757</Text>.
           </Text>
 
           {/* Final Greeting */}
-          <Text style={styles.finalGreeting}>We look forward to seeing you!</Text>
+          <Text style={styles.finalGreeting}>
+            We look forward to seeing you!
+          </Text>
         </View>
       </ScrollView>
     </Background6>
@@ -57,7 +70,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    //elevation: 3,
   },
   title: {
     fontSize: 24,

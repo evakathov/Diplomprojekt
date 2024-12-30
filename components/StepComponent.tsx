@@ -61,10 +61,10 @@ const StepComponent: React.FC<StepComponentProps> = ({
         <View style={[styles.circle, isCompleted && styles.activeCircle]}>
           <IconComponent name={iconName} size={30} color="#4f4f4f" />
           <Text style={styles.stepText}>Step {stepNumber}</Text>
-         </View>
-         <View style={styles.textContainer}>
-        <Text style={styles.title}>{stepTitle}</Text>
-       </View>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{stepTitle}</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     top: -40, // Flyttet op for at passe til cirklernes position
   },
   circle: {
-    width: 83,
-    height: 83,
+    width: 80,
+    height: 80,
     borderRadius: 45,
     backgroundColor: "#f5f1d4",
     justifyContent: "center",

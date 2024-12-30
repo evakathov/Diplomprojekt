@@ -61,9 +61,7 @@ export default function SurveyScreen() {
   const handleComplete = async (type: "initial" | "profile") => {
     try {
       const key =
-        type === "initial"
-          ? STORAGE_KEYS.initial
-          : STORAGE_KEYS.profile;
+        type === "initial" ? STORAGE_KEYS.initial : STORAGE_KEYS.profile;
       await AsyncStorage.setItem(key, JSON.stringify(true));
 
       if (type === "initial") {
@@ -85,12 +83,20 @@ export default function SurveyScreen() {
           {/* Initial Questionnaire Section */}
           <View style={styles.section}>
             <Text style={styles.sectionDescription}>
-              The <Text style={styles.highlightText}>Initial Questionnaire</Text>{" "}
-              must be completed <Text style={styles.highlightText}>before your first interview</Text>. 
-              This is used to gather important medical and personal details about you.
+              The{" "}
+              <Text style={styles.highlightText}>Initial Questionnaire</Text>{" "}
+              must be completed{" "}
+              <Text style={styles.highlightText}>
+                before your first interview
+              </Text>
+              . This is used to gather important medical and personal details
+              about you.
             </Text>
             <TouchableOpacity
-              style={[styles.button, initialCompleted && styles.buttonCompleted]}
+              style={[
+                styles.button,
+                initialCompleted && styles.buttonCompleted,
+              ]}
               onPress={() =>
                 openURL(
                   "https://testdonorportal.europeanspermbank.com/register/?invitation=MGDlhD0xtI9sGHBC01xwmqGDuzAVlsfkWDSJLtOj43XRe41zLJ2p0yvPy3S8uNB4I8HcWG7pMBpktEFHuXKinsgRJqmzRNJ4uzQ1xbaZSThZ4nKd3mPLDvhG2C51r2pb-fyRK1BpcTPyYaFN1mp6kOqNiLnmV3HaySRUXgPj0Zs-&returnUrl=%2Fsperm%2Finfo-details-sperm",
@@ -118,12 +124,25 @@ export default function SurveyScreen() {
           {/* Donor Profile Questionnaire Section */}
           <View style={styles.section}>
             <Text style={styles.sectionDescription}>
-              The <Text style={styles.highlightText}>Donor Profile Questionnaire</Text>{" "}
-              helps us present you <Text style={styles.highlightText}>professionally to customers</Text>. 
-              It should be completed <Text style={styles.highlightText}>before your final interview</Text>.
+              The{" "}
+              <Text style={styles.highlightText}>
+                Donor Profile Questionnaire
+              </Text>{" "}
+              helps us present you{" "}
+              <Text style={styles.highlightText}>
+                professionally to customers
+              </Text>
+              . It should be completed{" "}
+              <Text style={styles.highlightText}>
+                before your final interview
+              </Text>
+              .
             </Text>
             <TouchableOpacity
-              style={[styles.button, profileCompleted && styles.buttonCompleted]}
+              style={[
+                styles.button,
+                profileCompleted && styles.buttonCompleted,
+              ]}
               onPress={() =>
                 openURL(
                   "https://testdonorportal.europeanspermbank.com/SignIn?returnUrl=%2Fsperm",
@@ -167,7 +186,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    //elevation: 3,
   },
   title: {
     fontSize: 24,
