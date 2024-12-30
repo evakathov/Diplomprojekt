@@ -13,13 +13,16 @@ export default function DonorProfile() {
 
           {/* Introduktionstekst */}
           <Text style={styles.description}>
-            Your final interview is an essential step in the donor process. Based on this interview, we will create your{" "}
+            Your final interview is an essential step in the donor process.
+            Based on this interview, we will create your{" "}
             <Text style={styles.highlightText}>donor profile</Text>.
           </Text>
           <Text style={styles.description}>
             To ensure the best possible profile, you need to complete a{" "}
-            <Text style={styles.highlightText}>personality test</Text> and review the provided{" "}
-            <Text style={styles.highlightText}>information</Text>. This will help you prepare for the final interview.
+            <Text style={styles.highlightText}>personality test</Text> and
+            review the provided{" "}
+            <Text style={styles.highlightText}>information</Text>. This will
+            help you prepare for the final interview.
           </Text>
 
           {/* ToDo-komponent */}
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    //elevation: 3,
     marginTop: 60, // Mindre margin-top for at rykke baggrunden op
   },
   title: {

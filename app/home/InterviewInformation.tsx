@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     justifyContent: "flex-start",
-    paddingHorizontal: 15,
+    paddingHorizontal: 1,
   },
   opaqueBackground: {
     backgroundColor: "rgba(255, 255, 255, 0.6)", // Hvid baggrund med 80% gennemsigtighed
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // Skyggens position
     shadowOpacity: 0.1, // Skyggens gennemsigtighed
     shadowRadius: 4, // Skyggens spredning
-    elevation: 3, // Skygge til Android
+    //elevation: 3, // Skygge til Android
   },
   title: {
     fontSize: 24,

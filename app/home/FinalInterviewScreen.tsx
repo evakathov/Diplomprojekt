@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Background6 from "@/components/Background6";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -58,7 +53,8 @@ export default function FinalInterviewScreen() {
             Under your final interview, we will record an{" "}
             <Text style={styles.highlightText}>audio</Text>, review your{" "}
             <Text style={styles.highlightText}>donor profile</Text>, and you
-            will write a <Text style={styles.highlightText}>handwritten note</Text>.{" "}
+            will write a{" "}
+            <Text style={styles.highlightText}>handwritten note</Text>.{" "}
             <Text style={styles.italicText}>Find more information below.</Text>
           </Text>
 
@@ -88,7 +84,8 @@ export default function FinalInterviewScreen() {
             <Text
               style={[
                 styles.buttonText,
-                completedButtons.includes("Audio") && styles.buttonTextCompleted,
+                completedButtons.includes("Audio") &&
+                  styles.buttonTextCompleted,
               ]}
             >
               Audio
@@ -111,7 +108,9 @@ export default function FinalInterviewScreen() {
             <Feather
               name="edit-2"
               size={20}
-              color={completedButtons.includes("HandwrittenNotes") ? "#333" : "#333"}
+              color={
+                completedButtons.includes("HandwrittenNotes") ? "#333" : "#333"
+              }
               style={styles.icon}
             />
             <Text
@@ -141,7 +140,11 @@ export default function FinalInterviewScreen() {
             <Feather
               name="info"
               size={20}
-              color={completedButtons.includes("InformationDetails") ? "#333" : "#333"}
+              color={
+                completedButtons.includes("InformationDetails")
+                  ? "#333"
+                  : "#333"
+              }
               style={styles.icon}
             />
             <Text
@@ -216,7 +219,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    //elevation: 3,
   },
   buttonCompleted: {
     backgroundColor: "#C5D8B6",

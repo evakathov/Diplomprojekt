@@ -19,6 +19,7 @@ import { useRouter } from "expo-router";
 import { observer } from "mobx-react-lite";
 import { tokenStore } from "./stores/TokenStore";
 import DonorStore from "./stores/DonorStore";
+import LogoutButton from "@/components/LogOutButton";
 
 const Login: React.FC = observer(() => {
   const [username, setUsername] = useState<string>(""); // Username input
