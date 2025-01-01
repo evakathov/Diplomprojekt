@@ -3,7 +3,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 const baseUrl =
   process.env.NODE_ENV === "development"
-    //?"http://localhost:8080/":
+    //?"http://localhost:8082/":
     ?"https://test-app.donor.4a4b.dk/" : 
     "";
 
@@ -45,9 +45,11 @@ class DonorStore {
   //necessary for authenticating our api calls
   private async getAuthHeaders() {
     const token = await AsyncStorage.getItem("esbToken");
+    console.log(token);
     return {
       headers: {
-        "Authorization": token ?? ""
+        "Authorization": `Bearer ${token || ""}`
+
       }
     };
   }

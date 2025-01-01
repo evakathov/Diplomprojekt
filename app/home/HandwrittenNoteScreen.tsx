@@ -15,12 +15,17 @@ export default function HandwrittenNotesScreen() {
 
           {/* Første afsnit */}
           <Text style={styles.description}>
-            Your online profile will include a <Text style={styles.highlightText}>handwritten note</Text> with a greeting to a potential donor child.
+            Your online profile will include a{" "}
+            <Text style={styles.highlightText}>handwritten note</Text> with a
+            greeting to a potential donor child.
           </Text>
 
           {/* Tredje afsnit */}
           <Text style={styles.description}>
-            Below, you will find a <Text style={styles.highlightText}>guide</Text> and a <Text style={styles.highlightText}>template</Text> to help you craft a meaningful message.
+            Below, you will find a{" "}
+            <Text style={styles.highlightText}>guide</Text> and a{" "}
+            <Text style={styles.highlightText}>template</Text> to help you craft
+            a meaningful message.
           </Text>
 
           {/* Guide Button */}
@@ -29,11 +34,18 @@ export default function HandwrittenNotesScreen() {
             onPress={() =>
               router.push({
                 pathname: "/home/PDFViewer",
-                params: { url: "https://test-app.donor.4a4b.dk/Handwritten_message_quide.pdf" },
+                params: {
+                  url: "https://test-app.donor.4a4b.dk/Handwritten_message_quide.pdf",
+                },
               })
             }
           >
-            <Feather name="book-open" size={20} color="#333" style={styles.icon} />
+            <Feather
+              name="book-open"
+              size={20}
+              color="#333"
+              style={styles.icon}
+            />
             <Text style={styles.buttonText}>Guide</Text>
           </TouchableOpacity>
 
@@ -43,7 +55,9 @@ export default function HandwrittenNotesScreen() {
             onPress={() =>
               router.push({
                 pathname: "/home/PDFViewer",
-                params: { url: "https://test-app.donor.4a4b.dk/Handwritten_message_template.pdf" },
+                params: {
+                  url: "https://test-app.donor.4a4b.dk/Handwritten_message_template.pdf",
+                },
               })
             }
           >
@@ -54,7 +68,10 @@ export default function HandwrittenNotesScreen() {
           {/* Please Note */}
           <Text style={[styles.description, styles.noteText]}>
             <Text style={styles.noteTitle}>Please Note: </Text>
-            Your greeting must be in <Text style={styles.highlightText}>English</Text>. We would appreciate it if you could take some time to think about what you would like to write.
+            Your greeting must be in{" "}
+            <Text style={styles.highlightText}>English</Text>. We would
+            appreciate it if you could take some time to think about what you
+            would like to write.
           </Text>
         </View>
       </View>
@@ -77,7 +94,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    //elevation: 3,
   },
   title: {
     fontSize: 24,
