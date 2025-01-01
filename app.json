@@ -15,6 +15,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "esbdonorapp"
+
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +24,7 @@
       },
       "jsEngine": "hermes",
       "newArchEnabled": true,
-      "package": "com.julianehvid.donor_app_v3"
+      "package": "com.julianehvid.donorapplication.v4"
     },
     "web": {
       "bundler": "metro",

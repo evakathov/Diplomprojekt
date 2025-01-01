@@ -42,17 +42,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
   },
   scrollContainer: {
+    marginTop: 50,
     // Adjust padding to align the content properly on the screen
   },
   logoutContainer: {
-    marginVertical: 25,
-    marginTop: 40,
+    //marginVertical: 25,
+    marginTop: 10,
     zIndex: 10,
   },
   qualificationContainer: {
     //backgroundColor: "white",
     alignItems: "center", // Center horizontally
     marginHorizontal: 35, // Add margin on the sides
-    marginTop: -8,
+    marginTop: 8,
   },
 });
