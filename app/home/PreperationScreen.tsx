@@ -19,13 +19,19 @@ export default function PreperationScreen() {
   }, []);
 
   // Håndter tryk på knappen
+  // Håndter tryk på knappen
   const handleButtonPress = async () => {
-    setIsCompleted(true); // Sæt som færdig
-    await AsyncStorage.setItem("PreparationCompleted", "true"); // Gem status i AsyncStorage
-    router.push({
-      pathname: "/home/PDFViewer",
-      params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
-    });
+    const newStatus = !isCompleted; // Flip the status
+    setIsCompleted(newStatus); // Update state
+    await AsyncStorage.setItem("PreparationCompleted", newStatus.toString()); // Gem status i AsyncStorage
+
+    // Navigate only when marked as completed
+    if (newStatus) {
+      router.push({
+        pathname: "/home/PDFViewer",
+        params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
+      });
+    }
   };
 
   return (
