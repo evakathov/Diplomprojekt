@@ -58,10 +58,6 @@ const AppointmentScreen = () => {
     <Background7>
       <View style={styles.container}>
         <Text style={styles.title}>Appointments</Text>
-        <Text style={styles.description}>
-          Here you can find an overview of your upcoming and past appointments.
-        </Text>
-
         {/* Tabs */}
         <View style={styles.tabsContainer}>
           <TouchableOpacity
@@ -104,6 +100,24 @@ const AppointmentScreen = () => {
           renderItem={renderAppointment}
           contentContainerStyle={styles.appointmentsList}
         />
+        <View>
+          <Text style={styles.descriptionHeader}>Blood Test Opening Hours</Text>
+          <Text style={styles.description}>
+            <Text>
+              Monday to Thursday: 8:15 AM - 3:00 PM {"\n"}
+              Friday: 8:15 AM - 12:00 PM {"\n"}
+              {"\n"}
+            </Text>
+            Contact us on{" "}
+            <Text style={styles.highlightText}>
+              donor@europeanspermbank.com
+            </Text>{" "}
+            for blood tests outside opening hours.{"\n"}
+            {"\n"}
+            Blood tests are only done at: Struenseegade 9, 2nd floor, 2200
+            Copenhagen N.
+          </Text>
+        </View>
       </View>
     </Background7>
   );
@@ -123,6 +137,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: "center",
   },
+  descriptionHeader: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: "Helvetica",
+    color: "#4F4F4F",
+    textAlign: "center",
+    marginBottom: 20,
+    lineHeight: 22,
+  },
   description: {
     fontSize: 16,
     fontFamily: "Helvetica",
@@ -130,6 +153,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
     lineHeight: 22,
+  },
+  highlightText: {
+    color: "#6C8B74", // Grøn farve
+    fontWeight: "bold", // Fed for at fremhæve ordene
+    fontFamily: "Helvetica", // Matcher det eksisterende layout
   },
   tabsContainer: {
     flexDirection: "row",

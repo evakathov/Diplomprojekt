@@ -7,7 +7,7 @@ import DonorStore from "@/app/stores/DonorStore";
 interface QualificationStepProps {
   onStepPress: (stepNumber: number, stepTitle: string) => void;
 }
-
+//FC en funktionel komponent med properties defineret fra/i QualificationStepProps
 const QualificationStep: React.FC<QualificationStepProps> = observer(
   ({ onStepPress }) => {
     const donorObject = DonorStore.donorObject;
@@ -17,7 +17,7 @@ const QualificationStep: React.FC<QualificationStepProps> = observer(
     }
 
     const sortedSteps = [...donorObject.qualificationSteps].sort(
-      (a, b) => a.stepNumber - b.stepNumber
+      (a, b) => a.stepNumber - b.stepNumber //Her oprettes en kopi af listen qualificationSteps og sorteres efter stepNumber.
     );
 
     const getIconName = (stepNumber: number) => {

@@ -31,13 +31,22 @@ export default function PersonalityTestScreen() {
   }, []);
 
   const openPersonalityTest = async () => {
-    const url = "https://www.16personalities.com/free-personality-test";
-    try {
-      await Linking.openURL(url);
-      handleComplete();
-    } catch (err) {
-      console.error("Failed to open URL: ", err);
+    // Toggle completion status
+    const newStatus = !isCompleted;
+
+    // Only open the link if the new status is true
+    if (newStatus) {
+      const url = "https://www.16personalities.com/free-personality-test";
+      try {
+        await Linking.openURL(url);
+      } catch (err) {
+        console.error("Failed to open URL: ", err);
+      }
     }
+
+    // Update the state and AsyncStorage
+    setIsCompleted(newStatus);
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newStatus));
   };
 
   const handleComplete = async () => {

@@ -13,11 +13,10 @@ const AppointmentScreen = () => {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   const upcomingAppointments = [
-  
     {
       id: 1,
       date: "November 10, 2024",
-      time: "1:45 PM",
+      time: "3:45 PM",
       location: "Fertio",
       type: "Blood test",
     },
@@ -59,9 +58,6 @@ const AppointmentScreen = () => {
     <Background6>
       <View style={styles.container}>
         <Text style={styles.title}>Appointments</Text>
-        <Text style={styles.description}>
-          Here you can find an overview of your upcoming and past appointments.
-        </Text>
 
         {/* Tabs */}
         <View style={styles.tabsContainer}>
@@ -82,10 +78,7 @@ const AppointmentScreen = () => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[
-              styles.tab,
-              activeTab === "past" && styles.activeTabRight,
-            ]}
+            style={[styles.tab, activeTab === "past" && styles.activeTabRight]}
             onPress={() => setActiveTab("past")}
           >
             <Text
@@ -108,6 +101,24 @@ const AppointmentScreen = () => {
           renderItem={renderAppointment}
           contentContainerStyle={styles.appointmentsList}
         />
+        <View>
+          <Text style={styles.descriptionHeader}>Blood Test Opening Hours</Text>
+          <Text style={styles.description}>
+            <Text>
+              Monday to Thursday: 8:15 AM - 3:00 PM {"\n"}
+              Friday: 8:15 AM - 12:00 PM {"\n"}
+              {"\n"}
+            </Text>
+            Contact us on{" "}
+            <Text style={styles.highlightText}>
+              donor@europeanspermbank.com
+            </Text>{" "}
+            for blood tests outside opening hours.{"\n"}
+            {"\n"}
+            Blood tests are only done at: Struenseegade 9, 2nd floor, 2200
+            Copenhagen N.
+          </Text>
+        </View>
       </View>
     </Background6>
   );
@@ -126,6 +137,15 @@ const styles = StyleSheet.create({
     color: "#285C4B",
     marginBottom: 10,
     textAlign: "center",
+  },
+  descriptionHeader: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: "Helvetica",
+    color: "#4F4F4F",
+    textAlign: "center",
+    marginBottom: 20,
+    lineHeight: 22,
   },
   description: {
     fontSize: 16,
@@ -164,6 +184,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Helvetica",
     color: "#4F4F4F",
+  },
+  highlightText: {
+    color: "#6C8B74", // Grøn farve
+    fontWeight: "bold", // Fed for at fremhæve ordene
+    fontFamily: "Helvetica", // Matcher det eksisterende layout
   },
   activeTabText: {
     color: "#285C4B",

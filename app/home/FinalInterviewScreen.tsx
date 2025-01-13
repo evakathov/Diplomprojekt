@@ -26,21 +26,25 @@ export default function FinalInterviewScreen() {
     fetchStatus();
   }, []);
 
-  const handleComplete = async (button: string) => {
-    const updatedButtons = [...completedButtons, button];
+  const handlePress = async (button: string, action: () => void) => {
+    const isCompleted = completedButtons.includes(button);
+    const updatedButtons = isCompleted
+      ? completedButtons.filter((b) => b !== button) // Remove if already completed
+      : [...completedButtons, button]; // Add if not completed
+
     setCompletedButtons(updatedButtons);
+
+    // Save the updated state to AsyncStorage
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedButtons));
     } catch (error) {
       console.error("Failed to save status to AsyncStorage", error);
     }
-  };
 
-  const handlePress = (button: string, action: () => void) => {
-    if (!completedButtons.includes(button)) {
-      handleComplete(button);
+    // Only navigate if the button is being set to completed (true)
+    if (!isCompleted) {
+      action();
     }
-    action();
   };
 
   return (
@@ -154,7 +158,7 @@ export default function FinalInterviewScreen() {
                   styles.buttonTextCompleted,
               ]}
             >
-              Information Details
+              Final Details
             </Text>
           </TouchableOpacity>
         </View>
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    //elevation: 3,
   },
   title: {
     fontSize: 24,
@@ -219,7 +223,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    //elevation: 3,
   },
   buttonCompleted: {
     backgroundColor: "#C5D8B6",

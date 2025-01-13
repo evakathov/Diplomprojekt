@@ -19,13 +19,19 @@ export default function PreperationScreen() {
   }, []);
 
   // Håndter tryk på knappen
+  // Håndter tryk på knappen
   const handleButtonPress = async () => {
-    setIsCompleted(true); // Sæt som færdig
-    await AsyncStorage.setItem("PreparationCompleted", "true"); // Gem status i AsyncStorage
-    router.push({
-      pathname: "/home/PDFViewer",
-      params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
-    });
+    const newStatus = !isCompleted; // Flip the status
+    setIsCompleted(newStatus); // Update state
+    await AsyncStorage.setItem("PreparationCompleted", newStatus.toString()); // Gem status i AsyncStorage
+
+    // Navigate only when marked as completed
+    if (newStatus) {
+      router.push({
+        pathname: "/home/PDFViewer",
+        params: { url: "https://test-app.donor.4a4b.dk/Interview_prep.pdf" },
+      });
+    }
   };
 
   return (
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 3,
+    //elevation: 3,
   },
   title: {
     fontSize: 24,
@@ -120,7 +126,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    //elevation: 3,
+    elevation: 3,
   },
   buttonPressed: {
     backgroundColor: "#C5D8B6", // Ændret farve når trykket

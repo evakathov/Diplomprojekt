@@ -20,18 +20,35 @@ export default function SurveyScreen() {
     profile: "DonorProfileQuestionnaireStatus",
   };
 
-  const openURL = async (url: string, type: "initial" | "profile") => {
-    if (Platform.OS === "web") {
-      window.open(url, "_blank");
+  // Function to toggle status and open URL if status becomes true
+  const handleButtonPress = async (
+    url: string,
+    type: "initial" | "profile"
+  ) => {
+    let newStatus;
+    if (type === "initial") {
+      newStatus = !initialCompleted;
+      setInitialCompleted(newStatus);
     } else {
-      try {
-        await Linking.openURL(url);
-      } catch (err) {
-        console.error("Failed to open URL: ", err);
-      }
+      newStatus = !profileCompleted;
+      setProfileCompleted(newStatus);
     }
 
-    handleComplete(type);
+    try {
+      const key =
+        type === "initial" ? STORAGE_KEYS.initial : STORAGE_KEYS.profile;
+      await AsyncStorage.setItem(key, JSON.stringify(newStatus));
+
+      if (newStatus) {
+        if (Platform.OS === "web") {
+          window.open(url, "_blank");
+        } else {
+          await Linking.openURL(url);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to toggle status or open URL:", error);
+    }
   };
 
   useEffect(() => {
@@ -58,22 +75,6 @@ export default function SurveyScreen() {
     fetchStatus();
   }, []);
 
-  const handleComplete = async (type: "initial" | "profile") => {
-    try {
-      const key =
-        type === "initial" ? STORAGE_KEYS.initial : STORAGE_KEYS.profile;
-      await AsyncStorage.setItem(key, JSON.stringify(true));
-
-      if (type === "initial") {
-        setInitialCompleted(true);
-      } else {
-        setProfileCompleted(true);
-      }
-    } catch (error) {
-      console.error("Failed to save status to AsyncStorage", error);
-    }
-  };
-
   return (
     <Background2>
       <View style={styles.scrollContainer}>
@@ -98,7 +99,7 @@ export default function SurveyScreen() {
                 initialCompleted && styles.buttonCompleted,
               ]}
               onPress={() =>
-                openURL(
+                handleButtonPress(
                   "https://testdonorportal.europeanspermbank.com/register/?invitation=MGDlhD0xtI9sGHBC01xwmqGDuzAVlsfkWDSJLtOj43XRe41zLJ2p0yvPy3S8uNB4I8HcWG7pMBpktEFHuXKinsgRJqmzRNJ4uzQ1xbaZSThZ4nKd3mPLDvhG2C51r2pb-fyRK1BpcTPyYaFN1mp6kOqNiLnmV3HaySRUXgPj0Zs-&returnUrl=%2Fsperm%2Finfo-details-sperm",
                   "initial"
                 )
@@ -144,7 +145,7 @@ export default function SurveyScreen() {
                 profileCompleted && styles.buttonCompleted,
               ]}
               onPress={() =>
-                openURL(
+                handleButtonPress(
                   "https://testdonorportal.europeanspermbank.com/SignIn?returnUrl=%2Fsperm",
                   "profile"
                 )
@@ -186,7 +187,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    //elevation: 3,
   },
   title: {
     fontSize: 24,

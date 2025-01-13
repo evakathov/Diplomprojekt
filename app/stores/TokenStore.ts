@@ -31,7 +31,7 @@ class TokenStore {
         this.state = LoginStates.LOGGED_IN;
       }
     } catch (error) {
-      console.error("Failed to load token from storage:", error);
+      //console.error("Failed to load token from storage:", error);
     }
   }
 
