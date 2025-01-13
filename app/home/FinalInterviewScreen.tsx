@@ -158,7 +158,7 @@ export default function FinalInterviewScreen() {
                   styles.buttonTextCompleted,
               ]}
             >
-              Information Details
+              Final Details
             </Text>
           </TouchableOpacity>
         </View>

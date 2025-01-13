@@ -73,7 +73,7 @@ export default function BloodUrineTest() {
           </View>
 
           {/* Video Description */}
-          <Text style={styles.videoDescription}>Improving sperm quality:</Text>
+          <Text style={styles.videoDescription}>Optimizing sperm quality:</Text>
 
           {/* Video Section */}
           {Platform.OS === "web" ? (
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   webview: {
     width: width * 0.9,
     height: height * 0.4,
-    borderRadius: 10,
+    borderRadius: 8,
     alignSelf: "center",
     marginBottom: 20,
   },

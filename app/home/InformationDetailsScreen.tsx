@@ -7,7 +7,7 @@ export default function InformationDetailsScreen() {
     <Background6>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.opaqueBackground}>
-          <Text style={styles.title}>Information Details</Text>
+          <Text style={styles.title}>Final Details</Text>
 
           {/* Profile Review */}
           <Text style={styles.sectionTitle}>Profile review</Text>
